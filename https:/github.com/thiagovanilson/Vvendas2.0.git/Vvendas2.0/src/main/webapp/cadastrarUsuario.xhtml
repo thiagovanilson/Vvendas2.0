@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Cadastrar Usuário</title>
+        
+      	<h:form title="Cadastrar Usuário">
+ 
+			<p:panelGrid columns="2" cellpadding="5">
+   
+			   <p:outputLabel value="CPF:" for="cpf" />
+			   <p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
+			   
+			   <p:outputLabel value="Nome:" for="name" />
+			   <p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
+
+ 			   <p:outputLabel value="Grupo:" for="group" />
+			   <p:inputText id="group" value="#{cadastrarUsuario.type}"  required="true" />
+
+			   <p:outputLabel value="Senha:" for="pass" />
+			   <h:inputSecret id="pass" value="#{cadastrarUsuario.pass}" required="true" />   
+			   
+			  <!-- 
+			   <h:selectOneMenu value="#{index.type}" >
+					<f:selectItems itemLabel="Administrador" itemValue="#{index.types()}"  />
+			   </h:selectOneMenu>  
+			   -->
+
+ 			</p:panelGrid>
+ 
+   			<p:commandButton type="submit" value="Salvar"   action="#{cadastrarUsuario.save()}" />
+  
+		</h:form>          
+    </ui:define>
+</ui:composition>
