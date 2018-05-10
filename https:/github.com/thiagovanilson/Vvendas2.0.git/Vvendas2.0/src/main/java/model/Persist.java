@@ -114,6 +114,7 @@ public class Persist {
 	    return manager.find(ProductModel.class, key);
 
 	}	
+	
 	public List<String> find(String sqlCode){
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");

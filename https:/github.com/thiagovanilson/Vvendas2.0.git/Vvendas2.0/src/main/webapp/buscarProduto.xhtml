@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Buscar Produto</title>
+    	
+        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        
+      	<h:form title="Buscar Produtos" id="busProdForm">
+ 
+			<p:panelGrid columns="2" cellpadding="5" >
+   
+			   <p:outputLabel value="Codigo de barras:" for="cod" />
+			   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
+			   
+			   <p:outputLabel value="Nome do produto:" for="name" />
+			   <p:inputText id="name" value="#{buscarProdutos.name}"   />
+			   
+ 			</p:panelGrid>
+ 
+   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings" />
+  
+		</h:form>  
+		<div>
+			<h2 align="center" >
+				<p:outputLabel id="warnings" value="#{buscarProdutos.aviso}"/>
+			</h2>
+		</div>
+		<!-- 
+		<p:fieldset legend="Livros encontrados">
+			<p:dataTable id="" var="p">
+				<p:column>
+					<f:facet name="header">Isbn</f:facet>
+					<h:outputText value="#{book.isbn}" />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>        
+		 -->
+    </ui:define>
+</ui:composition>

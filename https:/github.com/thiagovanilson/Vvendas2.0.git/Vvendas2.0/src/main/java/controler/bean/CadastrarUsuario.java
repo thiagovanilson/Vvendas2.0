@@ -8,7 +8,7 @@ import model.Persist;
 
 @RequestScoped
 @ManagedBean
-public class CadastrarUsuario {	
+public class CadastrarUsuario extends AbstractBean{	
 	
 	private String name, cpf, type, pass;
 	
@@ -24,13 +24,24 @@ public class CadastrarUsuario {
 	public void save() {
 		//System.out.println("Useraction " + um.getName());
 		try {
-			new Persist().save(new Facade().createUser(cpf, name, pass, type));
+			if(new Persist().save(new Facade().createUser(cpf, name, pass, type))) {
+				clean();
+				reportarMensagemDeSucesso("Usuario salvo!");
+			}
+			else
+				reportarMensagemDeErro("Falha ao gravar!");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reportarMensagemDeErro(e.getMessage());
+
 		}
 	}
 
+	public void clean() {
+		name = "";
+		cpf  = ""; 
+		type = "";
+		pass = "";
+	}
 	public String getName() {
 		return name;
 	}

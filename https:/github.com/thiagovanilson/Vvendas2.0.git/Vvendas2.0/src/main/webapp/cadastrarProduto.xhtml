@@ -9,9 +9,11 @@
     
     <ui:define name="corpo">              
     	<title>Cadastrar Produto</title>
+    	
         <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
         
-      	<h:form title="Cadastrar Produtos">
+      	<h:form title="Cadastrar Produtos" id="cadProdForm">
  
 			<p:panelGrid columns="2" cellpadding="5">
    
@@ -22,22 +24,17 @@
 			   <p:inputText id="name" value="#{cadastrarProdutos.name}"   required="true" />
 			   
 			   <p:outputLabel value="Descrição:" for="desc" />
-			   <p:inputText id="desc" value="#{cadastrarProdutos.description}"   />
+			   <p:inputTextarea id="desc" value="#{cadastrarProdutos.description}" rows="4" cols="100" />
 
  			   <p:outputLabel value="Preço:" for="group" />
 			   <p:inputText id="group" value="#{cadastrarProdutos.price}"  required="true" />
 
 			   <p:outputLabel value="Quantidade:" for="qtd" />
 			   <p:inputText id="qtd" value="#{cadastrarProdutos.quantity}"  required="true" />
-			  <!-- 
-			   <h:selectOneMenu value="#{index.type}" >
-					<f:selectItems itemLabel="Administrador" itemValue="#{index.types()}"  />
-			   </h:selectOneMenu>  
-			   -->
-
+			 
  			</p:panelGrid>
  
-   			<p:commandButton  value="Salvar" action="#{cadastrarProdutos.save()}"  />
+   			<p:commandButton  value="Salvar" action="#{cadastrarProdutos.save()}" update="cadProdForm" />
   
 		</h:form>          
     </ui:define>

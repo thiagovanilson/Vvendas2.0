@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class ProductDAO {
 
 	private ProductModel pm;
@@ -32,4 +34,7 @@ public class ProductDAO {
 	public ProductModel getProduct(String id) {
 		return new Persist().getProduct(id);
 	}
+	
+	ArrayList<ProductModel> produtos = new ArrayList();
+	
 }

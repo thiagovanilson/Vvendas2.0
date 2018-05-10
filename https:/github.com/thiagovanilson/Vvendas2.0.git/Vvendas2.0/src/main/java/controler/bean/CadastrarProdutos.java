@@ -26,7 +26,6 @@ public class CadastrarProdutos extends AbstractBean{
 	}
 
 	public void save() {
-		//System.out.println("Useraction " + um.getName());
 		try {
 			ProductModel p = new ProductModel();;
 
@@ -36,15 +35,24 @@ public class CadastrarProdutos extends AbstractBean{
 			p.setDescricao(description);
 			p.setQuantity(quantity);
 			
-			new ProductDAO(p).save();
-			reportarMensagemDeSucesso("Produto salvo!");
+			if (new ProductDAO(p).save()) {
+				clean();
+				reportarMensagemDeSucesso("Produto salvo!");
+			}
+			else
+				reportarMensagemDeErro("Erro ao salvar. Revise os campos!");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reportarMensagemDeErro(e.getMessage());
 		}
 	}
-
+	public void clean() {
+		description = "";
+		name        = "";
+		cod         = "";
+		price       = 0;
+		quantity    = 0;
+	}
 	public String getName() {
 		return name;
 	}

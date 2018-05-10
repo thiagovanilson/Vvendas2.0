@@ -10,31 +10,31 @@
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
         
-      	<h:form title="Cadastrar Usuário">
+        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        
+      	<h:form title="Cadastrar Usuário" id="cadUserForm">
  
 			<p:panelGrid columns="2" cellpadding="5">
    
-			   <p:outputLabel value="CPF:" for="cpf" />
-			   <p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
+				<p:outputLabel value="CPF:" for="cpf" />
+				<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
+				
+				<p:outputLabel value="Nome:" for="name" />
+				<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
+								
+				<p:outputLabel for="type" value="Tipo de usuario:" />
+		        <p:selectOneMenu id="type" value="#{cadastrarUsuario.type}" style="width:125px">		           
+		            <f:selectItem itemLabel="Simples" itemValue="user" />
+		            <f:selectItem itemLabel="Administrador" itemValue="admin" />
+		        </p:selectOneMenu>
+ 
+				<p:outputLabel value="Senha:" for="pass" />
+				<h:inputSecret id="pass" value="#{cadastrarUsuario.pass}" required="true" />   
 			   
-			   <p:outputLabel value="Nome:" for="name" />
-			   <p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
-
- 			   <p:outputLabel value="Grupo:" for="group" />
-			   <p:inputText id="group" value="#{cadastrarUsuario.type}"  required="true" />
-
-			   <p:outputLabel value="Senha:" for="pass" />
-			   <h:inputSecret id="pass" value="#{cadastrarUsuario.pass}" required="true" />   
-			   
-			  <!-- 
-			   <h:selectOneMenu value="#{index.type}" >
-					<f:selectItems itemLabel="Administrador" itemValue="#{index.types()}"  />
-			   </h:selectOneMenu>  
-			   -->
-
  			</p:panelGrid>
  
-   			<p:commandButton type="submit" value="Salvar"   action="#{cadastrarUsuario.save()}" />
+   			<p:commandButton type="submit" value="Salvar"  action="#{cadastrarUsuario.save()}" update="cadUserForm" />
   
 		</h:form>          
     </ui:define>
