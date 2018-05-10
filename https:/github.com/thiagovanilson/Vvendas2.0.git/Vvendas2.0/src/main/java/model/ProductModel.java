@@ -13,6 +13,7 @@ public class ProductModel {
 	private String name;
 	private float price;
 	private String descricao;
+	private int quantity;
 	
 	public String getId() {
 		return id;
@@ -37,5 +38,11 @@ public class ProductModel {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}	
 }
