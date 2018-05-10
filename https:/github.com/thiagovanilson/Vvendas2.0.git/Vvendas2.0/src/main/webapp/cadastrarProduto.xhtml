@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Cadastrar Produto</title>
+        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        
+      	<h:form title="Cadastrar Produtos">
+ 
+			<p:panelGrid columns="2" cellpadding="5">
+   
+			   <p:outputLabel value="Codigo de barras:" for="cod" />
+			   <p:inputText id="cod" value="#{cadastrarProdutos.cod}"     required="true" />
+			   
+			   <p:outputLabel value="Nome do produto:" for="name" />
+			   <p:inputText id="name" value="#{cadastrarProdutos.name}"   required="true" />
+			   
+			   <p:outputLabel value="Descrição:" for="desc" />
+			   <p:inputText id="desc" value="#{cadastrarProdutos.description}"   />
+
+ 			   <p:outputLabel value="Preço:" for="group" />
+			   <p:inputText id="group" value="#{cadastrarProdutos.price}"  required="true" />
+
+			   <p:outputLabel value="Quantidade:" for="qtd" />
+			   <p:inputText id="qtd" value="#{cadastrarProdutos.quantity}"  required="true" />
+			  <!-- 
+			   <h:selectOneMenu value="#{index.type}" >
+					<f:selectItems itemLabel="Administrador" itemValue="#{index.types()}"  />
+			   </h:selectOneMenu>  
+			   -->
+
+ 			</p:panelGrid>
+ 
+   			<p:commandButton  value="Salvar" action="#{cadastrarProdutos.save()}"  />
+  
+		</h:form>          
+    </ui:define>
+</ui:composition>

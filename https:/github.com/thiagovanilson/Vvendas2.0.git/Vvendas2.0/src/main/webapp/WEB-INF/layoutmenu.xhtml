@@ -3,21 +3,17 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-
 	
 		<h:form>
 			<p:panelMenu style="width:250px">
-				<p:submenu label="CADASTROS BÁSICOS">
-					<p:menuitem value="Cadastrar Cliente" icon="icon-users" />
-					<p:menuitem value="Cadastrar Usuário do Sistema" icon="icon-user" outcome="cadastrarUsuario.xhtml"/>
+				<p:submenu label="CADASTROS">
+					<p:menuitem value="Cadastrar Produto" 			 icon="icon-users" outcome="cadastrarProduto.xhtml" />
+					<p:menuitem value="Cadastrar Usuário do Sistema" icon="icon-user"  outcome="cadastrarUsuario.xhtml" />
 				</p:submenu>
 				
-				<p:submenu label="SALA DE AULAS VIRTUAIS">
-					<p:menuitem value="Cadastrar Cliente" icon="icon-users" />
-					<p:menuitem value="Cadastrar Usuário do Sistema" icon="icon-user" />
-				</p:submenu>
-				
+				<p:submenu label="OUTROS">
+					<p:menuitem value="Exemplo" icon="icon-users" />
+				</p:submenu>				
 			</p:panelMenu>	
 		</h:form>
-
 </ui:composition>
