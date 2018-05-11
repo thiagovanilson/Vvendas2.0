@@ -11,6 +11,7 @@ public class UserModel {
 	private String name;
 	private String pass;
 	private String usergroup;
+	private String email;
 	
 	public String getCpf() {
 		return cpf;
@@ -35,6 +36,12 @@ public class UserModel {
 	}
 	public void setUsergroup(String usergroup) {
 		this.usergroup = usergroup;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

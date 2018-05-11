@@ -10,7 +10,7 @@ import model.Persist;
 @ManagedBean
 public class CadastrarUsuario extends AbstractBean{	
 	
-	private String name, cpf, type, pass;
+	private String name, cpf, type, pass, email;
 	
 	public String filtrar() {
 		
@@ -22,9 +22,9 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 
 	public void save() {
-		//System.out.println("Useraction " + um.getName());
+
 		try {
-			if(new Persist().save(new Facade().createUser(cpf, name, pass, type))) {
+			if(new Persist().save(new Facade().createUser(cpf, name, pass, type, email))) {
 				clean();
 				reportarMensagemDeSucesso("Usuario salvo!");
 			}
@@ -41,6 +41,7 @@ public class CadastrarUsuario extends AbstractBean{
 		cpf  = ""; 
 		type = "";
 		pass = "";
+		email= "";
 	}
 	public String getName() {
 		return name;
@@ -72,5 +73,13 @@ public class CadastrarUsuario extends AbstractBean{
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
 }

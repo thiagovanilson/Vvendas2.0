@@ -12,13 +12,14 @@ public class Facade {
 		
 	}
 	
-	public UserModel createUser(String string, String name, String pass, String group) throws Exception {
+	public UserModel createUser(String string, String name, String pass, String group, String email) throws Exception {
 		UserModel u = new UserModel();
 		//u.createNewUser(cpf, name, pass, group);
 		u.setName(name);
 		u.setCpf(string);
 		u.setPass(pass);
 		u.setUsergroup(group);
+		u.setEmail(email);
 		return u;
 	}
 	public boolean saveUser(UserModel u) {

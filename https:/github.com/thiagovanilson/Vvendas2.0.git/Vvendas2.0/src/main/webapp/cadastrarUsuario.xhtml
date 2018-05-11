@@ -10,8 +10,8 @@
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
         
-        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
-        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        <p:growl    id="idMessages"       showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true"   severity="error" autoUpdate="true" />
         
       	<h:form title="Cadastrar Usuário" id="cadUserForm">
  
@@ -25,16 +25,21 @@
 								
 				<p:outputLabel for="type" value="Tipo de usuario:" />
 		        <p:selectOneMenu id="type" value="#{cadastrarUsuario.type}" style="width:125px">		           
-		            <f:selectItem itemLabel="Simples" itemValue="user" />
+		            <f:selectItem itemLabel="Simples"       itemValue="user"  />
 		            <f:selectItem itemLabel="Administrador" itemValue="admin" />
 		        </p:selectOneMenu>
  
+ 				<p:outputLabel value="Email:" for="email" />
+				<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" />
+				
 				<p:outputLabel value="Senha:" for="pass" />
-				<h:inputSecret id="pass" value="#{cadastrarUsuario.pass}" required="true" />   
+				<p:password id="pass" value="#{cadastrarUsuario.pass}" required="true" feedback="true" match="conPass"/>   
 			   
+			   	<p:outputLabel value="Confirme a senha:" for="conPass" />
+				<p:password id="conPass" required="true" /> 
  			</p:panelGrid>
  
-   			<p:commandButton type="submit" value="Salvar"  action="#{cadastrarUsuario.save()}" update="cadUserForm" />
+   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}" update="cadUserForm" icon="fa fa-save" />
   
 		</h:form>          
     </ui:define>

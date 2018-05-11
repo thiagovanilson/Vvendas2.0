@@ -1,11 +1,13 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class Persist {
 
@@ -112,6 +114,19 @@ public class Persist {
     	EntityManager manager = factory.createEntityManager();
 
 	    return manager.find(ProductModel.class, key);
+
+	}	
+	public ArrayList<ProductModel> getProducts(String key) {
+    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+    	EntityManager manager = factory.createEntityManager();
+    	
+    	
+    	return (ArrayList<ProductModel>) manager.createQuery(
+    			"SELECT p FROM ProductModel p WHERE p.name LIKE :pname")
+    			.setParameter("pname", "%"+key+"%")
+    			.setMaxResults(10)
+    			.getResultList();
+
 
 	}	
 	

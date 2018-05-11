@@ -25,7 +25,7 @@
 			   
  			</p:panelGrid>
  
-   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings" />
+   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds" icon="fa fa-search" />
   
 		</h:form>  
 		<div>
@@ -33,15 +33,34 @@
 				<p:outputLabel id="warnings" value="#{buscarProdutos.aviso}"/>
 			</h2>
 		</div>
-		<!-- 
-		<p:fieldset legend="Livros encontrados">
-			<p:dataTable id="" var="p">
-				<p:column>
-					<f:facet name="header">Isbn</f:facet>
-					<h:outputText value="#{book.isbn}" />
-				</p:column>
+		
+		<br />
+		<br />
+		
+		<p:fieldset id="founds"  >
+			<p:dataTable  var="p" value="#{buscarProdutos.produtos}" rendered="#{buscarProdutos.hasItens()}" >
+				<p:column headerText="Codigo" width="100">
+			        <h:outputText value="#{p.id}" />
+			    </p:column>
+			    
+			    <p:column headerText="Nome">
+			        <h:outputText value="#{p.name}" />
+			    </p:column>
+			    
+			    <p:column headerText="Descrição" width="300">
+			        <h:outputText value="#{p.descricao}" />
+			    </p:column>
+			    
+			    <p:column headerText="Quant" width="70">
+			        <h:outputText value="#{p.quantity}" />
+			    </p:column>
+			    
+			    <p:column headerText="Preço">
+			        <h:outputText value="#{p.price}" />
+			    </p:column>
 			</p:dataTable>
 		</p:fieldset>        
+		<!-- 
 		 -->
     </ui:define>
 </ui:composition>

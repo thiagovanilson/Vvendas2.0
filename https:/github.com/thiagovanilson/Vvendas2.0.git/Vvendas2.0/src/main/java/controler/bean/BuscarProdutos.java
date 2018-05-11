@@ -1,5 +1,7 @@
 package controler.bean;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -13,7 +15,7 @@ import model.ProductModel;
 public class BuscarProdutos extends AbstractBean{	
 	
 	private String name, cod, aviso;
-	
+	ArrayList<ProductModel> produtos = new ArrayList();
 	
 	public String filtrar() {
 		
@@ -24,23 +26,39 @@ public class BuscarProdutos extends AbstractBean{
 		
 	}
 
+	private boolean empty = true;
+	
 	public void buscar() {
 		aviso = "";
-		clean();
 		
 		if(cod!=null && !cod.equals("")) {
 			ProductModel p = new ProductDAO(null).getProduct(cod);
 			
 			if(p != null) {
-				name = p.getName();
+				produtos.add(p);
+				empty = false;
 			}
-			else
+			else {
+				empty = true;
+				clean();
 				aviso = "Não foram encontrados resultados. :(";
+			}
+		}else {
+			for(ProductModel p: new Persist().getProducts(name)){
+				produtos.add(p);
+				empty = false;
+
+			}
 		}
 	}
 	public void clean() {
 		name        = "";
-		cod         = "";		
+		cod         = "";
+		produtos = new ArrayList();
+		
+	}
+	public boolean hasItens() {
+		return !empty;
 	}
 	public String getAviso() {
 		return aviso;
@@ -59,6 +77,10 @@ public class BuscarProdutos extends AbstractBean{
 
 	public void setCod(String cod) {
 		this.cod = cod;
+	}
+
+	public ArrayList<ProductModel> getProdutos() {
+		return produtos;
 	}
 
 }
