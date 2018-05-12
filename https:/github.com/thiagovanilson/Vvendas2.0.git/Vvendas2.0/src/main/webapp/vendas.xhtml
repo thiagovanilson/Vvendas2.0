@@ -1,0 +1,63 @@
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="/WEB-INF/template.xhtml">
+        <ui:define name="corpo">
+        
+        
+        <title>Vendas</title>
+    	
+        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        
+      	<h:form title="Buscar Produtos" id="busProdForm">
+ 
+			<p:panelGrid columns="2" cellpadding="5" >
+   
+			   <p:outputLabel value="Codigo de barras:" for="cod" />
+			   <p:inputText id="cod"  value="#{vendas.cod}"    />
+			   
+			   <p:outputLabel value="Quantidade:"  for="qtd" />
+			   <p:inputText   value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
+			   
+ 			</p:panelGrid>
+ 
+   			<p:commandButton  action="#{vendas.addCart()}" value="Adicionar" update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
+  
+		</h:form>  
+		<div>
+			<h2 align="center" >
+				<p:outputLabel value="#{vendas.warning}" id="warnings" />
+			</h2>
+		</div>
+		
+		<br />
+		<br />
+		
+		<p:fieldset id="founds"  >
+			<p:dataTable  var="v" value="#{vendas.itens}" rendered="#{vendas.hasItens()}" >
+				<p:column headerText="Codigo" width="100">
+			        <h:outputText value="#{v.barCode}" />
+			    </p:column>
+			    
+			    <p:column headerText="Nome">
+			        <h:outputText value="#{v.name}" />
+			    </p:column>
+			    
+			    <p:column headerText="Descrição" width="300">
+			        <h:outputText value="#{v.description}" />
+			    </p:column>
+			    
+			    <p:column headerText="Quant" width="70">
+			        <h:outputText value="#{v.quantity}" />
+			    </p:column>
+			    
+			    <p:column headerText="Sub-total">
+			        <h:outputText value="#{v.subTotal}" />
+			    </p:column>
+			</p:dataTable>
+		</p:fieldset>        
+        </ui:define>
+    </ui:decorate>
+</xhtml>

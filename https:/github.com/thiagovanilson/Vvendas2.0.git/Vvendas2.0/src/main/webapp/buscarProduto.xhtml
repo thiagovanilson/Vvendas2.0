@@ -21,11 +21,11 @@
 			   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
 			   
 			   <p:outputLabel value="Nome do produto:" for="name" />
-			   <p:inputText id="name" value="#{buscarProdutos.name}"   />
+			   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  />
 			   
  			</p:panelGrid>
  
-   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds" icon="fa fa-search" />
+   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds" icon="fa fa-search"  />
   
 		</h:form>  
 		<div>

@@ -7,17 +7,19 @@ public class ItemSell {
 	
 	@Id
 	private long id;
-	private long barCode;
+	private String barCode;
 	private float price;
+	private String name;
+	private String description;
 	private int quantity;
 	
 	public long getId() {
 		return id;
 	}
-	public long getBarCode() {
+	public String getBarCode() {
 		return barCode;
 	}
-	public void setBarCode(long barCode) {
+	public void setBarCode(String barCode) {
 		this.barCode = barCode;
 	}
 	public float getPrice() {
@@ -34,5 +36,17 @@ public class ItemSell {
 	}
 	public float getSubTotal() {
 		return quantity * price;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}	
 }
