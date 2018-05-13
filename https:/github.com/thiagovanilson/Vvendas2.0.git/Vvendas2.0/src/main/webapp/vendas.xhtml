@@ -8,22 +8,23 @@
         
         <title>Vendas</title>
     	
-        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
-        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="false" autoUpdate="true" severity="error" closable="true" />
         
       	<h:form title="Buscar Produtos" id="busProdForm">
  
 			<p:panelGrid columns="2" cellpadding="5" >
    
 			   <p:outputLabel value="Codigo de barras:" for="cod" />
-			   <p:inputText id="cod"  value="#{vendas.cod}"    />
+			   <p:inputText id="cod"  value="#{vendas.cod}"  />
 			   
 			   <p:outputLabel value="Quantidade:"  for="qtd" />
 			   <p:inputText   value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
 			   
  			</p:panelGrid>
  
-   			<p:commandButton  action="#{vendas.addCart()}" value="Adicionar" update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
+   			<p:commandButton  action="#{vendas.addCart()}" value="Adicionar"         update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
+     		<p:commandButton  action="#{vendas.finish()}"  value="Finalizar compra"  update=":warnings :founds :busProdForm" icon="fa fa-check"   />
   
 		</h:form>  
 		<div>
@@ -36,6 +37,10 @@
 		<br />
 		
 		<p:fieldset id="founds"  >
+			<strong>
+				<p:outputLabel value="#{vendas.info}"/>
+			</strong>
+			
 			<p:dataTable  var="v" value="#{vendas.itens}" rendered="#{vendas.hasItens()}" >
 				<p:column headerText="Codigo" width="100">
 			        <h:outputText value="#{v.barCode}" />
@@ -54,7 +59,7 @@
 			    </p:column>
 			    
 			    <p:column headerText="Sub-total">
-			        <h:outputText value="#{v.subTotal}" />
+			        <h:outputText value="R$ #{v.subTotal}" />
 			    </p:column>
 			</p:dataTable>
 		</p:fieldset>        
