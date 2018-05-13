@@ -5,16 +5,22 @@ import javax.persistence.*;
 @Entity
 public class ItemSell {
 	
-	@Id
+	@Id  	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
+	private long idSell;
 	private String barCode;
 	private float price;
 	private String name;
 	private String description;
 	private int quantity;
 	
-	public long getId() {
-		return id;
+	public long getIdSell() {
+		return idSell;
+	}
+	public void setIdSell(long idSell) {
+		this.idSell = idSell;
 	}
 	public String getBarCode() {
 		return barCode;

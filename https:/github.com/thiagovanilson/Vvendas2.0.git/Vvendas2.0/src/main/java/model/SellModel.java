@@ -8,12 +8,28 @@ import javax.persistence.*;
 public class SellModel {
 
 	@Id  
+
 	private long id;
 	
 	private float price;	
 	private String cpfUsuario;
 	private Date date;
 	
+	public SellModel(){
+		date = new Date();
+		id = generateId();
+	}
+	
+	private long generateId() {
+		long id = (long) (Math.random() * 1000000000);			
+			
+		ProductModel p = new ProductDAO(null).getProduct(id + "");
+		
+		if(p != null) {
+			return generateId();
+		}		
+		return id;
+	}
 	
 	public long getId() {
 		return id;
@@ -32,8 +48,5 @@ public class SellModel {
 	}
 	public Date getDate() {
 		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}	
 }

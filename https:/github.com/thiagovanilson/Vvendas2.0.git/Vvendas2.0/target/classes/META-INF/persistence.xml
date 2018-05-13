@@ -12,6 +12,8 @@
    <!-- entidade mapeada -->
    <class>model.UserModel</class>
    <class>model.ProductModel</class>
+   <class>model.SellModel</class>
+   <class>model.ItemSell</class>
 
    <properties>
     <!-- dados da conexao -->
