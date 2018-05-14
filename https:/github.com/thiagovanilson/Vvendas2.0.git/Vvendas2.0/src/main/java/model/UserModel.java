@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="usuario")  
+@Table(name="usuarios")  
 
 public class UserModel {
 	@Id

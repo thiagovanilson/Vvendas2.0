@@ -140,29 +140,30 @@ private boolean editUser() {
 		
 		if(p == null)
 			return false;
-		return dao.edit(name, desc, price);
+		return false;//dao.edit(name, desc, price);
 	}
 	private boolean registerUser() {
-		System.out.print("Digite o CPF do usuario: ");
-		String cpf = new Scanner(System.in).next();
-		
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.print("Digite o nome do usuario: ");
-		String name = sc.nextLine();
-		
-		System.out.print("Digite o tipo de usuario (Admin, user): ");
-		String type = sc.nextLine();
-		
-		System.out.print("Digite a senha do usuario: ");
-		String pass = sc.nextLine();
-		
-		try {
-			return fc.saveUser(fc.createUser(cpf, name, pass, type));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
+//		System.out.print("Digite o CPF do usuario: ");
+//		String cpf = new Scanner(System.in).next();
+//		
+//		Scanner sc = new Scanner(System.in);
+//		
+//		System.out.print("Digite o nome do usuario: ");
+//		String name = sc.nextLine();
+//		
+//		System.out.print("Digite o tipo de usuario (Admin, user): ");
+//		String type = sc.nextLine();
+//		
+//		System.out.print("Digite a senha do usuario: ");
+//		String pass = sc.nextLine();
+//		
+//		try {
+//			return fc.saveUser();
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//			return false;
+//		}
+		return false;
 	}
 	void showMainMenu() {
 		System.out.print(

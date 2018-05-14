@@ -25,26 +25,30 @@ public class Vendas extends AbstractBean{
 		ItemSell item = new ItemSell();		
 
 		if(cod!=null && !cod.equals("")) {
-			ProductModel p = new ProductDAO(null).getProduct(cod);
+			ProductDAO pd = new ProductDAO(null);
+			ProductModel p = pd.getProduct(cod);
+			
 			
 			if(p != null) {
 				if(p.getQuantity() < qtd) {
 					warning = "Quantidade indisponivel";
 					return;
 				}
+				
 				item.setBarCode(cod);
 				item.setPrice(p.getPrice());
 				item.setQuantity(qtd);
 				item.setName(p.getName());
 				item.setDescription(p.getDescricao());
 				
+				//Update itens quantity on system.
 				p.setQuantity(p.getQuantity() - qtd);
+				pd.edit(p);
 				
 				itens.add(item);
 				warning = "";
 				sum += item.getSubTotal();
 				
-				//TO DO. On implements "Close sell", don't forget to decrease qtd of itens
 			}
 			else {
 				warning = "Codigo: " + cod + " não cadastrado!";

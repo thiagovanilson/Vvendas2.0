@@ -5,10 +5,11 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+@Table(name="vendas")  
+
 public class SellModel {
 
 	@Id  
-
 	private long id;
 	
 	private float price;	

@@ -24,10 +24,7 @@ public class ProductDAO {
 			return new Persist().delete(pm);
 		return false;
 	}
-	public boolean edit(String name, String desc, float price) {
-		pm.setName(name);
-		pm.setDescricao(desc);
-		pm.setPrice(price);
+	public boolean edit(ProductModel pm) {
 	
 		return new Persist().edit(pm);
 	}

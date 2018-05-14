@@ -83,13 +83,16 @@ public class Persist {
 		    
 		    manager.getTransaction().begin();
 		    ProductModel p = getProduct(o.getId());
-		    	if(p == null)
-		    		return false;	
+		    
+	    	if(p == null)
+	    		return false;	
+	    	
 		    p = manager.merge(p);
 		    
 		    p.setName(o.getName());
-		    p.setDescricao(o.getDescricao());
 		    p.setPrice(o.getPrice());
+		    p.setQuantity(o.getQuantity());
+		    p.setDescricao(o.getDescricao());
 		    
 		    manager.persist(p);
 		    manager.getTransaction().commit();    

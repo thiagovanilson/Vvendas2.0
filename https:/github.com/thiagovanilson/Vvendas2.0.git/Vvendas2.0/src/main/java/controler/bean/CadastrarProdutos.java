@@ -1,57 +1,96 @@
 package controler.bean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
-import model.Facade;
-import model.Persist;
+
 import model.ProductDAO;
 import model.ProductModel;
 
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class CadastrarProdutos extends AbstractBean{	
 	
 	private String name, cod, description;
 	private float price;
 	private int quantity;
+	private boolean isEdition = false;
 	
 	public String filtrar() {
 		
 		return null;
 	}
 	
-	public CadastrarProdutos() {
-		
+	public boolean isEdition() {
+		return isEdition;
 	}
 
 	public void save() {
 		try {
-			ProductModel p = new ProductModel();;
-
+			ProductModel p = new ProductModel();
+			
 			p.setId(cod);
 			p.setName(name);
 			p.setPrice(price);
-			p.setDescricao(description);
 			p.setQuantity(quantity);
+			p.setDescricao(description);
 			
-			if (new ProductDAO(p).save()) {
-				clean();
-				reportarMensagemDeSucesso("Produto salvo!");
+			ProductDAO pd = new ProductDAO(p);
+			
+			if(isEdition) {
+				if (pd.edit(p)) {
+					clean();
+					reportarMensagemDeSucesso("Edições salvas!");
+				}
+				else
+					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
+			}else {
+				if (pd.save()) {
+					clean();
+					reportarMensagemDeSucesso("Produto salvo!");
+				}
+				else
+					reportarMensagemDeErro("Erro ao salvar. Revise os campos!");			
 			}
-			else
-				reportarMensagemDeErro("Erro ao salvar. Revise os campos!");
 
 		} catch (Exception e) {
 			reportarMensagemDeErro(e.getMessage());
 		}
 	}
+	public void search() {
+		ProductDAO pd  = new ProductDAO(null);
+		ProductModel p = pd.getProduct(cod);
+		
+		if(p != null) {
+			name       = p.getName();
+			price      = p.getPrice();
+			quantity   = p.getQuantity();
+			description= p.getDescricao();
+			
+			isEdition = true;
+		}
+		else {
+			clean();
+			
+			isEdition = false;
+		}
+	}
 	public void clean() {
 		description = "";
 		name        = "";
-		cod         = "";
 		price       = 0;
 		quantity    = 0;
+	}
+	public void delete() {
+		ProductDAO pd = new ProductDAO(null);	
+		
+		if (pd.delete(cod)) {
+			clean();
+			reportarMensagemDeSucesso("Excluido com sucesso!");
+		}
+		else
+			reportarMensagemDeErro("Falha ao excluir.");	
+		
 	}
 	public String getName() {
 		return name;
@@ -91,7 +130,5 @@ public class CadastrarProdutos extends AbstractBean{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	
+	}	
 }
