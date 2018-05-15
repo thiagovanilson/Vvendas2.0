@@ -8,22 +8,20 @@ import javax.faces.bean.RequestScoped;
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
+import model.UserDAO;
+import model.UserModel;
 
 @SuppressWarnings("serial")
 @RequestScoped
 @ManagedBean
-public class BuscarProdutos extends AbstractBean{	
+public class BuscarUsuarios extends AbstractBean{	
 	
-	private String name, cod, aviso;
-	ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();
+	private String name, cpf, aviso;
+	ArrayList<UserModel> usuarios = new ArrayList<UserModel>();
 	
 	public String filtrar() {
 		
 		return null;
-	}
-	
-	public BuscarProdutos() {
-		
 	}
 
 	private boolean empty = true;
@@ -31,11 +29,11 @@ public class BuscarProdutos extends AbstractBean{
 	public void buscar() {
 		aviso = "";
 		
-		if(cod!=null && !cod.equals("")) {
-			ProductModel p = new ProductDAO(null).getProduct(cod);
+		if(cpf!=null && !cpf.equals("")) {
+			UserModel p = new UserDAO(null).getUser(cpf);
 			
 			if(p != null) {
-				produtos.add(p);
+				usuarios.add(p);
 				empty = false;
 			}
 			else {
@@ -44,17 +42,18 @@ public class BuscarProdutos extends AbstractBean{
 				aviso = "Não foram encontrados resultados. :(";
 			}
 		}else {
-			for(ProductModel p: new Persist().getProducts(name)){
-				produtos.add(p);
-				empty = false;
-
-			}
+			//Implementation to find many results
+//			for(UserModel p: ){
+//				usuarios.add(p);
+//				empty = false;
+//
+//			}
 		}
 	}
 	public void clean() {
 		name        = "";
-		cod         = "";
-		produtos = new ArrayList<ProductModel>();
+		cpf         = "";
+		usuarios = new ArrayList<UserModel>();
 		
 	}
 	public boolean hasItens() {
@@ -71,16 +70,16 @@ public class BuscarProdutos extends AbstractBean{
 		this.name = name;
 	}
 
-	public String getCod() {
-		return cod;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCod(String cod) {
-		this.cod = cod;
+	public void setCpf(String cod) {
+		this.cpf = cod;
 	}
 
-	public ArrayList<ProductModel> getProdutos() {
-		return produtos;
+	public ArrayList<UserModel> getUsers() {
+		return usuarios;
 	}
 
 }

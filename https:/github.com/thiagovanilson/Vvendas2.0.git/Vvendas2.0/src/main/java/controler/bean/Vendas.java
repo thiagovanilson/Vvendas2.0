@@ -10,6 +10,7 @@ import model.ProductDAO;
 import model.ProductModel;
 import model.SellModel;
 
+@SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
 public class Vendas extends AbstractBean{	
@@ -19,7 +20,7 @@ public class Vendas extends AbstractBean{
 	
 	private float sum = 0;
 	
-	private ArrayList<ItemSell> itens = new ArrayList();
+	private ArrayList<ItemSell> itens = new ArrayList<ItemSell>();
 	
 	public void addCart() {
 		ItemSell item = new ItemSell();		
@@ -28,12 +29,14 @@ public class Vendas extends AbstractBean{
 			ProductDAO pd = new ProductDAO(null);
 			ProductModel p = pd.getProduct(cod);
 			
+			warning = "";
 			
 			if(p != null) {
-				if(p.getQuantity() < qtd) {
-					warning = "Quantidade indisponivel";
-					return;
-				}
+				if(p.getQuantity() <= 0) {
+					warning = "Produto não apresenta quantidade em estoque. Favor atualizar os dados do item.";					
+				}else
+					if(p.getQuantity() >= qtd)
+						p.setQuantity(p.getQuantity() - qtd);
 				
 				item.setBarCode(cod);
 				item.setPrice(p.getPrice());
@@ -42,11 +45,10 @@ public class Vendas extends AbstractBean{
 				item.setDescription(p.getDescricao());
 				
 				//Update itens quantity on system.
-				p.setQuantity(p.getQuantity() - qtd);
+				
 				pd.edit(p);
 				
 				itens.add(item);
-				warning = "";
 				sum += item.getSubTotal();
 				
 			}

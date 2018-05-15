@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Buscar Usuario</title>
+    	
+        <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        
+      	<h:form title="Buscar Usuarios" id="busUserForm">
+ 
+			<p:panelGrid columns="2" cellpadding="5" >
+   
+			   <p:outputLabel value="CPF:" for="cpf" />
+			   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}"    />
+			   
+			   <p:outputLabel value="Nome do funcionario:" for="name" />
+			   <p:inputText id="name"  value="#{buscarUsuarios.name}" key="return"  />
+			   
+ 			</p:panelGrid>
+ 			
+ 			<br />
+ 			
+   			<p:commandButton action="#{buscarUsuarios.buscar()}" value="Buscar" update=":busUserForm :warnings :founds" icon="fa fa-search"  />
+  
+		</h:form>  
+		<div>
+			<h2 align="center" >
+				<p:outputLabel id="warnings" />
+			</h2>
+		</div>
+		
+		<br />
+		<br />
+		
+		<p:fieldset id="founds"  >
+			<p:dataTable  var="u" value="#{buscarUsuarios.users}" rendered="#{buscarUsuarios.hasItens()}" >
+				<p:column headerText="CPF" width="100">
+			        <h:outputText value="#{u.cpf}" />
+			    </p:column>
+			    
+			    <p:column headerText="Nome">
+			        <h:outputText value="#{u.name}" />
+			    </p:column>
+			    
+			   
+			</p:dataTable>
+		</p:fieldset>        
+		<!-- 
+		 -->
+    </ui:define>
+</ui:composition>

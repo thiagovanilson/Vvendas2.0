@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 import model.ProductDAO;
 import model.ProductModel;
 
+@SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
 public class CadastrarProdutos extends AbstractBean{	
@@ -28,7 +29,7 @@ public class CadastrarProdutos extends AbstractBean{
 	public void save() {
 		try {
 			ProductModel p = new ProductModel();
-			
+						
 			p.setId(cod);
 			p.setName(name);
 			p.setPrice(price);
@@ -52,7 +53,7 @@ public class CadastrarProdutos extends AbstractBean{
 				else
 					reportarMensagemDeErro("Erro ao salvar. Revise os campos!");			
 			}
-
+			isEdition = false;
 		} catch (Exception e) {
 			reportarMensagemDeErro(e.getMessage());
 		}

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 public class Persist {
 
@@ -119,6 +118,8 @@ public class Persist {
 	    return manager.find(ProductModel.class, key);
 
 	}	
+	
+	@SuppressWarnings("unchecked")
 	public ArrayList<ProductModel> getProducts(String key) {
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
@@ -133,6 +134,7 @@ public class Persist {
 
 	}	
 	
+	@SuppressWarnings("unchecked")
 	public List<String> find(String sqlCode){
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");

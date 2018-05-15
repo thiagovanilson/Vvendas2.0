@@ -4,20 +4,21 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 	
-		<h:form>
-			<p:panelMenu style="width:250px">
-				<p:submenu label="Cadastros">
-					<p:menuitem value="Cadastrar Produto" 			 icon="fa fa-barcode" outcome="cadastrarProduto.xhtml" />
-					<p:menuitem value="Cadastrar Usuário do Sistema" icon="fa fa-user"    outcome="cadastrarUsuario.xhtml" />
-				</p:submenu>
-				
-				<p:submenu label="Buscas">
-					<p:menuitem value="Produtos" icon="fa fa-search" outcome="buscarProduto.xhtml" />
-				</p:submenu>
-				
-				<p:submenu label="Ações">
-					<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="vendas.xhtml" />
-				</p:submenu>				
-			</p:panelMenu>	
-		</h:form>
+	<h:form>
+		<p:panelMenu style="width:250px">
+			<p:submenu label="Cadastros">
+				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="cadastrarProduto.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="cadastrarUsuario.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="Buscas">
+				<p:menuitem value="Produtos" icon="fa fa-search" outcome="buscarProduto.xhtml" />
+				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="buscarUsuario.xhtml" />
+			</p:submenu>
+			
+			<p:submenu label="Ações">
+				<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="vendas.xhtml" />
+			</p:submenu>				
+		</p:panelMenu>	
+	</h:form>
 </ui:composition>

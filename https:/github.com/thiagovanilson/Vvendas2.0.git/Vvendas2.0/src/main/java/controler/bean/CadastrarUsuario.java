@@ -6,6 +6,7 @@ import javax.faces.bean.RequestScoped;
 import model.Facade;
 import model.Persist;
 
+@SuppressWarnings("serial")
 @RequestScoped
 @ManagedBean
 public class CadastrarUsuario extends AbstractBean{	
