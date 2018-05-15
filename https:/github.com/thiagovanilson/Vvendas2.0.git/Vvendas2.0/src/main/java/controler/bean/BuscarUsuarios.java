@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
-import model.Persist;
-import model.ProductDAO;
-import model.ProductModel;
 import model.UserDAO;
 import model.UserModel;
 
 @SuppressWarnings("serial")
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class BuscarUsuarios extends AbstractBean{	
 	
@@ -28,7 +26,8 @@ public class BuscarUsuarios extends AbstractBean{
 	
 	public void buscar() {
 		aviso = "";
-		
+		usuarios = new ArrayList<UserModel>();
+
 		if(cpf!=null && !cpf.equals("")) {
 			UserModel p = new UserDAO(null).getUser(cpf);
 			
@@ -38,22 +37,21 @@ public class BuscarUsuarios extends AbstractBean{
 			}
 			else {
 				empty = true;
-				clean();
 				aviso = "Não foram encontrados resultados. :(";
 			}
 		}else {
 			//Implementation to find many results
-//			for(UserModel p: ){
-//				usuarios.add(p);
-//				empty = false;
-//
-//			}
+			for(UserModel u: new UserDAO(null).getUsers(name)){
+				usuarios.add(u);
+				empty = false;
+
+			}
 		}
+		clean();
 	}
 	public void clean() {
 		name        = "";
 		cpf         = "";
-		usuarios = new ArrayList<UserModel>();
 		
 	}
 	public boolean hasItens() {

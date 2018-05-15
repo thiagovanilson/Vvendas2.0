@@ -10,16 +10,33 @@
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
         
-        <p:growl    id="idMessages"       showDetail="true" autoUpdate="true" severity="info" />
-        <p:messages id="idMessagesErrors" showDetail="true" closable="true"   severity="error" autoUpdate="true" />
+        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+        
+         <h:form id="searchForm">
+ 			<p:panelGrid columns="2" cellpadding="1">
+ 			
+				<p:outputLabel value="CPF:" for="cpf" />
+				<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
+				
+ 			</p:panelGrid>
+ 			
+ 			<br />
+ 			
+			<p:commandButton value="Checar" update=":cadUserForm :searchForm" action="#{cadastrarUsuario.search()}" icon="fa fa-search"/>
+			<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
+   				
+  					<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
+  			
+  				</p:commandButton>
+ 		</h:form>
+        
+        <br />
         
       	<h:form title="Cadastrar Usuário" id="cadUserForm">
  
 			<p:panelGrid columns="2" cellpadding="5">
    
-				<p:outputLabel value="CPF:" for="cpf" />
-				<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
-				
 				<p:outputLabel value="Nome:" for="name" />
 				<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
 								
@@ -41,8 +58,14 @@
  			
  			<br />
  			
-   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}" update="cadUserForm" icon="fa fa-save" />
-  
-		</h:form>          
+   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}"   update="cadUserForm" icon="fa fa-save" />
+  			
+		</h:form> 
+		    
+		<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
+	        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
+	        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
+	    </p:confirmDialog>   
+	         
     </ui:define>
 </ui:composition>

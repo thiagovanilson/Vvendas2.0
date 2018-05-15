@@ -22,7 +22,7 @@
 			   <p:inputText   value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
 			   
  			</p:panelGrid>
- 
+ 			<br />
    			<p:commandButton  action="#{vendas.addCart()}" value="Adicionar"         update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
      		<p:commandButton  action="#{vendas.finish()}"  value="Finalizar compra"  update=":warnings :founds :busProdForm" icon="fa fa-check"   />
   

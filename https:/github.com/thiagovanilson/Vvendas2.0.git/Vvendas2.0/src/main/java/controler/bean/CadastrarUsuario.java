@@ -1,17 +1,21 @@
 package controler.bean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Facade;
 import model.Persist;
+import model.ProductDAO;
+import model.UserDAO;
+import model.UserModel;
 
 @SuppressWarnings("serial")
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class CadastrarUsuario extends AbstractBean{	
 	
 	private String name, cpf, type, pass, email;
+	private boolean isEdition = false;
 	
 	public String filtrar() {
 		
@@ -25,18 +29,69 @@ public class CadastrarUsuario extends AbstractBean{
 	public void save() {
 
 		try {
-			if(new Persist().save(new Facade().createUser(cpf, name, pass, type, email))) {
-				clean();
-				reportarMensagemDeSucesso("Usuario salvo!");
+			UserDAO ud  = new UserDAO(null);
+			UserModel u = new UserModel();
+			
+			u.setCpf(cpf);
+			u.setEmail(email);
+			u.setName(name);
+			u.setPass(pass);
+			u.setUsergroup(type);
+			
+			if(isEdition) {
+				if (ud.edit(u)) {
+					clean();
+					reportarMensagemDeSucesso("Edições salvas!");
+				}
+				else
+					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
+			}else {
+				
+				if(new Persist().save(new Facade().createUser(cpf, name, pass, type, email))) {
+					clean();
+					reportarMensagemDeSucesso("Usuario salvo!");
+				}
+				else
+					reportarMensagemDeErro("Falha ao gravar!");
 			}
-			else
-				reportarMensagemDeErro("Falha ao gravar!");
 		} catch (Exception e) {
 			reportarMensagemDeErro(e.getMessage());
 
 		}
 	}
-
+	
+	public void search() {
+		UserDAO ud  = new UserDAO(null);
+		UserModel u = ud.getUser(cpf);
+		
+		if(u != null) {
+			name       = u.getName();
+			cpf  = u.getCpf();
+			email= u.getEmail();
+			pass = u.getPass();
+			type = u.getUsergroup();
+			
+			isEdition = true;
+		}
+		else {
+			clean();
+			
+			isEdition = false;
+		}
+	}
+	
+	public void delete() {
+		UserDAO ud = new UserDAO(null);	
+		
+		if (ud.delete(cpf)) {
+			clean();
+			reportarMensagemDeSucesso("Excluido com sucesso!");
+		}
+		else
+			reportarMensagemDeErro("Falha ao excluir.");	
+		
+	}
+	
 	public void clean() {
 		name = "";
 		cpf  = ""; 
@@ -82,5 +137,13 @@ public class CadastrarUsuario extends AbstractBean{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isEdition() {
+		return isEdition;
+	}
+
+	public void setEdition(boolean isEdition) {
+		this.isEdition = isEdition;
 	}	
 }

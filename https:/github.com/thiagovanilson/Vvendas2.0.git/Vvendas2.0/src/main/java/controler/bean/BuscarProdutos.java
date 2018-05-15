@@ -30,6 +30,7 @@ public class BuscarProdutos extends AbstractBean{
 	
 	public void buscar() {
 		aviso = "";
+		produtos = new ArrayList<ProductModel>();
 		
 		if(cod!=null && !cod.equals("")) {
 			ProductModel p = new ProductDAO(null).getProduct(cod);
@@ -54,7 +55,6 @@ public class BuscarProdutos extends AbstractBean{
 	public void clean() {
 		name        = "";
 		cod         = "";
-		produtos = new ArrayList<ProductModel>();
 		
 	}
 	public boolean hasItens() {

@@ -14,14 +14,21 @@
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
         
         <h:form >
- 			<p:panelGrid columns="3" cellpadding="1">
+ 			<p:panelGrid columns="2" cellpadding="1">
  			
 				<p:outputLabel value="Codigo de barras:" for="cod" />
-				<p:inputText id="cod" value="#{cadastrarProdutos.cod}"     required="true" />	
-				<p:commandButton id="btSearch" value="Checar" update="cadProdForm" action="#{cadastrarProdutos.search()}"/>
-						 
+				<p:inputText id="cod" value="#{cadastrarProdutos.cod}"     required="true" />
+					
  			</p:panelGrid>
-        
+        	
+        	<br />
+        	
+			<p:commandButton id="btSearch" value="Checar" update="cadProdForm" action="#{cadastrarProdutos.search()}"/>
+			<p:commandButton  value="Excluir" action="#{cadastrarProdutos.delete()}" update=":cadProdForm :@this" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
+   				
+   				<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
+   			
+   			</p:commandButton>		 
         </h:form>
         
  		<br />
@@ -44,11 +51,7 @@
 			 
 	   			<p:commandButton  value="Salvar" action="#{cadastrarProdutos.save()}"    update="cadProdForm" icon="fa fa-save" />	
 	   			
-	   			<p:commandButton  value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
-	   				
-	   				<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
 	   			
-	   			</p:commandButton>
 	   			
  			</p:panelGrid>
  
@@ -57,8 +60,8 @@
 		</h:form> 
 		
 		<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
-				        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
-				        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
-				    </p:confirmDialog>         
+	        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
+	        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
+	    </p:confirmDialog>         
     </ui:define>
 </ui:composition>
