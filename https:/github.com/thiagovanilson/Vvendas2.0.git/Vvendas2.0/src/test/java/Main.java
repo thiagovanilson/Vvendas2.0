@@ -116,7 +116,11 @@ private boolean editUser() {
 		
 		if(u == null)
 			return false;
-		return dao.edit(name, pass, type);
+		u.setName(name);
+		u.setPass(pass);
+		u.setUsergroup(type);
+		
+		return dao.edit(u);
 	}
 	private boolean editProduct() {
 		

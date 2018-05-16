@@ -8,6 +8,7 @@ import model.ItemSell;
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
+import model.SalesDAO;
 import model.SellModel;
 
 @SuppressWarnings("serial")
@@ -67,17 +68,19 @@ public class Vendas extends AbstractBean{
 	
 	public void finish() {
 		SellModel sell = new SellModel();
-		Persist p      = new Persist();
+		//Persist p      = new Persist();
+		SalesDAO sd = new SalesDAO(sell);
 		
 		sell.setPrice(sum);
+		sell.setCpfUsuario(new Index().getUser().getCpf());
 		
-		for(ItemSell i: itens) {
-			i.setIdSell(sell.getId());
-			
-			p.save(i);
-		}
-		
-		if(p.save(sell)) {
+//		for(ItemSell i: itens) {
+//			i.setIdSell(sell.getId());
+//			
+//			p.save(i);
+//		}
+		//sd.save( itens);
+		if(sd.save(itens)) {
 			reportarMensagemDeSucesso("Venda finalizada com sucesso!");
 			warning = "Codigo da venda: " + sell.getId();
 			clean();

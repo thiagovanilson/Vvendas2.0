@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+
+   
+    <ui:define name="corpo">
+    
+    <title>Buscar vendas</title>
+    	
+        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+        
+        <h:form id="formSearch">
+ 			<p:panelGrid columns="2" cellpadding="1">
+ 				<p:outputLabel value="Codigo da venda" for="cod" />
+ 				<p:inputText id="cod" value="#{buscarVendas.codVenda}" />
+ 			</p:panelGrid>
+ 			<br />
+ 			<p:commandButton value="Buscar" icon="fa fa-search" update=":founds :warnings :sellInfo" action="#{buscarVendas.search()}"/>
+ 		</h:form>	
+ 			
+ 		<div>
+			<h2 align="center" >
+				<p:outputLabel id="warnings" value="#{buscarVendas.warnings}" />
+			</h2>
+		</div>
+		
+		<br />
+		<br />
+		
+		<div>
+				<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
+		</div>
+		
+		<p:fieldset id="founds"  >
+			<p:dataTable  var="u" value="#{buscarVendas.itens}"  >
+				<p:column headerText="Cod. Prod." width="100">
+			        <h:outputText value="#{u.barCode}" />
+			    </p:column>
+			    
+			    <p:column headerText="Nome">
+			        <h:outputText value="#{u.name}" />
+			    </p:column>
+			    
+			   	 <p:column headerText="Preço">
+			        <h:outputText value="#{u.price}" />
+			    </p:column>
+			    
+			</p:dataTable>
+		</p:fieldset>     
+		<!-- 
+		 -->
+		         
+		
+	</ui:define>
+</ui:composition>

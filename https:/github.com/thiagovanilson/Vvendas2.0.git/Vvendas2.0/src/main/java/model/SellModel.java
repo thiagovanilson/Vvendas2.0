@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -49,5 +50,5 @@ public class SellModel {
 	}
 	public Date getDate() {
 		return date;
-	}	
+	}
 }
