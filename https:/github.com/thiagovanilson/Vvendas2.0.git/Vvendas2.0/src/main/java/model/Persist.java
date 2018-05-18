@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class Persist {
 
 		    return true;
 	    } catch (Exception e) {
-	    	e.getMessage();	    	
+	    	System.out.println("------"+e.getMessage());	    	
 	    }
 		return false;
 	}

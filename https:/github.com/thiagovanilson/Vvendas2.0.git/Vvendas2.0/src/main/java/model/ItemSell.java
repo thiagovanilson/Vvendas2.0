@@ -1,12 +1,16 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="itens")  
-
-public class ItemSell {
+public class ItemSell implements Serializable{
 	
+	
+	private static final long serialVersionUID = 4389677421659096955L;
+
 	@Id  	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -57,4 +61,8 @@ public class ItemSell {
 	public void setDescription(String description) {
 		this.description = description;
 	}	
+	public String getPriceFormated() {
+		return String.format("R$ %.2f", price);
+	}
+	
 }

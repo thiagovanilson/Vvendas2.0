@@ -1,6 +1,7 @@
 package controler.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.*;
 
@@ -21,7 +22,7 @@ public class Vendas extends AbstractBean{
 	
 	private float sum = 0;
 	
-	private ArrayList<ItemSell> itens = new ArrayList<ItemSell>();
+	private List<ItemSell> itens = new ArrayList<ItemSell>();
 	
 	public void addCart() {
 		ItemSell item = new ItemSell();		
@@ -69,11 +70,12 @@ public class Vendas extends AbstractBean{
 	public void finish() {
 		SellModel sell = new SellModel();
 		//Persist p      = new Persist();
-		SalesDAO sd = new SalesDAO(sell);
 		
+		sell.setItens(itens);
 		sell.setPrice(sum);
 		sell.setCpfUsuario(new Index().getUser().getCpf());
 		
+		SalesDAO sd = new SalesDAO(sell);
 //		for(ItemSell i: itens) {
 //			i.setIdSell(sell.getId());
 //			
@@ -115,7 +117,7 @@ public class Vendas extends AbstractBean{
 		this.qtd = qtd;
 	}
 
-	public ArrayList<ItemSell> getItens() {
+	public List<ItemSell> getItens() {
 		return itens;
 	}
 	

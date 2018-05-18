@@ -15,11 +15,14 @@
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
         
         <h:form id="formSearch">
+        		        
  			<p:panelGrid columns="2" cellpadding="1">
  				<p:outputLabel value="Codigo da venda" for="cod" />
  				<p:inputText id="cod" value="#{buscarVendas.codVenda}" />
  			</p:panelGrid>
+ 			
  			<br />
+ 			
  			<p:commandButton value="Buscar" icon="fa fa-search" update=":founds :warnings :sellInfo" action="#{buscarVendas.search()}"/>
  		</h:form>	
  			
@@ -37,7 +40,7 @@
 		</div>
 		
 		<p:fieldset id="founds"  >
-			<p:dataTable  var="u" value="#{buscarVendas.itens}"  >
+			<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
 				<p:column headerText="Cod. Prod." width="100">
 			        <h:outputText value="#{u.barCode}" />
 			    </p:column>
@@ -47,7 +50,7 @@
 			    </p:column>
 			    
 			   	 <p:column headerText="Preço">
-			        <h:outputText value="#{u.price}" />
+			        <h:outputText value="#{u.priceFormated}" />
 			    </p:column>
 			    
 			</p:dataTable>

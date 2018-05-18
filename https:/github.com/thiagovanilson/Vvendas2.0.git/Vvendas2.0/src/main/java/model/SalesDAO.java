@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +10,8 @@ public class SalesDAO extends Persist{
 
 	private SellModel sm;
 	private long cod;
-	private ArrayList<ItemSell> itens;
+	private List<ItemSell> itens;
+	private boolean hasItens = false;
 	
 	public SalesDAO(SellModel s){
 		sm = s;
@@ -25,41 +26,34 @@ public class SalesDAO extends Persist{
 		EntityManager manager = factory.createEntityManager();
 		
 		sm = manager.find(SellModel.class, cod);
+		if(sm != null)
+			itens = sm.getItens();
 		
 		return sm;
 		
 	}
-	@SuppressWarnings("unchecked")
 	public void search() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	
-    	
-    	itens = (ArrayList<ItemSell>) manager.createQuery(
-    			"SELECT i FROM ItemSell i WHERE i.idSell = :id")
-    			.setParameter("id", cod )
-    			.setMaxResults(100)
-    			.getResultList();
+    	sm = manager.find(SellModel.class, cod);
+
+    	itens = sm.getItens();
+    	hasItens = itens.size() > 0;
 	}
-	public ArrayList<ItemSell> getItens() {
+	public List<ItemSell> getItens() {
 		search();
     	return itens;
 	}	
-	public boolean save() {
+	public boolean save(List<ItemSell> itens) {
+		sm.setItens(itens);
+//		for(ItemSell is: itens) {
+//			is.setIdSell(sm.getId());
+//			save(is);
+//		}
 		return save(sm);
 	}
 	
-	public boolean save(ArrayList<ItemSell> itens) {
-		
-		
-		for(ItemSell i: itens) {
-			i.setIdSell(sm.getId());
-			
-			save(i);
-		}
-		return save(sm);
-	}
-
 	public String getWarnings() {
 		if(sm == null)
 			return "Não foram encontrado venda com codigo " + cod;
@@ -68,7 +62,11 @@ public class SalesDAO extends Persist{
 	public String getSellInfo() {
 		if(sm == null)
 			return "";
-		return String.format("Codigo: " + sm.getId() + "<br />Valor: R$ %.2f"  + 
+		return String.format("<h3>Codigo: " + sm.getId() + "</h3><br />Valor: R$ %.2f"  + 
 				"<br />Data: " + sm.getDate() + "<br />CPF do vendedor: " + sm.getCpfUsuario(), sm.getPrice());
+	}
+	public boolean hasItens() {
+		
+		return hasItens;
 	}
 }

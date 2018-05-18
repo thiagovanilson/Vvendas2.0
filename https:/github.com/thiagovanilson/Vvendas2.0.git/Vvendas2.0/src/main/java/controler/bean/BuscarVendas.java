@@ -2,6 +2,7 @@ package controler.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,7 +22,8 @@ public class BuscarVendas {
 	
 	public void search() {
 		if(sd == null)
-			sd.search();
+			sd = new SalesDAO(null);
+		sd.search();
 	}
 	
 	public long getCodVenda() {
@@ -41,7 +43,7 @@ public class BuscarVendas {
 			sd = new SalesDAO(null);
 		return sd.getSell(codVenda);
 	}
-	public ArrayList<ItemSell> getItens() {
+	public List<ItemSell> getItens() {
 		if(sd == null)
 			sd = new SalesDAO(codVenda);
 		return sd.getItens();
@@ -55,5 +57,11 @@ public class BuscarVendas {
 		if(sd == null)
 			sd = new SalesDAO(codVenda);
 		return sd.getSellInfo();
+	}
+	public boolean hasItens() {
+		if(sd == null)
+			return false;
+		
+		return sd.hasItens();
 	}
 }

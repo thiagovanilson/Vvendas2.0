@@ -1,14 +1,19 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="vendas")  
 
-public class SellModel {
+public class SellModel implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id  
 	private long id;
@@ -16,6 +21,9 @@ public class SellModel {
 	private float price;	
 	private String cpfUsuario;
 	private Date date;
+	
+	@OneToMany (fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
+	private List<ItemSell> itens;
 	
 	public SellModel(){
 		date = new Date();
@@ -50,5 +58,16 @@ public class SellModel {
 	}
 	public Date getDate() {
 		return date;
+	}
+	//@OneToMany(fetch=FetchType.EAGER, cascade= {CascadeType.ALL})
+	public List<ItemSell> getItens() {
+		return itens;
+	}
+
+	
+	//@JoinColumn(name="item")
+	//@OneToMany(fetch=FetchType.EAGER, mappedBy = "sm")
+	public void setItens(List<ItemSell> itens) {
+		this.itens = itens;
 	}
 }
