@@ -9,7 +9,8 @@
     
     <ui:define name="corpo">              
     	<title>Buscar Produto</title>
-    	
+    	<!-- 
+    	 -->
         <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
         
@@ -27,7 +28,7 @@
  
  			<br />	
  				
-   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds" icon="fa fa-search"  />
+   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds :founds2" icon="fa fa-search"  />
   
 		</h:form>  
 		<div>
@@ -39,8 +40,11 @@
 		<br />
 		<br />
 		
-		<p:fieldset id="founds"  >
-			<p:dataTable  var="p" value="#{buscarProdutos.produtos}" rendered="#{buscarProdutos.hasItens()}" >
+		<p:fieldset id="founds" >
+			<p:dataTable id="founds2" var="p" value="#{buscarProdutos.produtos}" 
+			rows="10" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
+			paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
+			>
 				<p:column headerText="Codigo" width="100">
 			        <h:outputText value="#{p.id}" />
 			    </p:column>
@@ -59,6 +63,10 @@
 			    
 			    <p:column headerText="Preço">
 			        <h:outputText value="#{p.price}" />
+			    </p:column>
+			    
+			     <p:column headerText="Medida">
+			        <h:outputText value="#{p.medida} #{p.tipoMedida}" />
 			    </p:column>
 			</p:dataTable>
 		</p:fieldset>        

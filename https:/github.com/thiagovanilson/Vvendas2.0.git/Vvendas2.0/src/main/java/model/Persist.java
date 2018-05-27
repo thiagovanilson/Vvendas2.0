@@ -91,6 +91,8 @@ public class Persist {
 		    p.setPrice(o.getPrice());
 		    p.setQuantity(o.getQuantity());
 		    p.setDescricao(o.getDescricao());
+		    p.setMedida(o.getMedida());
+		    p.setTipoMedida(o.getTipoMedida());
 		    
 		    manager.persist(p);
 		    manager.getTransaction().commit();    
@@ -127,7 +129,7 @@ public class Persist {
     	return (ArrayList<ProductModel>) manager.createQuery(
     			"SELECT p FROM ProductModel p WHERE p.name LIKE :pname")
     			.setParameter("pname", "%"+key+"%")
-    			.setMaxResults(10)
+    			.setMaxResults(100)
     			.getResultList();
 
 

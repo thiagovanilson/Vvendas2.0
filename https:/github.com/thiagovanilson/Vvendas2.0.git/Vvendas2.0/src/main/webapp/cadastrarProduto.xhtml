@@ -49,9 +49,20 @@
 				<p:outputLabel value="Quantidade:" for="qtd" />
 				<p:inputText id="qtd" value="#{cadastrarProdutos.quantity}"  required="true" />
 			 
+			 	<p:outputLabel value="Medida:" for="medida" />
+ 				<p:panelGrid columns="2" cellpadding="10" id="medida">
+
+					<p:inputNumber  id="valorMedida" value="#{cadastrarProdutos.medida}"  required="false" size="3" />
+			 		
+			 		<p:selectOneMenu  value="#{cadastrarProdutos.tipoMedida}">
+			 		
+			 			<f:selectItems  value="#{cadastrarProdutos.medidas}" var="m" itemLabel="#{m}" itemValue="#{m}" />				
+
+			 		</p:selectOneMenu>
+	   			
+	   			</p:panelGrid>
+	   			
 	   			<p:commandButton  value="Salvar" action="#{cadastrarProdutos.save()}"    update="cadProdForm" icon="fa fa-save" />	
-	   			
-	   			
 	   			
  			</p:panelGrid>
  

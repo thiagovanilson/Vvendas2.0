@@ -12,9 +12,10 @@ import model.ProductModel;
 @ManagedBean
 public class CadastrarProdutos extends AbstractBean{	
 	
-	private String name, cod, description;
+	private String[] medidas = new String[] {"Kg","Gramas","Litros","ML","Unidade","Desconhecido"};
+	private String name, cod, description, tipoMedida;
 	private float price;
-	private int quantity;
+	private int quantity, medida;
 	private boolean isEdition = false;
 	
 	public String filtrar() {
@@ -33,8 +34,10 @@ public class CadastrarProdutos extends AbstractBean{
 			p.setId(cod);
 			p.setName(name);
 			p.setPrice(price);
+			p.setMedida(medida);
 			p.setQuantity(quantity);
 			p.setDescricao(description);
+			p.setTipoMedida(tipoMedida);
 			
 			ProductDAO pd = new ProductDAO(p);
 			
@@ -65,8 +68,10 @@ public class CadastrarProdutos extends AbstractBean{
 		if(p != null) {
 			name       = p.getName();
 			price      = p.getPrice();
+			medida     = p.getMedida();
 			quantity   = p.getQuantity();
 			description= p.getDescricao();
+			tipoMedida = p.getTipoMedida();
 			
 			isEdition = true;
 		}
@@ -79,8 +84,10 @@ public class CadastrarProdutos extends AbstractBean{
 	public void clean() {
 		description = "";
 		name        = "";
+		tipoMedida  = "";
 		price       = 0;
 		quantity    = 0;
+		medida      = 0;
 	}
 	public void delete() {
 		ProductDAO pd = new ProductDAO(null);	
@@ -131,5 +138,27 @@ public class CadastrarProdutos extends AbstractBean{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}	
+	}
+
+	public String[] getMedidas() {
+		return medidas;
+	}
+
+	public int getMedida() {
+		return medida;
+	}
+
+	public void setMedida(int medida) {
+		this.medida = medida;
+	}
+
+	public String getTipoMedida() {
+		return tipoMedida;
+	}
+
+	public void setTipoMedida(String tipoMedida) {
+		this.tipoMedida = tipoMedida;
+	}
+
+	
 }

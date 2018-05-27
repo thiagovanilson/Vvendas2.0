@@ -49,8 +49,12 @@
 			        <h:outputText value="#{u.name}" />
 			    </p:column>
 			    
-			   	 <p:column headerText="Preço">
+			   	<p:column headerText="Preço">
 			        <h:outputText value="#{u.priceFormated}" />
+			    </p:column>
+			    
+		    	<p:column headerText="Quant." width="70">
+			        <h:outputText value="#{u.quantity}" />
 			    </p:column>
 			    
 			</p:dataTable>

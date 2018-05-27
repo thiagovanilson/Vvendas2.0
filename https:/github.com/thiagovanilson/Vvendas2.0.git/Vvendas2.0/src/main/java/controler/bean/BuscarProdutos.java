@@ -1,16 +1,17 @@
 package controler.bean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
 
 @SuppressWarnings("serial")
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class BuscarProdutos extends AbstractBean{	
 	
@@ -79,7 +80,9 @@ public class BuscarProdutos extends AbstractBean{
 		this.cod = cod;
 	}
 
-	public ArrayList<ProductModel> getProdutos() {
+	public List<ProductModel> getProdutos() {
+		if(produtos == null)
+			buscar();
 		return produtos;
 	}
 
