@@ -16,7 +16,7 @@
         
       	<h:form title="Buscar Produtos" id="busProdForm">
  
-			<p:panelGrid columns="2" cellpadding="5" >
+			<p:panelGrid columns="2" styleClass="ui-noborder" >
    
 			   <p:outputLabel value="Codigo de barras:" for="cod" />
 			   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
@@ -40,9 +40,9 @@
 		<br />
 		<br />
 		
-		<p:fieldset id="founds" >
+		<p:panelGrid columns="1" styleClass="ui-noborder" id="founds" >
 			<p:dataTable id="founds2" var="p" value="#{buscarProdutos.produtos}" 
-			rows="10" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
+			rows="5" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
 			paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
 			>
 				<p:column headerText="Codigo" width="100">
@@ -69,7 +69,7 @@
 			        <h:outputText value="#{p.medida} #{p.tipoMedida}" />
 			    </p:column>
 			</p:dataTable>
-		</p:fieldset>        
+		</p:panelGrid>      
 		<!-- 
 		 -->
     </ui:define>

@@ -9,63 +9,69 @@
     
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
+        <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.userLoggedIsAdmin()}">   
         
-        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
-        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
-        
-         <h:form id="searchForm">
- 			<p:panelGrid columns="2" cellpadding="1">
- 			
-				<p:outputLabel value="CPF:" for="cpf" />
-				<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
-				
- 			</p:panelGrid>
- 			
- 			<br />
- 			
-			<p:commandButton value="Checar" update=":cadUserForm :searchForm" action="#{cadastrarUsuario.search()}" icon="fa fa-search"/>
-			<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
-   				
-  					<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
-  			
-  				</p:commandButton>
- 		</h:form>
-        
-        <br />
-        
-      	<h:form title="Cadastrar Usuário" id="cadUserForm">
- 
-			<p:panelGrid columns="2" cellpadding="5">
-   
-				<p:outputLabel value="Nome:" for="name" />
-				<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
-								
-				<p:outputLabel for="type" value="Tipo de usuario:" />
-		        <p:selectOneMenu id="type" value="#{cadastrarUsuario.type}" style="width:125px">		           
-		            <f:selectItem itemLabel="Simples"       itemValue="user"  />
-		            <f:selectItem itemLabel="Administrador" itemValue="admin" />
-		        </p:selectOneMenu>
- 
- 				<p:outputLabel value="Email:" for="email" />
-				<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" />
-				
-				<p:outputLabel value="Senha:" for="pass" />
-				<p:password id="pass" value="#{cadastrarUsuario.pass}" required="true" feedback="true" match="conPass"/>   
-			   
-			   	<p:outputLabel value="Confirme a senha:" for="conPass" />
-				<p:password id="conPass" required="true" /> 
- 			</p:panelGrid>
- 			
- 			<br />
- 			
-   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}"   update="cadUserForm" icon="fa fa-save" />
-  			
-		</h:form> 
-		    
-		<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
-	        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
-	        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
-	    </p:confirmDialog>   
+	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+	        
+	         <h:form id="searchForm">
+	 			<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
+	 			
+					<p:outputLabel value="CPF:" for="cpf" />
+					<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
+					
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 			
+				<p:commandButton value="Checar" update=":cadUserForm :searchForm" action="#{cadastrarUsuario.search()}" icon="fa fa-search"/>
+				<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
+	   				
+	  					<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
+	  			
+	  				</p:commandButton>
+	 		</h:form>
+	        
+	        <br />
+	        
+	      	<h:form title="Cadastrar Usuário" id="cadUserForm">
+	 
+				<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
+	   
+					<p:outputLabel value="Nome:" for="name" />
+					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
+									
+					<p:outputLabel for="type" value="Tipo de usuario:" />
+			        <p:selectOneMenu id="type" value="#{cadastrarUsuario.type}" style="width:125px">		           
+			            <f:selectItem itemLabel="Simples"       itemValue="user"  />
+			            <f:selectItem itemLabel="Administrador" itemValue="admin" />
+			        </p:selectOneMenu>
+	 
+	 				<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" />
+					
+					<p:outputLabel value="Senha:" for="pass" />
+					<p:password id="pass" value="#{cadastrarUsuario.pass}" required="true" feedback="true" match="conPass"/>   
+				   
+				   	<p:outputLabel value="Confirme a senha:" for="conPass" />
+					<p:password id="conPass" required="true" /> 
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 			
+	   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}"   update="cadUserForm" icon="fa fa-save" />
+	  			
+			</h:form> 
+			    
+			<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
+		        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
+		    </p:confirmDialog>   
+	     </p:panelGrid>
+	     
+	     <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{!services.userLoggedIsAdmin()}"> 
+	     	<h1 align="center">ATENÇÃO! <br />Este usuario não tem permição de acesso a esta funcionalidade</h1>	     	
+	     </p:panelGrid>  
 	         
     </ui:define>
 </ui:composition>

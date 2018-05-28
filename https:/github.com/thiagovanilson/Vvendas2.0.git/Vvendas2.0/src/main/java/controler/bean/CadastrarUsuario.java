@@ -94,7 +94,6 @@ public class CadastrarUsuario extends AbstractBean{
 	
 	public void clean() {
 		name = "";
-		cpf  = ""; 
 		type = "";
 		pass = "";
 		email= "";
@@ -112,7 +111,8 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		if(cpf != null && !cpf.equals(""))
+			this.cpf = cpf;
 	}
 
 	public String getType() {

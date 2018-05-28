@@ -16,7 +16,7 @@
         
         <h:form id="formSearch">
         		        
- 			<p:panelGrid columns="2" cellpadding="1">
+ 			<p:panelGrid columns="2" styleClass="ui-noborder" >
  				<p:outputLabel value="Codigo da venda" for="cod" />
  				<p:inputText id="cod" value="#{buscarVendas.codVenda}" />
  			</p:panelGrid>
@@ -39,7 +39,7 @@
 				<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
 		</div>
 		
-		<p:fieldset id="founds"  >
+		<p:panelGrid id="founds" styleClass="ui-noborder" rows="1" >
 			<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
 				<p:column headerText="Cod. Prod." width="100">
 			        <h:outputText value="#{u.barCode}" />
@@ -58,8 +58,6 @@
 			    </p:column>
 			    
 			</p:dataTable>
-		</p:fieldset>     
-		      
-		
+		</p:panelGrid> 				
 	</ui:define>
 </ui:composition>

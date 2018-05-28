@@ -1,5 +1,6 @@
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"      
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:decorate template="/WEB-INF/template.xhtml">
         <ui:define name="corpo">
@@ -9,25 +10,33 @@
 			
 			<br />
 			<br />
+			<p:panelGrid columns="2" styleClass="ui-noborder">
 			
-			<p>
-				Software desenvolvido para fins academicos apenas.
-				<br />
+				<p:column >
+					<p>
+						Software desenvolvido para fins academicos apenas.
+						<br />
+						
+						Desenvolvido por Thiago Vanilson Florencio.
+						<br />
+						Cursando Superior em Analise e Desenvolvimento de Sistemas,
+						<br />
+						na cidade de Monteiro - PB.
+						
+						<br />
+						<br />
+						Este software tem o proposito de gerenciar os produtos de alguns tipos de comercios,
+						<br />
+						realizando vendas e facilitando o gerenciamento de informações, altomatizando assim algumas realidades.
+						
+					</p>
+				</p:column>
 				
-				Desenvolvido por Thiago Vanilson Florencio.
-				<br />
-				Cursando Superior em Analise e Desenvolvimento de Sistemas,
-				<br />
-				na cidade de Monteiro - PB.
-				
-				<br />
-				<br />
-				Este software tem o proposito de gerenciar os produtos de alguns tipos de comercios,
-				<br />
-				realizando vendas e facilitando o gerenciamento de informações, altomatizando assim algumas realidades.
-				
-			</p>
-				
+				<p:column>
+					<img src="./resources/img/WhatsApp Image 2018-05-11 at 15.43.35-2.jpeg" width="150" alt="" /> 
+				</p:column>
+					
+			</p:panelGrid>
         </ui:define>
     </ui:decorate>
 </xhtml>

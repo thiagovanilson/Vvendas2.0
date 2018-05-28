@@ -11,7 +11,6 @@ import model.UserModel;
 
 public class Index {	
 	
-	private static UserModel user = new UserDAO(null).getUser("1");
 	
 	public String filtrar() {
 		
@@ -19,12 +18,5 @@ public class Index {
 	}
 	
 	
-	public  UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		Index.user = user;
-	}	
 	
 }

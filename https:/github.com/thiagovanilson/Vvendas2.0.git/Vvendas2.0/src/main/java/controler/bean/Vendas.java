@@ -6,7 +6,6 @@ import java.util.List;
 import javax.faces.bean.*;
 
 import model.ItemSell;
-import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
 import model.SalesDAO;
@@ -19,7 +18,7 @@ public class Vendas extends AbstractBean{
 	
 	private String cod, warning;
 	private int qtd = 1;
-	
+	private Services services = new Services();
 	private float sum = 0;
 	
 	private List<ItemSell> itens = new ArrayList<ItemSell>();
@@ -69,19 +68,13 @@ public class Vendas extends AbstractBean{
 	
 	public void finish() {
 		SellModel sell = new SellModel();
-		//Persist p      = new Persist();
 		
 		sell.setItens(itens);
 		sell.setPrice(sum);
-		sell.setCpfUsuario(new Index().getUser().getCpf());
+		sell.setCpfUsuario(services.getUser().getCpf());
 		
 		SalesDAO sd = new SalesDAO(sell);
-//		for(ItemSell i: itens) {
-//			i.setIdSell(sell.getId());
-//			
-//			p.save(i);
-//		}
-		//sd.save( itens);
+
 		if(sd.save(itens)) {
 			reportarMensagemDeSucesso("Venda finalizada com sucesso!");
 			warning = "Codigo da venda: " + sell.getId();
