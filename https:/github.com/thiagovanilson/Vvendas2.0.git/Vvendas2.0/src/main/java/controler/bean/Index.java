@@ -16,7 +16,9 @@ public class Index {
 		
 		return null;
 	}
-	
+	public String goToIndex() {
+		return "index.xhtml";
+	}
 	
 	
 }

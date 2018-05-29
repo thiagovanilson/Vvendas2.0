@@ -13,51 +13,57 @@
     	
         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+
+		<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
         
-        <h:form id="formSearch">
-        		        
- 			<p:panelGrid columns="2" styleClass="ui-noborder" >
- 				<p:outputLabel value="Codigo da venda" for="cod" />
- 				<p:inputText id="cod" value="#{buscarVendas.codVenda}" />
- 			</p:panelGrid>
- 			
- 			<br />
- 			
- 			<p:commandButton value="Buscar" icon="fa fa-search" update=":founds :warnings :sellInfo" action="#{buscarVendas.search()}"/>
- 		</h:form>	
- 			
- 		<div>
-			<h2 align="center" >
-				<p:outputLabel id="warnings" value="#{buscarVendas.warnings}" />
-			</h2>
-		</div>
-		
-		<br />
-		<br />
-		
-		<div>
-				<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
-		</div>
-		
-		<p:panelGrid id="founds" styleClass="ui-noborder" rows="1" >
-			<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
-				<p:column headerText="Cod. Prod." width="100">
-			        <h:outputText value="#{u.barCode}" />
-			    </p:column>
-			    
-			    <p:column headerText="Nome">
-			        <h:outputText value="#{u.name}" />
-			    </p:column>
-			    
-			   	<p:column headerText="Preço">
-			        <h:outputText value="#{u.priceFormated}" />
-			    </p:column>
-			    
-		    	<p:column headerText="Quant." width="70">
-			        <h:outputText value="#{u.quantity}" />
-			    </p:column>
-			    
-			</p:dataTable>
-		</p:panelGrid> 				
+	        <h:form id="formSearch">
+	        		        
+	 			<p:panelGrid columns="2" styleClass="ui-noborder" >
+	 				<p:outputLabel value="Codigo da venda" for="cod" />
+	 				<p:inputText id="cod" value="#{buscarVendas.codVenda}" />
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 			
+	 			<p:commandButton value="Buscar" icon="fa fa-search" update=":founds :warnings :sellInfo" action="#{buscarVendas.search()}"/>
+	 		</h:form>	
+	 			
+	 		<div>
+				<h2 align="center" >
+					<p:outputLabel id="warnings" value="#{buscarVendas.warnings}" />
+				</h2>
+			</div>
+			
+			<br />
+			<br />
+			
+			<div>
+					<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
+			</div>
+			
+			<p:panelGrid id="founds" styleClass="ui-noborder" rows="1" >
+				<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
+					<p:column headerText="Cod. Prod." width="100">
+				        <h:outputText value="#{u.barCode}" />
+				    </p:column>
+				    
+				    <p:column headerText="Nome">
+				        <h:outputText value="#{u.name}" />
+				    </p:column>
+				    
+				   	<p:column headerText="Preço">
+				        <h:outputText value="#{u.priceFormated}" />
+				    </p:column>
+				    
+			    	<p:column headerText="Quant." width="70">
+				        <h:outputText value="#{u.quantity}" />
+				    </p:column>
+				    
+				</p:dataTable>
+			</p:panelGrid> 
+		</p:panelGrid>
+		<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
+			<a  href="index.xhtml" >Clique aqui para logar</a>			
+		</p:outputLabel> 				
 	</ui:define>
 </ui:composition>

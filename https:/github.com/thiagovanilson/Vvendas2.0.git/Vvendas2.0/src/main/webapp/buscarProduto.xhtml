@@ -13,63 +13,70 @@
     	 -->
         <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
         
-      	<h:form title="Buscar Produtos" id="busProdForm">
- 
-			<p:panelGrid columns="2" styleClass="ui-noborder" >
-   
-			   <p:outputLabel value="Codigo de barras:" for="cod" />
-			   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
-			   
-			   <p:outputLabel value="Nome do produto:" for="name" />
-			   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  />
-			   
- 			</p:panelGrid>
- 
- 			<br />	
- 				
-   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds :founds2" icon="fa fa-search"  />
-  
-		</h:form>  
-		<div>
-			<h2 align="center" >
-				<p:outputLabel id="warnings" value="#{buscarProdutos.aviso}"/>
-			</h2>
-		</div>
+	      	<h:form title="Buscar Produtos" id="busProdForm">
+	 
+				<p:panelGrid columns="2" styleClass="ui-noborder" >
+	   
+				   <p:outputLabel value="Codigo de barras:" for="cod" />
+				   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
+				   
+				   <p:outputLabel value="Nome do produto:" for="name" />
+				   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  />
+				   
+	 			</p:panelGrid>
+	 
+	 			<br />	
+	 				
+	   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds :founds2" icon="fa fa-search"  />
+	  
+			</h:form>  
+			<div>
+				<h2 align="center" >
+					<p:outputLabel id="warnings" value="#{buscarProdutos.aviso}"/>
+				</h2>
+			</div>
+			
+			<br />
+			<br />
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder" id="founds" >
+				<p:dataTable id="founds2" var="p" value="#{buscarProdutos.produtos}" 
+				rows="5" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
+				paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
+				>
+					<p:column headerText="Codigo" width="100">
+				        <h:outputText value="#{p.id}" />
+				    </p:column>
+				    
+				    <p:column headerText="Nome">
+				        <h:outputText value="#{p.name}" />
+				    </p:column>
+				    
+				    <p:column headerText="Descrição" width="300">
+				        <h:outputText value="#{p.descricao}" />
+				    </p:column>
+				    
+				    <p:column headerText="Quant" width="70">
+				        <h:outputText value="#{p.quantity}" />
+				    </p:column>
+				    
+				    <p:column headerText="Preço">
+				        <h:outputText value="#{p.price}" />
+				    </p:column>
+				    
+				     <p:column headerText="Medida">
+				        <h:outputText value="#{p.medida} #{p.tipoMedida}" />
+				    </p:column>
+				</p:dataTable>
+			</p:panelGrid> 
+		</p:panelGrid>
 		
-		<br />
-		<br />
-		
-		<p:panelGrid columns="1" styleClass="ui-noborder" id="founds" >
-			<p:dataTable id="founds2" var="p" value="#{buscarProdutos.produtos}" 
-			rows="5" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
-			paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
-			>
-				<p:column headerText="Codigo" width="100">
-			        <h:outputText value="#{p.id}" />
-			    </p:column>
-			    
-			    <p:column headerText="Nome">
-			        <h:outputText value="#{p.name}" />
-			    </p:column>
-			    
-			    <p:column headerText="Descrição" width="300">
-			        <h:outputText value="#{p.descricao}" />
-			    </p:column>
-			    
-			    <p:column headerText="Quant" width="70">
-			        <h:outputText value="#{p.quantity}" />
-			    </p:column>
-			    
-			    <p:column headerText="Preço">
-			        <h:outputText value="#{p.price}" />
-			    </p:column>
-			    
-			     <p:column headerText="Medida">
-			        <h:outputText value="#{p.medida} #{p.tipoMedida}" />
-			    </p:column>
-			</p:dataTable>
-		</p:panelGrid>      
+		<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
+			<a  href="index.xhtml" >Clique aqui para logar</a>			
+		</p:outputLabel>
+		   
 		<!-- 
 		 -->
     </ui:define>

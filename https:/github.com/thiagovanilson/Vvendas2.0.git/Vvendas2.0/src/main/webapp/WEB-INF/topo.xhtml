@@ -6,8 +6,10 @@
     
     
     <!-- TOPO START -->
+    
     <div id="layout-topbar">
-        <a href="index.xhtml"><h:graphicImage name="images/logo01.jpg"  library="adamantium-layout" style="height:60px;  margin-top:18px;" /></a>
+ 	<a href="index.xhtml"><h:graphicImage name="images/logo01.jpg"  library="adamantium-layout" style="height:60px;  margin-top:18px;" /></a>
+    <!-- 
         <ul id="top-menu">
             <li>
                 <a><i class="icon-user2"></i> <span><p:outputLabel value="Seja bem vindo: #{services.user.name}"/> </span></a>
@@ -18,6 +20,20 @@
                 
             </li>
         </ul>
+     -->
+    <a style="position:fixed; right:0;">
+	    <p:outputLabel rendered="#{services.logged}"  value="Logado como: #{services.user.name}" />
+		<br />
+		<br />
+		<p:commandButton  
+			value="Sair" 
+			action="#{services.logout()}"  
+			rendered="#{services.logged}" 
+			update="@all" 
+			style="position:fixed; right:0; ">
+		</p:commandButton>  
+		 
+		</a>
     </div>
     <!-- TOPO END -->
     

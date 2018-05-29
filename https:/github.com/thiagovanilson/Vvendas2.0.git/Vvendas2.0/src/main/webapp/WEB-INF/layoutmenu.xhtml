@@ -5,7 +5,8 @@
     xmlns:p="http://primefaces.org/ui">
 	
 	<h:form>
-		<p:panelMenu style="width:250px">
+		<p:panelMenu style="width:250px" rendered="#{services.logged}" 
+		>
 			<p:submenu label="Cadastros" rendered="#{services.userLoggedIsAdmin()}">
 				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="cadastrarProduto.xhtml" />
 				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="cadastrarUsuario.xhtml" />

@@ -12,52 +12,58 @@
     	
         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+        <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
         
-      	<h:form title="Buscar Usuarios" id="busUserForm">
- 
-			<p:panelGrid columns="2" styleClass="ui-noborder" >
-   
-			   <p:outputLabel value="CPF:" for="cpf" />
-			   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}"    />
-			   
-			   <p:outputLabel value="Nome do funcionario:" for="name" />
-			   <p:inputText id="name"  value="#{buscarUsuarios.name}" key="return"  />			   
-			   
- 			</p:panelGrid>
- 			
- 			<br />
- 			
-   			<p:commandButton action="#{buscarUsuarios.buscar()}" value="Buscar" update=":busUserForm :warnings :founds" icon="fa fa-search"  />
-  
-		</h:form>  
-		<div>
-			<h2 align="center" >
-				<p:outputLabel id="warnings" />
-			</h2>
-		</div>
-		
-		<br />
-		<br />
-		
-		<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
-			<p:dataTable  var="u" value="#{buscarUsuarios.users}" rendered="#{buscarUsuarios.hasItens()}" >
-				<p:column headerText="CPF" width="100">
-			        <h:outputText value="#{u.cpf}" />
-			    </p:column>
-			    
-			    <p:column headerText="Nome">
-			        <h:outputText value="#{u.name}" />
-			    </p:column>
-			    
-			    <p:column headerText="E-mail">
-			        <h:outputText value="#{u.email}" />
-			    </p:column>
-			    
-			     <p:column headerText="Tipo">
-			        <h:outputText value="#{u.usergroup}" />
-			    </p:column>
-			    
-			</p:dataTable>
-		</p:panelGrid>        
+	      	<h:form title="Buscar Usuarios" id="busUserForm">
+	 
+				<p:panelGrid columns="2" styleClass="ui-noborder" >
+	   
+				   <p:outputLabel value="CPF:" for="cpf" />
+				   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}"    />
+				   
+				   <p:outputLabel value="Nome do funcionario:" for="name" />
+				   <p:inputText id="name"  value="#{buscarUsuarios.name}" key="return"  />			   
+				   
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 			
+	   			<p:commandButton action="#{buscarUsuarios.buscar()}" value="Buscar" update=":busUserForm :warnings :founds" icon="fa fa-search"  />
+	  
+			</h:form>  
+			<div>
+				<h2 align="center" >
+					<p:outputLabel id="warnings" />
+				</h2>
+			</div>
+			
+			<br />
+			<br />
+			
+			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
+				<p:dataTable  var="u" value="#{buscarUsuarios.users}" rendered="#{buscarUsuarios.hasItens()}" >
+					<p:column headerText="CPF" width="100">
+				        <h:outputText value="#{u.cpf}" />
+				    </p:column>
+				    
+				    <p:column headerText="Nome">
+				        <h:outputText value="#{u.name}" />
+				    </p:column>
+				    
+				    <p:column headerText="E-mail">
+				        <h:outputText value="#{u.email}" />
+				    </p:column>
+				    
+				     <p:column headerText="Tipo">
+				        <h:outputText value="#{u.usergroup}" />
+				    </p:column>
+				    
+				</p:dataTable>
+			</p:panelGrid>
+		</p:panelGrid>
+		 
+		<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
+			<a  href="index.xhtml" >Clique aqui para logar</a>			
+		</p:outputLabel>       
     </ui:define>
 </ui:composition>
