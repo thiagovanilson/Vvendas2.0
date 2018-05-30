@@ -37,7 +37,11 @@ public class SalesDAO extends Persist{
     	EntityManager manager = factory.createEntityManager();
     	
     	sm = manager.find(SellModel.class, cod);
-
+    	if(sm == null) {
+    		itens = null;
+    		hasItens = false;
+    		return;
+    	}
     	itens = sm.getItens();
     	hasItens = itens.size() > 0;
 	}
@@ -47,20 +51,17 @@ public class SalesDAO extends Persist{
 	}	
 	public boolean save(List<ItemSell> itens) {
 		sm.setItens(itens);
-//		for(ItemSell is: itens) {
-//			is.setIdSell(sm.getId());
-//			save(is);
-//		}
+
 		return save(sm);
 	}
 	
 	public String getWarnings() {
 		if(sm == null)
-			return "Não foram encontrado venda com codigo " + cod;
+			return "Não foi encontrado venda com codigo " + cod;
 		return "";
 	}	
 	public String getSellInfo() {
-		if(sm == null)
+		if(sm == null || !hasItens)
 			return "";
 		return String.format("<h3>Codigo: " + sm.getId() + "</h3><br />Valor: R$ %.2f"  + 
 				"<br />Data: " + sm.getDate() + "<br />CPF do vendedor: " + sm.getCpfUsuario(), sm.getPrice());

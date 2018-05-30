@@ -33,7 +33,7 @@ public class JPAUtil {
 	}
 	
 	@Produces
-	@ApplicationScoped
+	@RequestScoped
 	public SalesDAO criarSD() {
 		SalesDAO sd = null;
 		try {
