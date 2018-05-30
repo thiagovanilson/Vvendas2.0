@@ -1,16 +1,41 @@
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:f="http://java.sun.com/jsf/core">
       
     <ui:decorate template="/WEB-INF/template.xhtml">
         <ui:define name="corpo">
-    		<title>Buscar Usuario</title>
+    		<title>Relatórios de vendas</title>
            
-
-			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{!services.userLoggedIsAdmin()}"> 
-				<h1 align="center">ATENÇÃO! <br />Este usuario não tem permição de acesso a esta funcionalidade</h1>	     	
+			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged and services.userLoggedIsAdmin()}">   
+		     	<h1 align="center">Relatorio de vendas<br /></h1>	
+		     	     	
+				<h:form id="formFiltro" >
+					<p:panelGrid columns="3" styleClass="ui-noborder" >   
+						<p:outputLabel>Escolha o periodo da busca: </p:outputLabel>
+						<p:selectOneMenu  id = "name" value="#{relatoriosDeVendas.days}">
+							<f:selectItem itemLabel="7 dias"   itemValue="7"  />	
+							<f:selectItem itemLabel="30 dias"  itemValue="30" />											
+							<f:selectItem itemLabel="365 dias" itemValue="365"/>					
+						</p:selectOneMenu>
+						
+						<p:commandButton   value="Ok" type="submit"  icon="fa fa-search" update=":info"/>
+						<p:button outcome="index.xhtml" value="Menu principal"    icon="fa fa-home"/>
+					</p:panelGrid>
+				</h:form>
+				<p align="center" >
+					<p:outputLabel id="info" value="#{relatoriosDeVendas.relatorio}" />
+				</p>
+			</p:panelGrid>
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged and !services.userLoggedIsAdmin()}"> 
+				<h1 align="center">ATENÇÃO! <br />Este usuario não tem permição de acesso a esta funcionalidade.</h1>	     	
 			</p:panelGrid> 
+			
+			<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
+				<a  href="index.xhtml" >Clique aqui para logar</a>			
+			</p:outputLabel> 
 			
         </ui:define>
     </ui:decorate>

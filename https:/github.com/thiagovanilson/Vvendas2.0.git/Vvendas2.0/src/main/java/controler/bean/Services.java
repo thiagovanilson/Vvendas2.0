@@ -2,14 +2,14 @@ package controler.bean;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 import model.UserDAO;
 import model.UserModel;
 
-@SessionScoped
-@ManagedBean
+@ApplicationScoped
+@Named
 
 public class Services extends AbstractBean implements Serializable {
 
@@ -56,8 +56,9 @@ public class Services extends AbstractBean implements Serializable {
 		}
 		reportarMensagemDeErro("Senha ou CPF incorretos!");
 	}
-	public void logout() {
+	public String logout() {
 		user = null;
+		return "index.xhtml";
 	}
 	private boolean editUser = true;
 	

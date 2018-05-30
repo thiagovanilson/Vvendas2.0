@@ -2,8 +2,10 @@ package controler.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.view.ViewScoped;
 
-import javax.faces.bean.*;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import model.ItemSell;
 import model.ProductDAO;
@@ -12,22 +14,26 @@ import model.SalesDAO;
 import model.SellModel;
 
 @SuppressWarnings("serial")
+@Named
 @ViewScoped
-@ManagedBean
+
 public class Vendas extends AbstractBean{	
 	
+//	@Inject
+//	private Services services;
 	private String cod, warning;
 	private int qtd = 1;
-	private Services services = new Services();
 	private float sum = 0;
 	
 	private List<ItemSell> itens = new ArrayList<ItemSell>();
+	
+	
+	private ProductDAO pd = new ProductDAO();
 	
 	public void addCart() {
 		ItemSell item = new ItemSell();		
 
 		if(cod!=null && !cod.equals("")) {
-			ProductDAO pd = new ProductDAO(null);
 			ProductModel p = pd.getProduct(cod);
 			
 			warning = "";
@@ -66,12 +72,12 @@ public class Vendas extends AbstractBean{
 		return "";
 	}
 	
-	public void finish() {
+	public void finish(String cpf) {
 		SellModel sell = new SellModel();
 		
 		sell.setItens(itens);
 		sell.setPrice(sum);
-		sell.setCpfUsuario(services.getUser().getCpf());
+		sell.setCpfUsuario(cpf);
 		
 		SalesDAO sd = new SalesDAO(sell);
 

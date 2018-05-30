@@ -41,7 +41,7 @@
 					<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
 			</div>
 			
-			<p:panelGrid id="founds" styleClass="ui-noborder" rows="1" >
+			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
 				<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
 					<p:column headerText="Cod. Prod." width="100">
 				        <h:outputText value="#{u.barCode}" />

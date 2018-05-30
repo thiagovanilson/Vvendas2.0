@@ -1,15 +1,15 @@
 package controler.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import model.ProductDAO;
 import model.ProductModel;
 
 @SuppressWarnings("serial")
-@ViewScoped
-@ManagedBean
+@ApplicationScoped
+@Named
 public class CadastrarProdutos extends AbstractBean{	
 	
 	private String[] medidas = new String[] {"Kg","Gramas","Litros","ML","Unidade","Desconhecido"};

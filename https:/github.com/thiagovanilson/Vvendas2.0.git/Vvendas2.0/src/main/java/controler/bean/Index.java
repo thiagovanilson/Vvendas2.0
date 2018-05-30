@@ -1,13 +1,12 @@
 package controler.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
-import model.UserDAO;
-import model.UserModel;
 
-@SessionScoped
-@ManagedBean(name="index")
+@ApplicationScoped
+@Named("index")
 
 public class Index {	
 	

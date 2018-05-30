@@ -2,16 +2,16 @@ package controler.bean;
 
 import java.util.ArrayList;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import model.UserDAO;
 import model.UserModel;
 
 @SuppressWarnings("serial")
-@ViewScoped
-@ManagedBean
+@ApplicationScoped
+@Named
 public class BuscarUsuarios extends AbstractBean{	
 	
 	private String name, cpf, aviso;

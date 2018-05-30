@@ -1,28 +1,35 @@
 package controler.bean;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import java.io.Serializable;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import model.ItemSell;
 import model.SalesDAO;
 import model.SellModel;
 
-@ViewScoped
-@ManagedBean(name="buscarVendas")
 
-public class BuscarVendas {	
-	private SalesDAO sd;
+@Named
+@ViewScoped
+
+public class BuscarVendas implements Serializable  {	
+	
+	
+	private SalesDAO sd = new SalesDAO(new SellModel());
 	
 	private long codVenda;
 	private Date data;
 	
 	public void search() {
-		if(sd == null)
-			sd = new SalesDAO(null);
+//		if(sd == null)
+//			sd = new SalesDAO(null);
 		sd.search();
 	}
 	
@@ -39,8 +46,8 @@ public class BuscarVendas {
 		this.data = data;
 	}	
 	public SellModel getVenda(){
-		if(sd == null)
-			sd = new SalesDAO(null);
+//		if(sd == null)
+//			sd = new SalesDAO(null);
 		return sd.getSell(codVenda);
 	}
 	public List<ItemSell> getItens() {

@@ -1,17 +1,17 @@
 package controler.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import model.Facade;
 import model.Persist;
-import model.ProductDAO;
 import model.UserDAO;
 import model.UserModel;
 
 @SuppressWarnings("serial")
-@ViewScoped
-@ManagedBean
+@ApplicationScoped
+@Named
 public class CadastrarUsuario extends AbstractBean{	
 	
 	private String name, cpf, type, pass, email;

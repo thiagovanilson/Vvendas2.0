@@ -3,17 +3,18 @@ package controler.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
 
-@SuppressWarnings("serial")
-@ViewScoped
-@ManagedBean
-public class BuscarProdutos extends AbstractBean{	
+@Named
+@ApplicationScoped
+
+public class BuscarProdutos {	
 	
 	private String name, cod, aviso;
 	ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();

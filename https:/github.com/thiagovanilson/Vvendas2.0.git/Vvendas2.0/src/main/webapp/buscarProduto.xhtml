@@ -43,7 +43,7 @@
 			
 			<p:panelGrid columns="1" styleClass="ui-noborder" id="founds" >
 				<p:dataTable id="founds2" var="p" value="#{buscarProdutos.produtos}" 
-				rows="5" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
+				rows="15" paginatorAlwaysVisible="false" paginator="true" rowsPerPageTemplate="5,10,15" rendered="#{buscarProdutos.hasItens()}"
 				paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
 				>
 					<p:column headerText="Codigo" width="100">

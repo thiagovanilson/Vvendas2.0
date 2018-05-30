@@ -1,12 +1,17 @@
 package model;
 
+import javax.inject.Inject;
 
 public class ProductDAO {
 
+	@Inject
 	private ProductModel pm;
 	
 	public ProductDAO(ProductModel p){
 		pm = p;
+	}
+	public ProductDAO(){
+		pm = null;
 	}
 	
 	public boolean save() {
