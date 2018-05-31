@@ -135,19 +135,7 @@ public class Persist {
 
 
 	}	
-	public ArrayList<SellModel> getSales(int days) {
-    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-    	EntityManager manager = factory.createEntityManager();
-    	
-    	
-    	return (ArrayList<SellModel>) manager.createQuery(
-    			"SELECT s FROM SellModel s WHERE s.date >= :inicio")
-    			.setParameter("inicio", new Date(new Date().getTime() - (1000L*60*60*24*days)))
-    			.setMaxResults(100)
-    			.getResultList();
-
-
-	}
+	
 	@SuppressWarnings("unchecked")
 	public List<String> find(String sqlCode){
 		

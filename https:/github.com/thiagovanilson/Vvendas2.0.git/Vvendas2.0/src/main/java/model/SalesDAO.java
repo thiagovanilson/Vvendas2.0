@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -66,8 +68,49 @@ public class SalesDAO extends Persist{
 		return String.format("<h3>Codigo: " + sm.getId() + "</h3><br />Valor: R$ %.2f"  + 
 				"<br />Data: " + sm.getDate() + "<br />CPF do vendedor: " + sm.getCpfUsuario(), sm.getPrice());
 	}
+	public ArrayList<SellModel> getSales(int days) {
+    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+    	EntityManager manager = factory.createEntityManager();
+    	
+    	
+    	ArrayList<SellModel> resultList = (ArrayList<SellModel>) manager.createQuery(
+    			"SELECT s FROM SellModel s WHERE s.date >= :inicio")
+    			.setParameter("inicio", new Date(new Date().getTime() - (1000L*60*60*24*days)))
+    			.setMaxResults(100)
+    			.getResultList();
+    	
+    	manager.close();
+		return resultList;
+
+
+	}
+	public ArrayList<SellModel> getSales(int days, String cpf) {
+    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+    	EntityManager manager = factory.createEntityManager();
+    	
+    	
+    	ArrayList<SellModel> resultList = (ArrayList<SellModel>) manager.createQuery(
+    			"SELECT s FROM SellModel s WHERE s.date >= :inicio AND s.cpfUsuario like :cpf ")
+    			.setParameter("inicio", new Date(new Date().getTime() - (1000L*60*60*24*days)))
+    			.setParameter("cpf", cpf)
+    			.setMaxResults(100)
+    			.getResultList();
+
+    	manager.close();
+		return resultList;
+	}
 	public boolean hasItens() {
 		
 		return hasItens;
+	}
+	public ArrayList<UserModel> getUsers() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+    	EntityManager manager = factory.createEntityManager();
+    	
+    	
+    	return (ArrayList<UserModel>) manager.createQuery(
+    			"SELECT u FROM UserModel u ")
+    			.setMaxResults(100)
+    			.getResultList();
 	}
 }
