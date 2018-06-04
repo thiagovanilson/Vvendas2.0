@@ -44,19 +44,27 @@
 			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
 				<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
 					<p:column headerText="Cod. Prod." width="100">
-				        <h:outputText value="#{u.barCode}" />
+						<div align="center">
+					        <h:outputText value="#{u.barCode}" />
+				        </div>
 				    </p:column>
 				    
-				    <p:column headerText="Nome">
+				    <p:column headerText="Nome do produto">
 				        <h:outputText value="#{u.name}" />
 				    </p:column>
 				    
-				   	<p:column headerText="Preço">
+				   	<p:column headerText="Preço unitario" width="100">
 				        <h:outputText value="#{u.priceFormated}" />
 				    </p:column>
 				    
 			    	<p:column headerText="Quant." width="70">
-				        <h:outputText value="#{u.quantity}" />
+			    		<div align="center">
+				        	<h:outputText value="#{u.quantity}" />
+				        </div>
+				    </p:column>
+				    
+				    <p:column headerText="Sub-total" width="80">
+				        <h:outputText value="#{u.subTotalFormated}" />
 				    </p:column>
 				    
 				</p:dataTable>

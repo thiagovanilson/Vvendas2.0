@@ -2,22 +2,24 @@ package controler.bean;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.omnifaces.cdi.ViewScoped;
 
 import model.SalesDAO;
 import model.SellModel;
 import model.UserModel;
-
+import java.io.Serializable;
 
 @Named
-@RequestScoped
+@ViewScoped
 
-public class RelatoriosDeVendas {	
-	
+public class RelatoriosDeVendas implements Serializable {		
 	
 	private int days = 0;
-	SalesDAO sd = new SalesDAO(null);
+	@Inject
+	SalesDAO sd ;//= new SalesDAO(null);
 	private String cpfUser = "";
 	
 	public String getRelatorio() {
@@ -27,16 +29,23 @@ public class RelatoriosDeVendas {
 		if(cpfUser != null && !cpfUser.equals("")) {
 			for(SellModel s : new SalesDAO(null).getSales(days, cpfUser)) {
 				soma += s.getPrice();
-				System.out.println("Data aparente do registro: " + s.getDate());
 			}
-			return "Total arecadado nos ultimos " + days + " dias do usuario "+ cpfUser+": R$" + soma;
+			return String.format("<h3>Total arecadado nos ultimos " + days + " dias do usuario "+ cpfUser+": R$ %.2f</h3>" , soma);
 		}else {
-			
-			for(SellModel s : new SalesDAO(null).getSales(days)) {
-				soma += s.getPrice();
-				System.out.println("Data aparente do registro: " + s.getDate());
+			String output = "<h3>";
+			for(UserModel um : getUsers()) {
+				float subTotal = 0;
+				for(SellModel s : new SalesDAO(null).getSales(days, um.getCpf())) {
+					if(s!=null)
+						subTotal += s.getPrice();
+				}
+				if(um != null) {					
+					soma += subTotal;
+					output += String.format("Total arecadado nos ultimos " + days + " dias do usuario "+ um.getCpf() +": R$ %.2f<br />" , subTotal);
+				}
 			}
-			return "Total arecadado nos ultimos " + days + " dias: R$" + soma;
+			output += String.format("<br />Total: %.2f </h3>",  soma) ;
+			return output;
 		}
 	}
 

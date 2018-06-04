@@ -22,6 +22,9 @@ public class ItemSell implements Serializable{
 	private String description;
 	private int quantity;
 	
+	public float getUnitValue() {
+		return price ;
+	}
 	public long getIdSell() {
 		return idSell;
 	}
@@ -62,7 +65,10 @@ public class ItemSell implements Serializable{
 		this.description = description;
 	}	
 	public String getPriceFormated() {
-		return String.format("R$ %.2f", price);
+		return String.format("R$ %.2f", getPrice());
+	}
+	public String getSubTotalFormated() {
+		return String.format("R$ %.2f", getSubTotal());
 	}
 	
 }

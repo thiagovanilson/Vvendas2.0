@@ -33,19 +33,15 @@ public class JPAUtil {
 	}
 	
 	@Produces
-	@RequestScoped
-	public SalesDAO criarSD() {
-		SalesDAO sd = null;
-		try {
-			sd = new SalesDAO(new SellModel());
-		} catch (Throwable t) {
-			t.printStackTrace();
-			throw t;
-		}
+	public SalesDAO criarSD(SellModel sm) {
+		SalesDAO sd = new SalesDAO(sm);
+		
 		return sd;
 	}
 	
-
+	public void fecharEM(@Disposes SalesDAO sd) {
+		sd = null;
+	}
 	public void fecharEM(@Disposes EntityManager em) {
 		em.close();
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 import java.io.Serializable;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.ItemSell;
@@ -18,10 +19,10 @@ import model.SellModel;
 @Named
 @ViewScoped
 
-public class BuscarVendas implements Serializable  {	
+public class BuscarVendas implements Serializable  {		
 	
-	
-	private SalesDAO sd = new SalesDAO(new SellModel());
+	@Inject
+	private SalesDAO sd ;//= new SalesDAO(new SellModel());
 	
 	private long codVenda;
 	private Date data;
