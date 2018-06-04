@@ -13,20 +13,22 @@
     	<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged and services.userLoggedIsAdmin()}">   
 	    	
 	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
-	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+	        <p:messages id="idMessagesErrors" showDetail="false" autoUpdate="true" severity="error" closable="true" />
 	        
-	        <h:form >
+	        <h:form id="codForm">
 	 			<p:panelGrid columns="2" cellpadding="1">
 	 			
 					<p:outputLabel value="Codigo de barras:" for="cod" />
-					<p:inputText id="cod" value="#{cadastrarProdutos.cod}"     required="true" />
+					<p:inputText id="cod" value="#{cadastrarProdutos.cod}" required="true" onkeyup="btSearch" >
+						
+					</p:inputText>					
 						
 	 			</p:panelGrid>
 	        	
 	        	<br />
 	        	
-				<p:commandButton id="btSearch" value="Checar" update="cadProdForm" action="#{cadastrarProdutos.search()}"/>
-				<p:commandButton  value="Excluir" action="#{cadastrarProdutos.delete()}" update=":cadProdForm :@this" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
+				<p:commandButton id="btSearch" value="Checar"  action="#{cadastrarProdutos.search()}" update="cadProdForm @this codForm" />
+				<p:commandButton id="del"      value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm @this" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
 	   				
 	   				<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
 	   			
@@ -43,7 +45,7 @@
 					<p:inputText id="name" value="#{cadastrarProdutos.name}"   required="true" />
 					
 					<p:outputLabel value="Descrição:" for="desc" />
-					<p:inputTextarea id="desc" value="#{cadastrarProdutos.description}" rows="4" cols="100" />
+					<p:inputTextarea id="desc" value="#{cadastrarProdutos.description}" rows="3" cols="60" />
 					
 					<p:outputLabel value="Preço:" for="group" />
 					<p:inputText id="group" value="#{cadastrarProdutos.price}"  required="true" />

@@ -9,14 +9,18 @@
         	<p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
 	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
 	        
+            <p:outputLabel rendered="#{services.logged}" >
+	            <h1 align="center">Proximas modificações<br /></h1>	
+	     	</p:outputLabel>
 			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
-	            <h1 align="center">Proximas modificações</h1>
 	            <br />
 	            <br />
 	            <strike>* Restringir funcionalidades para usuarios que nao sejam do grupo admin.</strike><br />
-	            * Adicionar a funcionalidade de relatorio.<br />
+	            <strike>* Adicionar a funcionalidade de relatorio.</strike><br />
 	            <strike>* Criar a tela de login.</strike><br />
+	            <strike>* Criar "add usuario" na tela de login.</strike><br />
 	            * Adicionar preço de custo nos cadastros de produtos.<br />
+	            * Pedir senha na hora de excluir alguma coisa.<br />	            
 	            * Implementar o hash para salvar as senhas de usuario com segurança.
 	        </p:panelGrid>
 	        
@@ -37,8 +41,9 @@
 		 			
 		 				<br />
 		 			
-		   				<p:commandButton  value="Login"  action="#{services.login()}"   update="@all" icon="fa fa-key" />
-  			
+		   				<p:commandButton  value="Login"        action="#{services.login()}"   update="@all" icon="fa fa-key"  />
+  						<p:button  value="Criar conta"         outcome="new_user.xhtml"       icon="fa fa-user" />
+  						
 					</h:form> 
 	        	</p:dialog>
 	        </p:panelGrid>

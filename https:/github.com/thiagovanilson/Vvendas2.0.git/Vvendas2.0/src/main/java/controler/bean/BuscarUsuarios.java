@@ -2,15 +2,16 @@ package controler.bean;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
+
 import javax.inject.Named;
+
+import org.omnifaces.cdi.ViewScoped;
 
 import model.UserDAO;
 import model.UserModel;
 
 @SuppressWarnings("serial")
-@ApplicationScoped
+@ViewScoped
 @Named
 public class BuscarUsuarios extends AbstractBean{	
 	

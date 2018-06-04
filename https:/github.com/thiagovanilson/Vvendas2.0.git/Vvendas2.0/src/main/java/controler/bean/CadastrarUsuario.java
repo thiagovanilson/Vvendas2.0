@@ -1,21 +1,23 @@
 package controler.bean;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import model.Facade;
-import model.Persist;
+import org.omnifaces.cdi.ViewScoped;
+
+
 import model.UserDAO;
 import model.UserModel;
 
 @SuppressWarnings("serial")
-@ApplicationScoped
+@ViewScoped
 @Named
 public class CadastrarUsuario extends AbstractBean{	
 	
-	private String name, cpf, type, pass, email;
+	private String name, cpf, type, pass, email,securityCod = "Vanilson";
 	private boolean isEdition = false;
+	@Inject
+	private Services serv;
 	
 	public String filtrar() {
 		
@@ -29,8 +31,8 @@ public class CadastrarUsuario extends AbstractBean{
 	public void save() {
 
 		try {
-			UserDAO ud  = new UserDAO(null);
 			UserModel u = new UserModel();
+			UserDAO ud  = new UserDAO(u);
 			
 			u.setCpf(cpf);
 			u.setEmail(email);
@@ -47,7 +49,7 @@ public class CadastrarUsuario extends AbstractBean{
 					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
 			}else {
 				
-				if(new Persist().save(new Facade().createUser(cpf, name, pass, type, email))) {
+				if(ud.save()) {
 					clean();
 					reportarMensagemDeSucesso("Usuario salvo!");
 				}
@@ -58,6 +60,35 @@ public class CadastrarUsuario extends AbstractBean{
 			reportarMensagemDeErro(e.getMessage());
 
 		}
+	}
+	
+	public String saveFirst() {
+
+		try {
+			UserModel u = new UserModel();
+			UserDAO ud  = new UserDAO(u);
+			
+			u.setCpf(cpf);
+			u.setEmail(email);
+			u.setName(name);
+			u.setPass(pass);
+			u.setUsergroup("admin");			
+				
+			if(ud.save()) {
+				clean();
+				reportarMensagemDeSucesso("Usuario salvo!");
+				serv.login(u);
+				return "index.xhtml";
+			}
+			else {
+				reportarMensagemDeErro("Falha ao gravar!");
+				return null;
+			}
+			
+		} catch (Exception e) {
+			reportarMensagemDeErro(e.getMessage());
+		}
+		return null;
 	}
 	
 	public void search() {
@@ -145,5 +176,13 @@ public class CadastrarUsuario extends AbstractBean{
 
 	public void setEdition(boolean isEdition) {
 		this.isEdition = isEdition;
+	}
+
+	public String getSecurityCod() {
+		return securityCod;
+	}
+
+	public void setSecurityCod(String securityCod) {
+		this.securityCod = securityCod;
 	}	
 }

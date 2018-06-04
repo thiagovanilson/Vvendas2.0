@@ -3,6 +3,7 @@ package controler.bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.UserDAO;
@@ -17,7 +18,8 @@ public class Services extends AbstractBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3423399669564859585L;
-	private static Services serv;
+	@Inject
+	private Services serv;
 	private UserModel user;// = new UserDAO(null).getUser("1");
 	private String cpf;
 	private String pass;
@@ -33,9 +35,8 @@ public class Services extends AbstractBean implements Serializable {
 		this.user = user;
 	}	
 	
-	public static Services getInstance() {
-		if(serv == null)
-			serv = new Services();
+	public Services getInstance() {
+		
 		return serv;
 	}
 	public boolean isLogged() {
@@ -55,6 +56,9 @@ public class Services extends AbstractBean implements Serializable {
 			reportarMensagemDeErro(e.getMessage());
 		}
 		reportarMensagemDeErro("Senha ou CPF incorretos!");
+	}
+	public void login(UserModel um) {
+		user = um;
 	}
 	public String logout() {
 		user = null;

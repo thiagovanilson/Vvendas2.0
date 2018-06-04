@@ -1,0 +1,44 @@
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="/WEB-INF/template.xhtml">
+        <ui:define name="corpo">
+            <title>Cadastro de Usuário</title>
+            
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+			
+				<p:dialog  closable="false" visible="true"  resizable="false" >
+        			<h:form title="Cadastrar Usuário" id="cadUserForm">
+		        		<p:panelGrid columns="2" styleClass="ui-noborder"  >	        		
+	 
+							<p:outputLabel value="Codigo de segurança:" for="cod" />
+							<p:inputText id="cod" value="#{cadastrarUsuario.securityCod}"  required="true" autocomplete="false" />
+							
+							<p:outputLabel value="CPF:" for="cpf" />
+							<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" autocomplete="false" />							
+							
+							<p:outputLabel value="Nome:" for="name" />
+							<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
+									
+			 				<p:outputLabel value="Email:" for="email" />
+							<p:inputText id="email" value="#{cadastrarUsuario.email}" required="true" />					
+	 
+							<p:outputLabel value="Senha:" for="pass" />
+							<p:password id="pass" value="#{cadastrarUsuario.pass}" required="true" feedback="true" match="conPass"/>   
+						   
+						   	<p:outputLabel value="Confirme a senha:" for="conPass" />
+							<p:password id="conPass" required="true" /> 
+		 				</p:panelGrid>
+		 			
+		 				<br />
+		 			
+  						<p:commandButton  value="Criar conta"  action="#{cadastrarUsuario.saveFirst()}"   update="@all" icon="fa fa-user" />
+  						
+					</h:form> 
+	        	</p:dialog>
+					
+			</p:panelGrid>
+        </ui:define>
+    </ui:decorate>
+</xhtml>

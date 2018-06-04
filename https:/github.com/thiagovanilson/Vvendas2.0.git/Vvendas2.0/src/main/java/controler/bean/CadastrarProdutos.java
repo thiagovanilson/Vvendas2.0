@@ -1,14 +1,14 @@
 package controler.bean;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+
+import org.omnifaces.cdi.ViewScoped;
 
 import model.ProductDAO;
 import model.ProductModel;
 
 @SuppressWarnings("serial")
-@ApplicationScoped
+@ViewScoped
 @Named
 public class CadastrarProdutos extends AbstractBean{	
 	
@@ -62,6 +62,8 @@ public class CadastrarProdutos extends AbstractBean{
 		}
 	}
 	public void search() {
+		if(cod == null)
+			return;
 		ProductDAO pd  = new ProductDAO(null);
 		ProductModel p = pd.getProduct(cod);
 		
