@@ -7,10 +7,10 @@
     <ui:decorate template="/WEB-INF/template.xhtml">
         <ui:define name="corpo">
     		<title>Relatórios de vendas</title>
-		     	<p:outputLabel rendered="#{services.logged and services.userLoggedIsAdmin()}" >
+		     	<p:outputLabel>
 			     	<h1 align="center">Relatorio de vendas<br /></h1>	
 		     	</p:outputLabel>
-			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged and services.userLoggedIsAdmin()}" >   
+			<p:panelGrid columns="1" styleClass="ui-noborder"  >   
 				<h:form id="formFiltro" >
 					<p:panelGrid columns="2" styleClass="ui-noborder" >   
 						<p:outputLabel>Escolha o periodo da busca: </p:outputLabel>
@@ -26,23 +26,14 @@
 				 			<f:selectItems  value="#{relatoriosDeVendas.users}" var="u" itemLabel="#{u.name}" itemValue="#{u.cpf}" />				
 	
 				 		</p:selectOneMenu>
-						<p:commandButton  type="submit" value="Ok"             icon="fa fa-search" update=":info"/>
-						<p:button outcome="index.xhtml" value="Menu principal" icon="fa fa-home"/>
+						<p:commandButton value="Ok"             icon="fa fa-search" type="submit" update=":info"/>
+						<p:commandButton value="Menu principal" icon="fa fa-home"  action= "#{index.goToIndex()}"/>
 					</p:panelGrid>
 				</h:form>
 				<div >
 					<p:outputLabel id="info" escape="false" value="#{relatoriosDeVendas.relatorio}"/>
 				</div>
 			</p:panelGrid>
-			
-			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged and !services.userLoggedIsAdmin()}"> 
-				<h1 align="center">ATENÇÃO! <br />Este usuario não tem permição de acesso a esta funcionalidade.</h1>	     	
-			</p:panelGrid> 
-			
-			<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
-				<a  href="index.xhtml" >Clique aqui para logar</a>			
-			</p:outputLabel> 
-			
         </ui:define>
     </ui:decorate>
 </xhtml>

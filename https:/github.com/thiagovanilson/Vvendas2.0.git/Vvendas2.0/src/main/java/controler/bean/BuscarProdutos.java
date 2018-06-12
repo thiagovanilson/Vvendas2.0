@@ -1,20 +1,20 @@
 package controler.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import org.omnifaces.cdi.ViewScoped;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.inject.*;
 
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
 
 @Named
-@ApplicationScoped
+@ViewScoped
 
-public class BuscarProdutos {	
+public class BuscarProdutos implements Serializable{	
 	
 	private String name, cod, aviso;
 	ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();

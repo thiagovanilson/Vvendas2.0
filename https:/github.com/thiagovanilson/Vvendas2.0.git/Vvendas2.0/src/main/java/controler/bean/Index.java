@@ -1,22 +1,29 @@
 package controler.bean;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
+
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 
-@ApplicationScoped
+@RequestScoped
 @Named("index")
 
 public class Index {	
 	
+	@Inject
+	private Services serv;
 	
-	public String filtrar() {
+	public void refreshUser() {
 		
-		return null;
+		serv.login();
 	}
 	public String goToIndex() {
-		return "index.xhtml";
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		return (ec.getApplicationContextPath() + "/index.xhtml");
 	}
 	
 	

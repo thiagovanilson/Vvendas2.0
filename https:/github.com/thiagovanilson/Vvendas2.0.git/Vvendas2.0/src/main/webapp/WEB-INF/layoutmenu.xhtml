@@ -5,24 +5,24 @@
     xmlns:p="http://primefaces.org/ui">
 	
 	<h:form>
-		<p:panelMenu style="width:250px" rendered="#{services.logged}" >
+		<p:panelMenu style="width:250px" >
 			<p:submenu label="Cadastros" rendered="#{services.userLoggedIsAdmin()}" expanded="true">
-				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="cadastrarProduto.xhtml" />
-				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="cadastrarUsuario.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="/admin/cadastrarProduto.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="/admin/cadastrarUsuario.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Buscas">
-				<p:menuitem value="Produtos" icon="fa fa-search" outcome="buscarProduto.xhtml" />
-				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="buscarUsuario.xhtml" />
+				<p:menuitem value="Produtos" icon="fa fa-search" outcome="/buscarProduto.xhtml" />
+				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="/buscarUsuario.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Ações">
-				<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="vendas.xhtml" />
+				<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="/vendas.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Registros">
-				<p:menuitem value="Buscar vendas"    icon="fa fa-folder"      outcome="buscarvendas.xhtml" />
-				<p:menuitem value="Relatorio vendas" icon="fa fa-file-text-o" outcome="relatorios.xhtml"    rendered="#{services.userLoggedIsAdmin()}" />
+				<p:menuitem value="Buscar vendas"    icon="fa fa-folder"      outcome="/admin/buscarvendas.xhtml" />
+				<p:menuitem value="Relatorio vendas" icon="fa fa-file-text-o" outcome="/admin/relatorios.xhtml"  />
 				
 			</p:submenu>
 							

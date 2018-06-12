@@ -27,7 +27,7 @@ public class RelatoriosDeVendas implements Serializable {
 			return "";
 		float soma = 0;
 		if(cpfUser != null && !cpfUser.equals("")) {
-			for(SellModel s : new SalesDAO(null).getSales(days, cpfUser)) {
+			for(SellModel s : sd.getSales(days, cpfUser)) {
 				soma += s.getPrice();
 			}
 			return String.format("<h3>Total arecadado nos ultimos " + days + " dias do usuario "+ cpfUser+": R$ %.2f</h3>" , soma);
@@ -35,7 +35,7 @@ public class RelatoriosDeVendas implements Serializable {
 			String output = "<h3>";
 			for(UserModel um : getUsers()) {
 				float subTotal = 0;
-				for(SellModel s : new SalesDAO(null).getSales(days, um.getCpf())) {
+				for(SellModel s : sd.getSales(days, um.getCpf())) {
 					if(s!=null)
 						subTotal += s.getPrice();
 				}

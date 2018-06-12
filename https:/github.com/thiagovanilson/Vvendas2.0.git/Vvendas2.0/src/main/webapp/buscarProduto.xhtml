@@ -13,7 +13,7 @@
     	 -->
         <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
-        <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
+        <p:panelGrid columns="1" styleClass="ui-noborder" >
         
 	      	<h:form title="Buscar Produtos" id="busProdForm">
 	 
@@ -73,10 +73,6 @@
 			</p:panelGrid> 
 		</p:panelGrid>
 		
-		<p:outputLabel value="Realize login para ter acesso ao sistema!" rendered="#{!services.logged}" >
-			<a  href="index.xhtml" >Clique aqui para logar</a>			
-		</p:outputLabel>
-		   
 		<!-- 
 		 -->
     </ui:define>

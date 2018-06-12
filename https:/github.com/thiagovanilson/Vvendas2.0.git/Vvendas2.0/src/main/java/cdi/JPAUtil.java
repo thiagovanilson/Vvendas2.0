@@ -10,6 +10,8 @@ import javax.persistence.Persistence;
 
 import model.SalesDAO;
 import model.SellModel;
+import model.UserDAO;
+import model.UserModel;
 
 public class JPAUtil {
 
@@ -33,12 +35,19 @@ public class JPAUtil {
 	}
 	
 	@Produces
-	public SalesDAO criarSD(SellModel sm) {
-		SalesDAO sd = new SalesDAO(sm);
+	public SalesDAO criarSD() {
+		SalesDAO sd = new SalesDAO(null);
 		
 		return sd;
 	}
+	@Produces
+	public UserDAO criarUserDAO(UserModel um) {
+		return new UserDAO(um);
+	}
 	
+	public void fecharUserDAO(@Disposes UserDAO ud) {
+		ud = null;
+	}
 	public void fecharEM(@Disposes SalesDAO sd) {
 		sd = null;
 	}

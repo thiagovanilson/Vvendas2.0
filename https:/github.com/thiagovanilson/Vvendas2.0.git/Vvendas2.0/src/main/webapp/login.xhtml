@@ -1,0 +1,35 @@
+<xhtml xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   						
+	            <title>Bem vindo ao V-Vendas</title>
+        	<p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />        
+   	
+        	<h1 align="center">Realize o login para poder acessar o sistema!</h1>
+	        <div align="center" style="position:absolute;  top:40%; width:100%;">
+		 
+				<p:dialog modal="true" height="100" visible="true" rendered="true">
+				
+					<h:form id="formLogin" prependId="false" onsubmit="action='j_security_check';" >
+		        		<p:panelGrid columns="2" styleClass="ui-noborder"  >	        		
+	 
+							<p:outputLabel value="CPF:" for="j_username" />
+							<p:inputText id="j_username" />
+							
+							<p:outputLabel for="j_password" value="Senha:" />
+							<p:password id="j_password" />  						   
+						   
+		   					<p:commandButton  value="Login"  ajax="false" icon="fa fa-key"  />
+		 				</p:panelGrid>
+		 			
+		 				<br />
+		 			
+	<!--  					<p:button 		  value="Criar conta"  ajax="false" outcome="new_user.xhtml" icon="fa fa-user" /> -->
+	 						
+					</h:form> 
+	        	</p:dialog>
+	        </div>	
+       
+</xhtml>

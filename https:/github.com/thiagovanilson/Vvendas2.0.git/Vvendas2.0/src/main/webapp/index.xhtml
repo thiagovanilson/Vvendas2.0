@@ -1,18 +1,20 @@
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:p="http://primefaces.org/ui"      
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:f="http://java.sun.com/jsf/core">
     <ui:decorate template="/WEB-INF/template.xhtml">
-        <ui:define name="corpo">
-            <title>Pagina inicial</title>
+        <ui:define name="corpo" >
+           
+            <title>Pagina inicial</title>			
         
         	<p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
 	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
 	        
-            <p:outputLabel rendered="#{services.logged}" >
+            <p:outputLabel>
 	            <h1 align="center">Proximas modificações<br /></h1>	
 	     	</p:outputLabel>
-			<p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{services.logged}" >
+			<p:panelGrid columns="1" styleClass="ui-noborder" >
 	            <br />
 	            <br />
 	            <strike>* Restringir funcionalidades para usuarios que nao sejam do grupo admin.</strike><br />
@@ -24,29 +26,6 @@
 	            * Implementar o hash para salvar as senhas de usuario com segurança.
 	        </p:panelGrid>
 	        
-	        <p:panelGrid columns="1" styleClass="ui-noborder" rendered="#{!services.logged}" >
-	        	<h1 align="center">Realize o login para poder acessar o sistema!</h1>
-	        	<p:dialog  closable="false" visible="true"  resizable="false" >
-        			<h:form title="Cadastrar Usuário" id="cadUserForm">
-		        		<p:panelGrid columns="2" styleClass="ui-noborder"  >	        		
-	 
-							<p:outputLabel value="CPF:" for="cpf" />
-							<p:inputText id="cpf" value="#{services.cpf}"  required="true" autocomplete="false" />
-							
-							
-							<p:outputLabel value="Senha:" for="pass" />
-							<p:password id="pass" value="#{services.pass}" required="true" />   						   
-						   
-		 				</p:panelGrid>
-		 			
-		 				<br />
-		 			
-		   				<p:commandButton  value="Login"        action="#{services.login()}"   update="@all" icon="fa fa-key"  />
-  						<p:button  value="Criar conta"         outcome="new_user.xhtml"       icon="fa fa-user" />
-  						
-					</h:form> 
-	        	</p:dialog>
-	        </p:panelGrid>
 	        
         </ui:define>
     </ui:decorate>
