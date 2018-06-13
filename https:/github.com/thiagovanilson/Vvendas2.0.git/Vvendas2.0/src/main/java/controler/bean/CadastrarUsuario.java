@@ -49,7 +49,7 @@ public class CadastrarUsuario extends AbstractBean{
 					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
 			}else {
 				
-				if(ud.save()) {
+				if(ud.save(u)) {
 					clean();
 					reportarMensagemDeSucesso("Usuario salvo!");
 				}
@@ -74,7 +74,7 @@ public class CadastrarUsuario extends AbstractBean{
 			u.setPass(pass);
 			u.setUsergroup("admin");			
 				
-			if(ud.save()) {
+			if(ud.save(u)) {
 				clean();
 				reportarMensagemDeSucesso("Usuario salvo!");
 				serv.login(u);

@@ -21,6 +21,7 @@ public class JPAUtil {
 		EntityManagerFactory emf = null;
 		try {
 			emf = Persistence.createEntityManagerFactory("comercio");
+			
 		} catch (Throwable t) {
 			t.printStackTrace();
 			throw t;
@@ -41,8 +42,8 @@ public class JPAUtil {
 		return sd;
 	}
 	@Produces
-	public UserDAO criarUserDAO(UserModel um) {
-		return new UserDAO(um);
+	public UserDAO criarUserDAO() {
+		return new UserDAO(null);
 	}
 	
 	public void fecharUserDAO(@Disposes UserDAO ud) {

@@ -5,5 +5,5 @@
 	bean-discovery-mode="all">
 	<interceptors>
 		<class>cdi.TransacionalInterceptor</class>
-	</interceptors>
+	</interceptors>	
 </beans>

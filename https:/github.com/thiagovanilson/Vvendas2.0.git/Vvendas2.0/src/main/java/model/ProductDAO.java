@@ -1,12 +1,16 @@
 package model;
 
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public class ProductDAO {
+public class ProductDAO extends Persist {
 
-	@Inject
-	private ProductModel pm;
 	
+	private ProductModel pm;
+		
+//	@Inject
+//	private EntityManager manager;
 	public ProductDAO(ProductModel p){
 		pm = p;
 	}
@@ -15,7 +19,7 @@ public class ProductDAO {
 	}
 	
 	public boolean save() {
-		return new Persist().save(pm);
+		return super.save(pm);
 	}
 	public boolean delete(String id) {
 		Persist p = new Persist();
@@ -30,9 +34,20 @@ public class ProductDAO {
 	}
 	public boolean edit(ProductModel pm) {
 	
-		return new Persist().edit(pm);
+		return super.edit(pm);
 	}
+	public int qtdProducts() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+	    EntityManager manager = factory.createEntityManager();
+		    
+    	return Integer.parseInt( manager.createQuery(
+    			"select count(p.id) from ProductModel p where 1=1")
+    			.getSingleResult().toString());
+
+
+	}	
 	public ProductModel getProduct(String id) {
 		return new Persist().getProduct(id);
-	}	
+	}
+	
 }

@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name="produtos")
 

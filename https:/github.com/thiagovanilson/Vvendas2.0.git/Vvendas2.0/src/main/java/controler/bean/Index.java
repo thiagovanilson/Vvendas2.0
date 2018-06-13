@@ -7,6 +7,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import model.ProductDAO;
+import model.UserDAO;
+
 
 @RequestScoped
 @Named("index")
@@ -15,6 +18,11 @@ public class Index {
 	
 	@Inject
 	private Services serv;
+	@Inject
+	private ProductDAO pd;
+	
+	@Inject 
+	private UserDAO ud;
 	
 	public void refreshUser() {
 		
@@ -25,6 +33,15 @@ public class Index {
 		ExternalContext ec = fc.getExternalContext();
 		return (ec.getApplicationContextPath() + "/index.xhtml");
 	}
-	
-	
+	public String goToInfo() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		return (ec.getApplicationContextPath() + "/info.xhtml");
+	}
+	public int qtdProducts() {
+		return pd.qtdProducts();
+	}
+	public int qtdUsers() {
+		return ud.qtdUsers();
+	}
 }

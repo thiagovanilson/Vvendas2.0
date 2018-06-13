@@ -12,18 +12,13 @@
 	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
 	        
             <p:outputLabel>
-	            <h1 align="center">Proximas modificações<br /></h1>	
+	            <h:graphicImage name="images/logo01.jpg"  library="adamantium-layout" style="height:60px;  margin-top:18px;" />
 	     	</p:outputLabel>
 			<p:panelGrid columns="1" styleClass="ui-noborder" >
 	            <br />
 	            <br />
-	            <strike>* Restringir funcionalidades para usuarios que nao sejam do grupo admin.</strike><br />
-	            <strike>* Adicionar a funcionalidade de relatorio.</strike><br />
-	            <strike>* Criar a tela de login.</strike><br />
-	            <strike>* Criar "add usuario" na tela de login.</strike><br />
-	            * Adicionar preço de custo nos cadastros de produtos.<br />
-	            * Pedir senha na hora de excluir alguma coisa.<br />	            
-	            * Implementar o hash para salvar as senhas de usuario com segurança.
+	           	<h2>Total de produtos cadastrados: #{index.qtdProducts()}</h2>
+	           	<h2>Total usuarios cadastrados: #{index.qtdUsers()}</h2>
 	        </p:panelGrid>
 	        
 	        

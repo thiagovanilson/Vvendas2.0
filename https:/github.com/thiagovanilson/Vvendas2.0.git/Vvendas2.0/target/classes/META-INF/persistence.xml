@@ -8,6 +8,7 @@
 
    <!-- provedor/implementacao do JPA -->
    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   <non-jta-data-source>java:/comercio</non-jta-data-source>
 
    <!-- entidade mapeada -->
    <class>model.UserModel</class>
@@ -17,14 +18,14 @@
 
    <properties>
     <!-- dados da conexao -->
-     <property name="javax.persistence.jdbc.driver" 
-             value="com.mysql.jdbc.Driver" />
-    <property name="javax.persistence.jdbc.url" 
-            value="jdbc:mysql://localhost/comercio?useSSL=false&amp;autoReconnec=true" />
-    <property name="javax.persistence.jdbc.user" 
-            value="root" />
-    <property name="javax.persistence.jdbc.password" 
-            value="admin" />
+<!--      <property name="javax.persistence.jdbc.driver"  -->
+<!--              value="com.mysql.jdbc.Driver" /> -->
+<!--     <property name="javax.persistence.jdbc.url"  -->
+<!--             value="jdbc:mysql://localhost/comercio?useSSL=false&amp;autoReconnec=true" /> -->
+<!--     <property name="javax.persistence.jdbc.user"  -->
+<!--             value="root" /> -->
+<!--     <property name="javax.persistence.jdbc.password"  -->
+<!--             value="admin" /> -->
 
      <!--  propriedades do hibernate -->
      <property name="hibernate.dialect" 
