@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
-import java.io.Serializable;
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,6 +11,7 @@ import javax.inject.Named;
 import model.ItemSell;
 import model.SalesDAO;
 import model.SellModel;
+import services.SellServices;
 
 
 @Named
@@ -23,6 +21,8 @@ public class BuscarVendas implements Serializable  {
 	
 	@Inject
 	private SalesDAO sd ;//= new SalesDAO(new SellModel());
+	
+	private SellServices ss = new SellServices();
 	
 	private long codVenda;
 	private Date data;
@@ -37,6 +37,7 @@ public class BuscarVendas implements Serializable  {
 		return codVenda;
 	}
 	public void setCodVenda(long cod) {
+		codVenda = cod;
 		sd.getSell(cod);
 	}
 	public Date getData() {
@@ -56,14 +57,11 @@ public class BuscarVendas implements Serializable  {
 		return sd.getItens();
 	}
 	public String getWarnings() {
-		if(sd == null)
-			return "";
-		return sd.getWarnings();
+		return ss.getWarningSold();
 	}
 	public String getSellInfo() {
-		if(sd == null)
-			sd = new SalesDAO(codVenda);
-		return sd.getSellInfo();
+		
+		return ss.getSellInfo(codVenda);
 	}
 	public boolean hasItens() {
 		if(sd == null)

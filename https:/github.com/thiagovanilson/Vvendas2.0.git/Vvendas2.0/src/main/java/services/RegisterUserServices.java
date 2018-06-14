@@ -1,5 +1,10 @@
 package services;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
 import controler.bean.AbstractBean;
 import model.UserDAO;
 import model.UserModel;
@@ -13,6 +18,16 @@ public class RegisterUserServices extends AbstractBean{
 		try {
 			UserDAO ud  = new UserDAO(userModel);
 
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("SHA-256");
+				md.update(userModel.getPass().getBytes("UTF-8"));
+				byte[] digest = md.digest();
+				String output = Base64.getEncoder().encodeToString(digest);
+				userModel.setPass(output);
+			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+				
+			}
 			if(isEdition) {
 				if (ud.edit(userModel)) {
 					reportarMensagemDeSucesso("Edições salvas!");

@@ -34,17 +34,8 @@ public class UserModel implements Cloneable, Serializable {
 		return pass;
 	}
 	public void setPass(String pass) {
-//		this.pass = pass;
-		MessageDigest md;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(pass.getBytes("UTF-8"));
-			byte[] digest = md.digest();
-			String output = Base64.getEncoder().encodeToString(digest);
-			this.pass = output;
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			
-		}
+		this.pass = pass;
+		
 	}
 	public String getUsergroup() {
 		return usergroup;

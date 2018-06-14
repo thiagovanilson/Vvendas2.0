@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import model.UserDAO;
 import model.UserModel;
 
-@RequestScoped
+@ApplicationScoped
 @Named
 
 public class Services extends AbstractBean implements Serializable {

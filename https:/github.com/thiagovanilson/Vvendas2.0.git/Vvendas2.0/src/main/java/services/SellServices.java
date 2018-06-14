@@ -13,7 +13,7 @@ import model.SellModel;
 public class SellServices extends AbstractBean{
 
 	private List<ItemSell> itens = new ArrayList<ItemSell>();
-	private String warning = "";
+	private String warningSell = "", warningSold = "";
 	private float sum = 0;
 	
 	public void addItem(String cod, int qtd) {
@@ -23,11 +23,11 @@ public class SellServices extends AbstractBean{
 			ProductDAO pd = new ProductDAO(null);
 			ProductModel p = pd.getProduct(cod);
 			
-			warning = "";
+			warningSell = "";
 			
 			if(p != null) {
 				if(p.getQuantity() <= 0) {
-					warning = "Produto não apresenta quantidade em estoque. Favor atualizar os dados do item.";					
+					warningSell = "Produto não apresenta quantidade em estoque. Favor atualizar os dados do item.";					
 				}else
 					if(p.getQuantity() >= qtd)
 						p.setQuantity(p.getQuantity() - qtd);
@@ -47,7 +47,7 @@ public class SellServices extends AbstractBean{
 				
 			}
 			else {
-				warning = "Codigo: " + cod + " não cadastrado!";
+				warningSell = "Codigo: " + cod + " não cadastrado!";
 			}
 			cod = "";
 			qtd = 1 ;
@@ -71,7 +71,7 @@ public class SellServices extends AbstractBean{
 
 		if(sd.save(itens)) {
 			reportarMensagemDeSucesso("Venda finalizada com sucesso!");
-			warning = "Codigo da venda: " + sell.getId();
+			warningSell = "Codigo da venda: " + sell.getId();
 			return true;
 		}
 		else
@@ -83,11 +83,31 @@ public class SellServices extends AbstractBean{
 		return !itens.isEmpty();
 	}
 
-	public String getWarnings() {
-		return warning;
+	public String getWarningSell() {
+		return warningSell;
 	}
 
 	public List<ItemSell> getItens() {
 		return itens;
+	}
+	
+	private SalesDAO sd = new SalesDAO(null);
+	public String getSellInfo(long codVenda) {
+		
+		SellModel sm = sd.getSell(codVenda);
+		if(sm == null )
+			return "";
+		return String.format("<h3>Codigo: " + sm.getId() + "</h3><br />Valor: R$ %.2f"  + 
+				"<br />Data: " + sm.getDate() + "<br />CPF do vendedor: " + sm.getCpfUsuario(), sm.getPrice());
+		
+	}
+
+	public String getWarningSold() {
+		return warningSold;
+	}
+
+	public String getInfoSold() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

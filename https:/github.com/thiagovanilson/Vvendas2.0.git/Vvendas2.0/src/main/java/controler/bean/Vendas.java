@@ -30,14 +30,13 @@ public class Vendas extends AbstractBean{
 	
 	public void finish(String cpf) {
 		ss.finish(cpf);
-			
 	}
 	
 	private void clean() {
 		ss = new SellServices();
 	}
 	public String getWarning() {
-		return ss.getWarnings();
+		return ss.getWarningSell();
 	}
 	public boolean hasItens() {
 		return ss.hasItens();

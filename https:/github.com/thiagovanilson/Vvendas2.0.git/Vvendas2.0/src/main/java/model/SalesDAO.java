@@ -47,6 +47,8 @@ public class SalesDAO extends Persist implements Serializable{
     	}
     	itens = sm.getItens();
     	hasItens = itens.size() > 0;
+    	
+    	manager.close();
 	}
 	public List<ItemSell> getItens() {
 		search();
@@ -58,16 +60,9 @@ public class SalesDAO extends Persist implements Serializable{
 		return save(sm);
 	}
 	
-	public String getWarnings() {
-		if(sm == null)
-			return "Não foi encontrado venda com codigo " + cod;
-		return "";
-	}	
-	public String getSellInfo() {
-		if(sm == null || !hasItens)
-			return "";
-		return String.format("<h3>Codigo: " + sm.getId() + "</h3><br />Valor: R$ %.2f"  + 
-				"<br />Data: " + sm.getDate() + "<br />CPF do vendedor: " + sm.getCpfUsuario(), sm.getPrice());
+	
+	public SellModel getSellModel() {
+		return sm;
 	}
 	public ArrayList<SellModel> getSales(int days) {
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
