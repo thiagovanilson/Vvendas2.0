@@ -27,8 +27,8 @@
 	        	
 	        	<br />
 	        	
-				<p:commandButton id="btSearch" value="Checar"  action="#{cadastrarProdutos.search()}" update="cadProdForm @this codForm" />
-				<p:commandButton id="del"      value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm @this" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
+				<p:commandButton id="btSearch" value="Checar"  action="#{cadastrarProdutos.search()}" update="cadProdForm  :codForm" />
+				<p:commandButton id="del"      value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm :codForm" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition()}" >
 	   				
 	   				<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
 	   			

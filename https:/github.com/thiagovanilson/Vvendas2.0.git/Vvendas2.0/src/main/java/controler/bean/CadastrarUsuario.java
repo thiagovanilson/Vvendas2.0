@@ -4,123 +4,73 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
-
-
-import model.UserDAO;
 import model.UserModel;
+import services.RegisterUserServices;
 
 @SuppressWarnings("serial")
 @ViewScoped
 @Named
 public class CadastrarUsuario extends AbstractBean{	
 	
-	private String name, cpf, type, pass, email,securityCod = "Vanilson";
-	private boolean isEdition = false;
+	private String name, cpf, type, pass, email, securityCod = "Vanilson";
 	@Inject
 	private Services serv;
 	
-	public String filtrar() {
-		
-		return null;
-	}
+	private RegisterUserServices rus = new RegisterUserServices();
+	private UserModel um;
 	
-	public CadastrarUsuario() {
-		
-	}
-
 	public void save() {
-
-		try {
-			UserModel u = new UserModel();
-			UserDAO ud  = new UserDAO(u);
-			
-			u.setCpf(cpf);
-			u.setEmail(email);
-			u.setName(name);
-			u.setPass(pass);
-			u.setUsergroup(type);
-			
-			if(isEdition) {
-				if (ud.edit(u)) {
-					clean();
-					reportarMensagemDeSucesso("Edições salvas!");
-				}
-				else
-					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
-			}else {
-				
-				if(ud.save(u)) {
-					clean();
-					reportarMensagemDeSucesso("Usuario salvo!");
-				}
-				else
-					reportarMensagemDeErro("Falha ao gravar!");
-			}
-		} catch (Exception e) {
-			reportarMensagemDeErro(e.getMessage());
-
-		}
+		UserModel u = new UserModel();
+		
+		u.setCpf(cpf);
+		u.setEmail(email);
+		u.setName(name);
+		u.setPass(pass);
+		u.setUsergroup(type);	
+		
+		rus.save(u);
 	}
 	
 	public String saveFirst() {
-
-		try {
-			UserModel u = new UserModel();
-			UserDAO ud  = new UserDAO(u);
+		
+		UserModel u = new UserModel();
+		
+		u.setCpf(cpf);
+		u.setEmail(email);
+		u.setName(name);
+		u.setPass(pass);
+		u.setUsergroup("admin");			
 			
-			u.setCpf(cpf);
-			u.setEmail(email);
-			u.setName(name);
-			u.setPass(pass);
-			u.setUsergroup("admin");			
-				
-			if(ud.save(u)) {
-				clean();
-				reportarMensagemDeSucesso("Usuario salvo!");
-				serv.login(u);
-				return "index.xhtml";
-			}
-			else {
-				reportarMensagemDeErro("Falha ao gravar!");
-				return null;
-			}
-			
-		} catch (Exception e) {
-			reportarMensagemDeErro(e.getMessage());
+		if(rus.save(u)) {
+			clean();
+			serv.login(u);
+			return "index.xhtml";
 		}
-		return null;
+		else {
+			return null;
+		}		
 	}
 	
 	public void search() {
-		UserDAO ud  = new UserDAO(null);
-		UserModel u = ud.getUser(cpf);
 		
-		if(u != null) {
-			name       = u.getName();
-			cpf  = u.getCpf();
-			email= u.getEmail();
-			pass = u.getPass();
-			type = u.getUsergroup();
-			
-			isEdition = true;
+		um = rus.search(cpf);
+		
+		if(um != null) {
+			name       = um.getName();
+			cpf  = um.getCpf();
+			email= um.getEmail();
+			pass = um.getPass();
+			type = um.getUsergroup();
 		}
 		else {
 			clean();
-			
-			isEdition = false;
 		}
 	}
 	
 	public void delete() {
-		UserDAO ud = new UserDAO(null);	
-		
-		if (ud.delete(cpf)) {
-			clean();
-			reportarMensagemDeSucesso("Excluido com sucesso!");
-		}
-		else
-			reportarMensagemDeErro("Falha ao excluir.");	
-		
+		if(um != null)
+			if(rus.delete(um))
+				clean();
 	}
 	
 	public void clean() {
@@ -171,13 +121,9 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 
 	public boolean isEdition() {
-		return isEdition;
+		return rus.isEdition();
 	}
-
-	public void setEdition(boolean isEdition) {
-		this.isEdition = isEdition;
-	}
-
+	
 	public String getSecurityCod() {
 		return securityCod;
 	}

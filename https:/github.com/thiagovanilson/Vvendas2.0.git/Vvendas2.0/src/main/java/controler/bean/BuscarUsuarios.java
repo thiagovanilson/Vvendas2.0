@@ -7,59 +7,31 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
-import model.UserDAO;
 import model.UserModel;
+import services.SearchUserServices;
 
 @SuppressWarnings("serial")
 @ViewScoped
 @Named
 public class BuscarUsuarios extends AbstractBean{	
 	
-	private String name, cpf, aviso;
-	ArrayList<UserModel> usuarios = new ArrayList<UserModel>();
-	
-	public String filtrar() {
-		
-		return null;
-	}
-
-	private boolean empty = true;
+	private String name, cpf;
+	private ArrayList<UserModel> usuarios = new ArrayList<UserModel>();
+	private SearchUserServices sus = new SearchUserServices();
 	
 	public void buscar() {
-		aviso = "";
-		usuarios = new ArrayList<UserModel>();
-
-		if(cpf!=null && !cpf.equals("")) {
-			UserModel p = new UserDAO(null).getUser(cpf);
-			
-			if(p != null) {
-				usuarios.add(p);
-				empty = false;
-			}
-			else {
-				empty = true;
-				aviso = "Não foram encontrados resultados. :(";
-			}
-		}else {
-			//Implementation to find many results
-			for(UserModel u: new UserDAO(null).getUsers(name)){
-				usuarios.add(u);
-				empty = false;
-
-			}
-		}
+		usuarios = sus.search(cpf, name);
 		clean();
 	}
 	public void clean() {
-		name        = "";
-		cpf         = "";
-		
+		name = "";
+		cpf  = "";		
 	}
 	public boolean hasItens() {
-		return !empty;
+		return sus.hasItens();
 	}
 	public String getAviso() {
-		return aviso;
+		return sus.getWarning();
 	}
 	public String getName() {
 		return name;
@@ -80,5 +52,4 @@ public class BuscarUsuarios extends AbstractBean{
 	public ArrayList<UserModel> getUsers() {
 		return usuarios;
 	}
-
 }

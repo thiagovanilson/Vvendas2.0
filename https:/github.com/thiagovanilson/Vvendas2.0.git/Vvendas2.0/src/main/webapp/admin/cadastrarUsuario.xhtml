@@ -9,7 +9,7 @@
     
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
-        <p:panelGrid columns="1" styleClass="ui-noborder" >   
+        <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
         
 	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
 	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
@@ -25,7 +25,7 @@
 	 			<br />
 	 			
 				<p:commandButton value="Checar" update=":cadUserForm :searchForm" action="#{cadastrarUsuario.search()}" icon="fa fa-search"/>
-				<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
+				<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm: formCod" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
 	   				
 	  					<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
 	  			

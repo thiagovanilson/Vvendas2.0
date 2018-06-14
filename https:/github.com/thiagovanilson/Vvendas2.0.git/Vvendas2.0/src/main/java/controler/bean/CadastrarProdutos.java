@@ -6,6 +6,7 @@ import org.omnifaces.cdi.ViewScoped;
 
 import model.ProductDAO;
 import model.ProductModel;
+import services.RegisterProductsServices;
 
 @SuppressWarnings("serial")
 @ViewScoped
@@ -16,56 +17,32 @@ public class CadastrarProdutos extends AbstractBean{
 	private String name, cod, description, tipoMedida;
 	private float price;
 	private int quantity, medida;
-	private boolean isEdition = false;
 	
-	public String filtrar() {
-		
-		return null;
-	}
+	private ProductModel p = new ProductModel();
+	private RegisterProductsServices rps = new RegisterProductsServices();
 	
 	public boolean isEdition() {
-		return isEdition;
+		return rps.isEdition();
 	}
 
 	public void save() {
-		try {
-			ProductModel p = new ProductModel();
-						
-			p.setId(cod);
-			p.setName(name);
-			p.setPrice(price);
-			p.setMedida(medida);
-			p.setQuantity(quantity);
-			p.setDescricao(description);
-			p.setTipoMedida(tipoMedida);
-			
-			ProductDAO pd = new ProductDAO(p);
-			
-			if(isEdition) {
-				if (pd.edit(p)) {
-					clean();
-					reportarMensagemDeSucesso("Edições salvas!");
-				}
-				else
-					reportarMensagemDeErro("Erro ao alterar dados. Revise os campos!");	
-			}else {
-				if (pd.save()) {
-					clean();
-					reportarMensagemDeSucesso("Produto salvo!");
-				}
-				else
-					reportarMensagemDeErro("Erro ao salvar. Revise os campos!");			
-			}
-			isEdition = false;
-		} catch (Exception e) {
-			reportarMensagemDeErro(e.getMessage());
-		}
+		if(p == null)
+			p = new ProductModel();
+		
+		p.setId(cod);
+		p.setDescricao(description);
+		p.setMedida(medida);
+		p.setPrice(price);
+		p.setQuantity(quantity);
+		p.setTipoMedida(tipoMedida);
+		p.setName(name);
+		
+		if(rps.save(p))
+			clean();
 	}
 	public void search() {
-		if(cod == null)
-			return;
-		ProductDAO pd  = new ProductDAO(null);
-		ProductModel p = pd.getProduct(cod);
+		
+		p = rps.search(cod);
 		
 		if(p != null) {
 			name       = p.getName();
@@ -74,13 +51,9 @@ public class CadastrarProdutos extends AbstractBean{
 			quantity   = p.getQuantity();
 			description= p.getDescricao();
 			tipoMedida = p.getTipoMedida();
-			
-			isEdition = true;
 		}
 		else {
 			clean();
-			
-			isEdition = false;
 		}
 	}
 	public void clean() {
@@ -92,14 +65,8 @@ public class CadastrarProdutos extends AbstractBean{
 		medida      = 0;
 	}
 	public void delete() {
-		ProductDAO pd = new ProductDAO(null);	
-		
-		if (pd.delete(cod)) {
+		if (rps.delete(p))
 			clean();
-			reportarMensagemDeSucesso("Excluido com sucesso!");
-		}
-		else
-			reportarMensagemDeErro("Falha ao excluir.");	
 		
 	}
 	public String getName() {

@@ -10,60 +10,30 @@ import javax.inject.*;
 import model.Persist;
 import model.ProductDAO;
 import model.ProductModel;
+import services.SearchProductsServices;
 
 @Named
 @ViewScoped
 
 public class BuscarProdutos implements Serializable{	
 	
-	private String name, cod, aviso;
-	ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();
-	
-	public String filtrar() {
-		
-		return null;
-	}
-	
-	public BuscarProdutos() {
-		
-	}
-
-	private boolean empty = true;
-	
-	public void buscar() {
-		aviso = "";
-		produtos = new ArrayList<ProductModel>();
-		
-		if(cod!=null && !cod.equals("")) {
-			ProductModel p = new ProductDAO(null).getProduct(cod);
+	private String name, cod;
+	private ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();
+	private SearchProductsServices sps = new SearchProductsServices();
 			
-			if(p != null) {
-				produtos.add(p);
-				empty = false;
-			}
-			else {
-				empty = true;
-				clean();
-				aviso = "Não foram encontrados resultados. :(";
-			}
-		}else {
-			for(ProductModel p: new Persist().getProducts(name)){
-				produtos.add(p);
-				empty = false;
-
-			}
-		}
+	public void buscar() {
+		
+		produtos = sps.buscar(cod, name);
 	}
 	public void clean() {
 		name        = "";
-		cod         = "";
-		
+		cod         = "";		
 	}
 	public boolean hasItens() {
-		return !empty;
+		return sps.hasItens();
 	}
 	public String getAviso() {
-		return aviso;
+		return sps.getWarnings();
 	}
 	public String getName() {
 		return name;
@@ -86,5 +56,4 @@ public class BuscarProdutos implements Serializable{
 			buscar();
 		return produtos;
 	}
-
 }
