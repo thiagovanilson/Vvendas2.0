@@ -35,6 +35,8 @@ public class UserDAO extends Persist{
 	
 	public UserModel getUser(String key) {
 	    //Ler
+		if(key == null || key.equals(""))
+			return new UserModel();
     	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
 
@@ -55,8 +57,9 @@ public class UserDAO extends Persist{
 		    u = manager.merge(u);
 		    
 		    u.setName(o.getName());
-		    u.setPass(o.getPass());
 		    u.setUsergroup(o.getUsergroup());
+		    if(o.getPass() != null && !o.getPass().equals(""))
+		    	u.setPass(o.getPass());
 		    
 		    manager.persist(u);
 		    manager.getTransaction().commit();    

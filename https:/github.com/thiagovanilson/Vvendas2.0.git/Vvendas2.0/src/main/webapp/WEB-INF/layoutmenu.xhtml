@@ -12,16 +12,16 @@
 			</p:submenu>
 			
 			<p:submenu label="Buscas">
-				<p:menuitem value="Produtos" icon="fa fa-search" outcome="/buscarProduto.xhtml" />
-				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="/buscarUsuario.xhtml" />
+				<p:menuitem value="Produtos" icon="fa fa-search" outcome="/user/buscarProduto.xhtml" />
+				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="/user/buscarUsuario.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Ações">
-				<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="/vendas.xhtml" />
+				<p:menuitem value="Realizar vendas" icon="fa fa-shopping-cart" outcome="/user/vendas.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Registros">
-				<p:menuitem value="Buscar vendas"    icon="fa fa-folder"      outcome="/buscarvendas.xhtml" />
+				<p:menuitem value="Buscar vendas"    icon="fa fa-folder"      outcome="/user/buscarvendas.xhtml" />
 				<p:menuitem value="Relatorio vendas" icon="fa fa-file-text-o" outcome="/admin/relatorios.xhtml" rendered="#{services.userLoggedIsAdmin()}" />
 				
 			</p:submenu>

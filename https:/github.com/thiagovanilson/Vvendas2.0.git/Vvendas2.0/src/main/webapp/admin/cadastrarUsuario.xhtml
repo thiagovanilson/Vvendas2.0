@@ -18,26 +18,17 @@
 	 			<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
 	 			
 					<p:outputLabel value="CPF:" for="cpf" />
-					<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" />
-					
-	 			</p:panelGrid>
-	 			
-	 			<br />
-	 			
-				<p:commandButton value="Checar" update=":cadUserForm :searchForm" action="#{cadastrarUsuario.search()}" icon="fa fa-search"/>
-				<p:commandButton  value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm :searchForm: formCod" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition()}" >
-	   				
-	  					<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
-	  			
-	  				</p:commandButton>
-	 		</h:form>
-	        
-	        <br />
-	        
+					<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     >
+						<p:ajax event="keyup" update=":cadUserForm " listener="#{cadastrarUsuario.search()}" />				   
+						
+					</p:inputText>
+				</p:panelGrid>
+			</h:form>
+			<br />
 	      	<h:form title="Cadastrar Usuário" id="cadUserForm">
-	 
-				<p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
-	   
+				<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
+					
+
 					<p:outputLabel value="Nome:" for="name" />
 					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
 									
@@ -51,15 +42,18 @@
 					<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" />
 					
 					<p:outputLabel value="Senha:" for="pass" />
-					<p:password id="pass" value="#{cadastrarUsuario.pass}" required="true" feedback="true" match="conPass"/>   
+					<p:password id="pass" value="#{cadastrarUsuario.pass}"  feedback="true" match="conPass"/>   
 				   
 				   	<p:outputLabel value="Confirme a senha:" for="conPass" />
-					<p:password id="conPass" required="true" /> 
+					<p:password id="conPass"  /> 
 	 			</p:panelGrid>
 	 			
 	 			<br />
 	 			
-	   			<p:commandButton  value="Salvar"  action="#{cadastrarUsuario.save()}"   update="cadUserForm" icon="fa fa-save" />
+	   			<p:commandButton value="Salvar"  action="#{cadastrarUsuario.save()}"   update=":cadUserForm"           icon="fa fa-save"  rendered="#{cadastrarUsuario.cpfIsValid()}" />
+	  			<p:commandButton value="Excluir" action="#{cadastrarUsuario.delete()}" update=":cadUserForm  :formCod" icon="fa fa-trash" rendered="#{cadastrarUsuario.isEdition() and cadastrarUsuario.cpfIsValid()}" >
+		  			<p:confirm header="Confirmação!" message="Continuar com a remoção do usuario '#{cadastrarUsuario.name}' ?" icon="ui-icon-alert" />
+  				</p:commandButton>
 	  			
 			</h:form> 
 			    

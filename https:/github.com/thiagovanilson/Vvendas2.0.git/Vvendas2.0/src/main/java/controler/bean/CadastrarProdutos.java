@@ -24,7 +24,11 @@ public class CadastrarProdutos extends AbstractBean{
 	public boolean isEdition() {
 		return rps.isEdition();
 	}
-
+	public boolean hasCode() {
+		if(cod == null)
+			return false;
+		return cod.length() > 0;
+	}
 	public void save() {
 		if(p == null)
 			p = new ProductModel();
@@ -56,6 +60,7 @@ public class CadastrarProdutos extends AbstractBean{
 			clean();
 		}
 	}
+	
 	public void clean() {
 		description = "";
 		name        = "";

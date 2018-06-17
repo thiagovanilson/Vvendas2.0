@@ -15,7 +15,8 @@ public class CadastrarUsuario extends AbstractBean{
 	private String name, cpf, type, pass, email, securityCod = "Vanilson";
 	@Inject
 	private Services serv;
-	
+	@Inject
+	private Index index;
 	private RegisterUserServices rus = new RegisterUserServices();
 	private UserModel um;
 	
@@ -25,9 +26,9 @@ public class CadastrarUsuario extends AbstractBean{
 		u.setCpf(cpf);
 		u.setEmail(email);
 		u.setName(name);
-		u.setPass(pass);
 		u.setUsergroup(type);	
-		
+		u.setPass(pass);
+
 		rus.save(u);
 	}
 	
@@ -44,7 +45,7 @@ public class CadastrarUsuario extends AbstractBean{
 		if(rus.save(u)) {
 			clean();
 			serv.login(u);
-			return "index.xhtml";
+			return index.goToIndex();
 		}
 		else {
 			return null;
@@ -55,8 +56,8 @@ public class CadastrarUsuario extends AbstractBean{
 		
 		um = rus.search(cpf);
 		
-		if(um != null) {
-			name       = um.getName();
+		if(um != null && cpf != null && cpf.length() > 0) {
+			name = um.getName();
 			cpf  = um.getCpf();
 			email= um.getEmail();
 			pass = um.getPass();
@@ -92,8 +93,7 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 
 	public void setCpf(String cpf) {
-		if(cpf != null && !cpf.equals(""))
-			this.cpf = cpf;
+		this.cpf = cpf;
 	}
 
 	public String getType() {
@@ -109,7 +109,8 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		if(pass != null && pass.length() > 0)
+			this.pass = pass;
 	}
 
 	public String getEmail() {
@@ -130,5 +131,8 @@ public class CadastrarUsuario extends AbstractBean{
 
 	public void setSecurityCod(String securityCod) {
 		this.securityCod = securityCod;
-	}	
+	}
+	public boolean cpfIsValid() {
+		return cpf != null && !cpf.equals("");
+	}
 }

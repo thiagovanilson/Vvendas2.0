@@ -19,23 +19,23 @@ public class SearchProductsServices {
 			
 			if(p != null) {
 				produtos.add(p);
-				empty = false;
-			}
-			else {
-				empty = true;
-				warning = "Não foram encontrados resultados. :(";
 			}
 		}else { 
 			if(name!=null && !name.equals("")){
 				for(ProductModel p: new Persist().getProducts(name)){
 					produtos.add(p);
-					empty = false;	
 				}
 			}else {
-				warning = "Nenhum campo preenchido!";
+				warning = "Nenhum campo preenchido!";		
+				empty = true;
 				return null;
 			}
 		}
+		empty = produtos.isEmpty();
+		
+		if(empty)
+			warning = "Não foram encontrados resultados. :(";
+		
 		return produtos;
 	}
 

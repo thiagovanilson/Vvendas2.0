@@ -19,17 +19,19 @@
 				<p:panelGrid columns="2" styleClass="ui-noborder" >
 	   
 				   <p:outputLabel value="CPF:" for="cpf" />
-				   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}"    />
+				   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}">
+				   		<p:ajax event="keyup" update=":busUserForm :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
+				   </p:inputText>
 				   
 				   <p:outputLabel value="Nome do funcionario:" for="name" />
-				   <p:inputText id="name"  value="#{buscarUsuarios.name}" key="return"  />			   
+				   <p:inputText id="name"  value="#{buscarUsuarios.name}"  >	
+				   		<p:ajax event="keyup" update=":busUserForm :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
+				   </p:inputText>		   
 				   
 	 			</p:panelGrid>
 	 			
 	 			<br />
-	 			
-	   			<p:commandButton action="#{buscarUsuarios.buscar()}" value="Buscar" update=":busUserForm :warnings :founds" icon="fa fa-search"  />
-	  
+	 				  
 			</h:form>  
 			<div>
 				<h2 align="center" >

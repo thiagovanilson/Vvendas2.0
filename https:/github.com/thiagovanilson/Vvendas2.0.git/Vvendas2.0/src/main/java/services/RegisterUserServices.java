@@ -17,16 +17,19 @@ public class RegisterUserServices extends AbstractBean{
 
 		try {
 			UserDAO ud  = new UserDAO(userModel);
-
-			MessageDigest md;
-			try {
-				md = MessageDigest.getInstance("SHA-256");
-				md.update(userModel.getPass().getBytes("UTF-8"));
-				byte[] digest = md.digest();
-				String output = Base64.getEncoder().encodeToString(digest);
-				userModel.setPass(output);
-			} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-				
+			
+			if(userModel.getPass() != null && !userModel.getPass().equals("")) {
+	
+				MessageDigest md;
+				try {
+					md = MessageDigest.getInstance("SHA-256");
+					md.update(userModel.getPass().getBytes("UTF-8"));
+					byte[] digest = md.digest();
+					String output = Base64.getEncoder().encodeToString(digest);
+					userModel.setPass(output);
+				} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+					
+				}
 			}
 			if(isEdition) {
 				if (ud.edit(userModel)) {

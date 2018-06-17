@@ -31,12 +31,12 @@ public class Index {
 	public String goToIndex() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
-		return (ec.getApplicationContextPath() + "/index.xhtml");
+		return (ec.getApplicationContextPath() + "/user/index.xhtml");
 	}
 	public String goToInfo() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
-		return (ec.getApplicationContextPath() + "/info.xhtml");
+		return (ec.getApplicationContextPath() + "/user/info.xhtml");
 	}
 	public int qtdProducts() {
 		return pd.qtdProducts();

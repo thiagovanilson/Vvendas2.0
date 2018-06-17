@@ -18,7 +18,10 @@
 					<p:panelGrid columns="2" styleClass="ui-noborder"  >
 		   
 					   <p:outputLabel value="Codigo de barras:" for="cod" />
-					   <p:inputText id="cod"  value="#{vendas.cod}"  />
+					   <p:inputText id="cod"  value="#{vendas.cod}" autocomplete="off" >
+					   		<p:ajax event="keyup" update="productInfo"  />
+					   		
+					   </p:inputText>
 					   
 					   <p:outputLabel value="Quantidade:"  for="qtd" />
 					   <p:inputText   value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
@@ -28,10 +31,12 @@
 		   			<p:commandButton  action="#{vendas.addCart()}"             value="Adicionar"         update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
 		     		<p:commandButton  action="#{vendas.finish(services.user.cpf)}"  value="Finalizar compra"  update=":warnings :founds :busProdForm" icon="fa fa-check"   />
 		  
-				</h:form>  
+				</h:form> 
+				 
 				<div>
+ 					<p:outputLabel id="productInfo" escape="false" value="#{vendas.previewInfo()}" />
 					<h2 align="center" >
-						<p:outputLabel value="#{vendas.warning}" id="warnings" />
+						<p:outputLabel value="#{vendas.warning}"       id="warnings" />
 					</h2>
 				</div>
 				

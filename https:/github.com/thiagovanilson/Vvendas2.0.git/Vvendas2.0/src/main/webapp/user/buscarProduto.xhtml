@@ -18,20 +18,23 @@
 	      	<h:form title="Buscar Produtos" id="busProdForm">
 	 
 				<p:panelGrid columns="2" styleClass="ui-noborder" >
-	   
 				   <p:outputLabel value="Codigo de barras:" for="cod" />
-				   <p:inputText id="cod" value="#{buscarProdutos.cod}"     />
+				   <p:inputText id="cod" value="#{buscarProdutos.cod}"     >
+				   		<p:ajax event="keyup" update=":busProdForm :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />
+				   </p:inputText>
 				   
 				   <p:outputLabel value="Nome do produto:" for="name" />
-				   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  />
+				   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  >
+				   		<p:ajax event="keyup" update=":busProdForm :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />				   
+				   </p:inputText>
 				   
 	 			</p:panelGrid>
 	 
 	 			<br />	
-	 				
-	   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds :founds2" icon="fa fa-search"  />
+	 		</h:form>		
+<!-- 	   			<p:commandButton action="#{buscarProdutos.buscar()}" value="Buscar" update=":busProdForm :warnings :founds :founds2" icon="fa fa-search"  /> -->
 	  
-			</h:form>  
+			
 			<div>
 				<h2 align="center" >
 					<p:outputLabel id="warnings" value="#{buscarProdutos.aviso}"/>

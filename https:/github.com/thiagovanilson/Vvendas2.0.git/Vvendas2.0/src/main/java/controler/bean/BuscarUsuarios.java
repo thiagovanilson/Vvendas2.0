@@ -21,7 +21,6 @@ public class BuscarUsuarios extends AbstractBean{
 	
 	public void buscar() {
 		usuarios = sus.search(cpf, name);
-		clean();
 	}
 	public void clean() {
 		name = "";
@@ -39,6 +38,7 @@ public class BuscarUsuarios extends AbstractBean{
 
 	public void setName(String name) {
 		this.name = name;
+		cpf = "";
 	}
 
 	public String getCpf() {
@@ -47,6 +47,7 @@ public class BuscarUsuarios extends AbstractBean{
 
 	public void setCpf(String cod) {
 		this.cpf = cod;
+		name = "";
 	}
 
 	public ArrayList<UserModel> getUsers() {

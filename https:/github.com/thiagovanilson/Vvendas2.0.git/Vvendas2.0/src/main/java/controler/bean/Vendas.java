@@ -2,9 +2,10 @@ package controler.bean;
 
 import java.util.List;
 import javax.faces.view.ViewScoped;
-
+import javax.inject.Inject;
 import javax.inject.Named;
 import model.ItemSell;
+import model.ProductModel;
 import services.SellServices;
 
 @SuppressWarnings("serial")
@@ -18,6 +19,8 @@ public class Vendas extends AbstractBean{
 	private String cod;
 	private int qtd = 1;
 	
+	@Inject
+	private BuscarProdutos bp;
 	private SellServices ss = new SellServices();
 		
 	public void addCart() {
@@ -31,7 +34,22 @@ public class Vendas extends AbstractBean{
 	public void finish(String cpf) {
 		ss.finish(cpf);
 	}
+	public String previewInfo() {
+		
+		bp.setCod(cod);
+		bp.buscar();
+		List<ProductModel> temp = bp.getProdutos();
 	
+		if(temp == null) {			
+			if(cod != null && cod.length() > 0)
+				return "Produto não cadastrado!";
+			return "";
+		}
+		
+		ProductModel pm = temp.get(0);
+		return String.format("<h3>%s,  Preço: R$ %.2f</h3>",pm.getName(), pm.getPrice());
+		
+	}
 	private void clean() {
 		ss = new SellServices();
 	}

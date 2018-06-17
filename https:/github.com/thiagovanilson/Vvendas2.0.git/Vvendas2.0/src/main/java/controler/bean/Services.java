@@ -34,6 +34,8 @@ public class Services extends AbstractBean implements Serializable {
 	private Services serv;
 	@Inject
 	private UserDAO ud;
+	@Inject
+	private Index index;
 	private UserModel user;// = new UserDAO(null).getUser("1");
 	private String cpf;
 	private String pass;
@@ -92,7 +94,7 @@ public class Services extends AbstractBean implements Serializable {
 		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
 		request.logout();
 		user = null;
-		ec.redirect(ec.getApplicationContextPath() + "/index.xhtml");
+		ec.redirect(index.goToIndex());
 	}
 
 	private boolean editUser = true;
