@@ -44,12 +44,12 @@ public class CadastrarUsuario extends AbstractBean{
 			
 		if(rus.save(u)) {
 			clean();
-			serv.login(u);
-			return index.goToIndex();
+//			serv.login(u);
 		}
-		else {
-			return null;
-		}		
+		return "/info.xhtml";
+//		else {
+//			return null;
+//		}		
 	}
 	
 	public void search() {
@@ -133,6 +133,6 @@ public class CadastrarUsuario extends AbstractBean{
 		this.securityCod = securityCod;
 	}
 	public boolean cpfIsValid() {
-		return cpf != null && !cpf.equals("");
+		return cpf != null && !cpf.equals("___.___.___-__");
 	}
 }

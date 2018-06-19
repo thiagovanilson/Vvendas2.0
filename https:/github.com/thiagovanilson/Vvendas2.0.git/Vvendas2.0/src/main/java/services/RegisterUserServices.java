@@ -51,7 +51,6 @@ public class RegisterUserServices extends AbstractBean{
 			}
 		} catch (Exception e) {
 			reportarMensagemDeErro(e.getMessage());
-
 		}
 		return false;
 	}
@@ -76,7 +75,7 @@ public class RegisterUserServices extends AbstractBean{
 		UserDAO ud = new UserDAO(null);	
 		
 		if (ud.delete(um)) {
-			reportarMensagemDeSucesso("Excluido com sucesso!");
+			reportarMensagemDeSucesso("Usuario removido do sistema!");
 			isEdition = false;
 			return true;
 		}

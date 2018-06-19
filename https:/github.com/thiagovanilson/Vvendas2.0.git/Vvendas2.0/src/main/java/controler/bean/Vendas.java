@@ -35,19 +35,22 @@ public class Vendas extends AbstractBean{
 		ss.finish(cpf);
 	}
 	public String previewInfo() {
-		
+		if(cod == null || cod.equals("null")) {
+			return "";
+		}
+		if(cod.equals("") ) {			
+			return "";
+		}
 		bp.setCod(cod);
 		bp.buscar();
 		List<ProductModel> temp = bp.getProdutos();
-	
-		if(temp == null) {			
-			if(cod != null && cod.length() > 0)
-				return "Produto não cadastrado!";
-			return "";
-		}
 		
-		ProductModel pm = temp.get(0);
-		return String.format("<h3>%s,  Preço: R$ %.2f</h3>",pm.getName(), pm.getPrice());
+		if(temp != null && temp.size() > 0) {
+			ProductModel pm = temp.get(0);
+			return String.format("<h3>%s,  Preço: R$ %.2f</h3>",pm.getName(), pm.getPrice());
+		}else
+			return "Produto não cadastrado no sistema!";
+	
 		
 	}
 	private void clean() {

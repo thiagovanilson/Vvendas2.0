@@ -15,6 +15,7 @@ public class SalesDAO extends Persist implements Serializable{
 	private long cod;
 	private List<ItemSell> itens;
 	private boolean hasItens = false;
+	private List<SellModel> resultList;
 	
 	public SalesDAO(SellModel s){
 		sm = s;
@@ -49,6 +50,20 @@ public class SalesDAO extends Persist implements Serializable{
     	hasItens = itens.size() > 0;
     	
     	manager.close();
+	}
+	public void search100() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+    	EntityManager manager = factory.createEntityManager();
+    	sm = null;
+		hasItens = false;
+    	
+    	resultList = (List<SellModel>) manager.createQuery(
+    			"SELECT s FROM SellModel s WHERE  1=1 order by s.date desc")
+    			.setMaxResults(100)
+    			.getResultList();
+
+    	manager.close();
+		
 	}
 	public List<ItemSell> getItens() {
 		search();
@@ -108,5 +123,8 @@ public class SalesDAO extends Persist implements Serializable{
     			"SELECT u FROM UserModel u ")
     			.setMaxResults(100)
     			.getResultList();
+	}
+	public List<SellModel> get100() {
+		return resultList;
 	}
 }

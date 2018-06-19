@@ -10,6 +10,10 @@
     <ui:define name="corpo">    
 	    <title>Cadastrar/Editar Produto</title>
 	    
+	    <p:outputLabel>
+	     	<h1 align="center">Cadastrar produtos<br /><br /></h1>	
+     	</p:outputLabel>
+	    
     	<p:panelGrid columns="1" styleClass="ui-noborder" >   
 	    	
 	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
@@ -19,7 +23,7 @@
 	 			<p:panelGrid columns="2" cellpadding="1">
 	 			
 					<p:outputLabel value="Codigo de barras:" for="cod" />
-					<p:inputText id="cod" value="#{cadastrarProdutos.cod}" >
+					<p:inputText id="cod" value="#{cadastrarProdutos.cod}" autocomplete="off" >
 				   		<p:ajax event="keyup" update="cadProdForm  :codForm" listener="#{cadastrarProdutos.search()}" />
 						
 					</p:inputText>					

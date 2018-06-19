@@ -36,7 +36,7 @@ public class Index {
 	public String goToInfo() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
-		return (ec.getApplicationContextPath() + "/user/info.xhtml");
+		return (ec.getApplicationContextPath() + "/info.xhtml");
 	}
 	public int qtdProducts() {
 		return pd.qtdProducts();

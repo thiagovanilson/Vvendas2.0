@@ -74,7 +74,7 @@
 	</login-config>
 	<error-page>
 		<error-code>403</error-code>
-		<location>/acesso_negado.xhtml</location>
+		<location>/user/acesso_negado.xhtml</location>
 	</error-page>
 	<security-constraint>
 		<display-name>Páginas do administrador</display-name>

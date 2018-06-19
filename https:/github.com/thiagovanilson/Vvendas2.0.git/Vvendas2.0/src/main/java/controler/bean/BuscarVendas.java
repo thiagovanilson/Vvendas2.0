@@ -32,7 +32,13 @@ public class BuscarVendas implements Serializable  {
 //			sd = new SalesDAO(null);
 		sd.search();
 	}
-	
+	public void search100() {
+		codVenda = 0;
+		sd.search100();
+	}
+	public List <SellModel> getLast100(){
+		return sd.get100();
+	}
 	public long getCodVenda() {
 		return codVenda;
 	}

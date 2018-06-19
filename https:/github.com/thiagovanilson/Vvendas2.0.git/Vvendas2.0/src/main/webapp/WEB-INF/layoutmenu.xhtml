@@ -4,11 +4,11 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 	
-	<h:form>
-		<p:panelMenu style="width:250px" >
+	<h:form >
+		<p:panelMenu style="width:250px">
 			<p:submenu label="Cadastros" rendered="#{services.userLoggedIsAdmin()}" expanded="true">
-				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="/admin/cadastrarProduto.xhtml" />
 				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="/admin/cadastrarUsuario.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="/admin/cadastrarProduto.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Buscas">

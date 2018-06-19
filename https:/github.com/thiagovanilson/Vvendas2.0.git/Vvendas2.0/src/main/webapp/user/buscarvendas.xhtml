@@ -25,7 +25,8 @@
 	 			
 	 			<br />
 	 			
-	 			<p:commandButton value="Buscar" icon="fa fa-search" update=":founds :warnings :sellInfo" action="#{buscarVendas.search()}"/>
+	 			<p:commandButton value="Buscar"                 icon="fa fa-search" update=":founds :warnings :sellInfo :sales" action="#{buscarVendas.search()}"/>
+	 			<p:commandButton value="Buscar os  100 ultimos" icon="fa fa-search" update=":founds :warnings :sellInfo :sales" action="#{buscarVendas.search100()}" />
 	 		</h:form>	
 	 			
 	 		<div>
@@ -38,9 +39,8 @@
 			<br />
 			
 			<div>
-					<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
+				<p:outputLabel id="sellInfo" value="#{buscarVendas.sellInfo}" escape="false" />
 			</div>
-			
 			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
 				<p:dataTable  var="u" value="#{buscarVendas.itens}" rendered="#{buscarVendas.hasItens()}" >
 					<p:column headerText="Cod. Prod." width="100">
@@ -69,6 +69,25 @@
 				    
 				</p:dataTable>
 			</p:panelGrid> 
+			<p:panelGrid id="sales" styleClass="ui-noborder" columns="1" >
+				<p:dataTable  var="sale" value="#{buscarVendas.last100}" rendered="#{!buscarVendas.hasItens()}" >
+				   	<p:column headerText="Codigo">
+			        	<h:outputText value="#{sale.id}" />
+				    </p:column>
+				    
+				    <p:column headerText="Data da venda">
+			        	<h:outputText value="#{sale.date}" />
+				    </p:column>
+				    
+				    <p:column headerText="CPF do Vendedor">
+			        	<h:outputText value="#{sale.cpfUsuario}" />
+				    </p:column>
+				    
+				    <p:column headerText="Valor total">
+			        	<h:outputText value="#{sale.price}" />
+				    </p:column>
+				</p:dataTable>
+			</p:panelGrid>
 		</p:panelGrid>			
 	</ui:define>
 </ui:composition>

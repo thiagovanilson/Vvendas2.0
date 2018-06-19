@@ -15,6 +15,8 @@ import model.UserModel;
 
 public class JPAUtil {
 
+//	private EntityManager em;
+
 	@Produces
 	@ApplicationScoped
 	public EntityManagerFactory criarEMF() {

@@ -21,14 +21,15 @@
             </li>
         </ul>
      -->
-    <a style="position:fixed; right:0;">
-	    <p:outputLabel   value="Logado como: #{services.user.name}" />
+    <a style="position:fixed; right:0;" >
+	    <p:outputLabel   value="Logado como: #{services.user.name}" rendered="#{services.hasLogged()}"/>
 		<br />
 		<br />
 		<p:commandButton  
 			value="Sair" 
 			action="#{services.logout()}"  
 			update="@all" 
+			rendered="#{services.hasLogged()}"
 			style="position:fixed; right:0; ">
 		</p:commandButton>  
 		 

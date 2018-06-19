@@ -9,43 +9,47 @@
     
     <ui:define name="corpo">              
     	<title>Cadastrar Usuário</title>
+    	
+    	<p:outputLabel>
+	     	<h1 align="center">Cadastrar Usuário<br /></h1>	
+     	</p:outputLabel>
+     	
         <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
         
-	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
-	        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+	         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+	         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
 	        
 	         <h:form id="searchForm">
 	 			<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
-	 			
-					<p:outputLabel value="CPF:" for="cpf" />
-					<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     >
-						<p:ajax event="keyup" update=":cadUserForm " listener="#{cadastrarUsuario.search()}" />				   
-						
-					</p:inputText>
+	 			                                                                      
+					<p:outputLabel value="CPF:" for="cpf"/>
+					<p:inputMask id="cpf" value="#{cadastrarUsuario.cpf}"  autocomplete="off" mask="999.999.999-99"  >
+						<p:ajax event="keyup" update=":cadUserForm " listener="#{cadastrarUsuario.search()}" />							
+					</p:inputMask>
 				</p:panelGrid>
 			</h:form>
 			<br />
 	      	<h:form title="Cadastrar Usuário" id="cadUserForm">
-				<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
+				<p:panelGrid columns="2"  styleClass="ui-noborder">
 					
 
 					<p:outputLabel value="Nome:" for="name" />
-					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
+					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" size="40"/>
 									
-					<p:outputLabel for="type" value="Tipo de usuario:" />
+	 				<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" style="width:250px"/>
+	 
+					<p:outputLabel for="type" value="Tipo de usuario:"  />
 			        <p:selectOneMenu id="type" value="#{cadastrarUsuario.type}" style="width:125px">		           
 			            <f:selectItem itemLabel="Simples"       itemValue="user"  />
 			            <f:selectItem itemLabel="Administrador" itemValue="admin" />
 			        </p:selectOneMenu>
-	 
-	 				<p:outputLabel value="Email:" for="email" />
-					<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" />
 					
 					<p:outputLabel value="Senha:" for="pass" />
-					<p:password id="pass" value="#{cadastrarUsuario.pass}"  feedback="true" match="conPass"/>   
+					<p:password id="pass" value="#{cadastrarUsuario.pass}"  feedback="true" match="conPass" size="14"/>   
 				   
 				   	<p:outputLabel value="Confirme a senha:" for="conPass" />
-					<p:password id="conPass"  /> 
+					<p:password id="conPass" size="14" /> 
 	 			</p:panelGrid>
 	 			
 	 			<br />

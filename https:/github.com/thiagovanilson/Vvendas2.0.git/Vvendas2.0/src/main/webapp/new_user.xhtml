@@ -8,6 +8,8 @@
             
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 			
+				<p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />     
+				
 				<p:dialog  closable="false" visible="true"  resizable="false" >
         			<h:form title="Cadastrar Usuário" id="cadUserForm">
 		        		<p:panelGrid columns="2" styleClass="ui-noborder"  >	        		
@@ -16,7 +18,7 @@
 							<p:inputText id="cod" value="#{cadastrarUsuario.securityCod}"  required="true" autocomplete="false" />
 							
 							<p:outputLabel value="CPF:" for="cpf" />
-							<p:inputText id="cpf" value="#{cadastrarUsuario.cpf}"     required="true" autocomplete="false" />							
+							<p:inputMask id="cpf" value="#{cadastrarUsuario.cpf}"  autocomplete="off" mask="999.999.999-99"  />
 							
 							<p:outputLabel value="Nome:" for="name" />
 							<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" />
@@ -33,7 +35,7 @@
 		 			
 		 				<br />
 		 			
-  						<p:commandButton  value="Criar conta"  action="#{cadastrarUsuario.saveFirst()}"   update="@all" icon="fa fa-user" />
+  						<p:commandButton  value="Criar conta"  action="#{cadastrarUsuario.saveFirst()}"   icon="fa fa-user"/>
   						
 					</h:form> 
 	        	</p:dialog>

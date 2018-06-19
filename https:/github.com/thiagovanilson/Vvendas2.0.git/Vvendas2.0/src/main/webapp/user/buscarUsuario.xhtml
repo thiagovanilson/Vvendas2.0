@@ -10,6 +10,10 @@
     <ui:define name="corpo">              
     	<title>Buscar Usuario</title>
     	
+	    <p:outputLabel>
+	     	<h1 align="center">Buscar usuarios<br /><br /></h1>	
+     	</p:outputLabel>
+    	 
         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
         <p:panelGrid columns="1" styleClass="ui-noborder" >
@@ -19,9 +23,9 @@
 				<p:panelGrid columns="2" styleClass="ui-noborder" >
 	   
 				   <p:outputLabel value="CPF:" for="cpf" />
-				   <p:inputText id="cpf"  value="#{buscarUsuarios.cpf}">
+				   <p:inputMask id="cpf"  value="#{buscarUsuarios.cpf}" autocomplete="off" mask="999.999.999-99">
 				   		<p:ajax event="keyup" update=":busUserForm :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
-				   </p:inputText>
+				   </p:inputMask>
 				   
 				   <p:outputLabel value="Nome do funcionario:" for="name" />
 				   <p:inputText id="name"  value="#{buscarUsuarios.name}"  >	
@@ -44,7 +48,7 @@
 			
 			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
 				<p:dataTable  var="u" value="#{buscarUsuarios.users}" rendered="#{buscarUsuarios.hasItens()}" >
-					<p:column headerText="CPF" width="100">
+					<p:column headerText="CPF" width="150">
 				        <h:outputText value="#{u.cpf}" />
 				    </p:column>
 				    

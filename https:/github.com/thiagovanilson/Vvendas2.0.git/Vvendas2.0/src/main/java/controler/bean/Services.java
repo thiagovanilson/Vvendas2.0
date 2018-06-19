@@ -82,6 +82,9 @@ public class Services extends AbstractBean implements Serializable {
 		user = um;
 		cpf  = um.getCpf();
 	}
+	public boolean hasLogged() {
+		return (user != null);
+	}
 	public void logout() throws IOException, ServletException {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
