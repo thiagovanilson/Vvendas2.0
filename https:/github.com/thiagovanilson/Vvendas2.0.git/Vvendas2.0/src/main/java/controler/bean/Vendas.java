@@ -1,6 +1,8 @@
 package controler.bean;
 
 import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,7 +12,7 @@ import services.SellServices;
 
 @SuppressWarnings("serial")
 @Named
-@ViewScoped
+@ApplicationScoped
 
 public class Vendas extends AbstractBean{	
 	
@@ -53,7 +55,7 @@ public class Vendas extends AbstractBean{
 	
 		
 	}
-	private void clean() {
+	public void clean() {
 		ss = new SellServices();
 	}
 	public String getWarning() {

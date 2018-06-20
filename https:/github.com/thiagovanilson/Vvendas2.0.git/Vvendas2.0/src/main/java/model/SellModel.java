@@ -22,7 +22,7 @@ public class SellModel implements Serializable{
 	private String cpfUsuario;
 	private Date date;
 	
-	@OneToMany (fetch = FetchType.EAGER, cascade= {CascadeType.ALL})
+	@OneToMany (fetch = FetchType.LAZY, cascade= {CascadeType.ALL})
 	private List<ItemSell> itens;
 	
 	public SellModel(){

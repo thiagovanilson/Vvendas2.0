@@ -53,23 +53,33 @@
 				paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" 
 				>
 					<p:column headerText="Codigo" width="100">
-				        <h:outputText value="#{p.id}" />
+						<div align="center">
+					        <h:outputText value="#{p.id}" />
+						</div>
 				    </p:column>
 				    
-				    <p:column headerText="Nome">
-				        <h:outputText value="#{p.name}" />
+				    <p:column headerText="Nome" >
+				    	<div align="center">
+				       		<h:outputText value="#{p.name}" styleClass="align:center;" />
+				       	</div>
 				    </p:column>
 				    
 				    <p:column headerText="Descrição" width="300">
-				        <h:outputText value="#{p.descricao}" />
+					    <div align="center">
+					        <h:outputText value="#{p.descricao}" />
+					    </div>
 				    </p:column>
 				    
 				    <p:column headerText="Quant" width="70">
-				        <h:outputText value="#{p.quantity}" />
+				    	<div align="center">
+				        	<h:outputText value="#{p.quantity}" />
+				        </div>
 				    </p:column>
 				    
 				    <p:column headerText="Preço">
-				        <h:outputText value="#{p.price}" />
+				    	<div align="center">
+				        	<h:outputText value="#{p.price}" />
+				        </div>
 				    </p:column>
 				    
 				     <p:column headerText="Medida">

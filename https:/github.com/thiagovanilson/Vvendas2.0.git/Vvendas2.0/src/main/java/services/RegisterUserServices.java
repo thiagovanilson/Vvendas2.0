@@ -14,11 +14,11 @@ public class RegisterUserServices extends AbstractBean{
 	private boolean isEdition = false;
 	
 	public boolean save(UserModel userModel ) {
-
+		//System.out.println("******************" + userModel.getPass());
 		try {
 			UserDAO ud  = new UserDAO(userModel);
 			
-			if(userModel.getPass() != null && !userModel.getPass().equals("")) {
+			if(userModel.getPass() != null && !userModel.getPass().equals("a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=")) {
 	
 				MessageDigest md;
 				try {
@@ -31,6 +31,8 @@ public class RegisterUserServices extends AbstractBean{
 					
 				}
 			}
+			search(userModel.getCpf());
+			
 			if(isEdition) {
 				if (ud.edit(userModel)) {
 					reportarMensagemDeSucesso("Edições salvas!");

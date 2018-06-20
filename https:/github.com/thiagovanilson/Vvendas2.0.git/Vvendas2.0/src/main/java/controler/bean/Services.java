@@ -123,6 +123,11 @@ public class Services extends AbstractBean implements Serializable {
 	public String getPass() {
 		return pass;
 	}
+	public String goToProfile() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		return (ec.getApplicationContextPath() + "/user/profile.xhtml");
+	}
 	public void setPass(String pass) {
 		this.pass = pass;
 //		MessageDigest md;

@@ -17,7 +17,7 @@
         <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
         
 	         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
-	         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+	         <p:messages id="idMessagesErrors" showDetail="false" autoUpdate="true" severity="error" closable="true" />
 	        
 	         <h:form id="searchForm">
 	 			<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
@@ -26,12 +26,12 @@
 					<p:inputMask id="cpf" value="#{cadastrarUsuario.cpf}"  autocomplete="off" mask="999.999.999-99"  >
 						<p:ajax event="keyup" update=":cadUserForm " listener="#{cadastrarUsuario.search()}" />							
 					</p:inputMask>
+					
 				</p:panelGrid>
 			</h:form>
 			<br />
 	      	<h:form title="Cadastrar Usuário" id="cadUserForm">
-				<p:panelGrid columns="2"  styleClass="ui-noborder">
-					
+				<p:panelGrid columns="2"  styleClass="ui-noborder">					
 
 					<p:outputLabel value="Nome:" for="name" />
 					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" size="40"/>
@@ -64,7 +64,8 @@
 			<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
 		        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
 		        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
-		    </p:confirmDialog>   
-	     </p:panelGrid>
+		    </p:confirmDialog> 
+		      
+		</p:panelGrid>
 	</ui:define>
 </ui:composition>

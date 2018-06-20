@@ -14,6 +14,8 @@
         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
 
+        <h1 align="center">Buscar vendas</h1><br />
+
 		<p:panelGrid columns="1" styleClass="ui-noborder" >
         
 	        <h:form id="formSearch">
@@ -70,23 +72,36 @@
 				</p:dataTable>
 			</p:panelGrid> 
 			<p:panelGrid id="sales" styleClass="ui-noborder" columns="1" >
-				<p:dataTable  var="sale" value="#{buscarVendas.last100}" rendered="#{!buscarVendas.hasItens()}" >
+			
+				<p:dataTable  var="sale" value="#{buscarVendas.last100}" rendered="#{!buscarVendas.hasItens()}" rows="15" 
+				paginatorAlwaysVisible="false" paginator="true" paginatorTemplate="{CurrentPageReport}  {PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"  
+				rowsPerPageTemplate="5,10,15">
+				
 				   	<p:column headerText="Codigo">
-			        	<h:outputText value="#{sale.id}" />
+				   		<div align="center">
+				   		   	<h:outputText value="#{sale.id}" />
+				   		</div>
 				    </p:column>
 				    
 				    <p:column headerText="Data da venda">
-			        	<h:outputText value="#{sale.date}" />
+				    	<div align="center">
+				        	<h:outputText value="#{sale.date}" />
+				    	</div>
 				    </p:column>
 				    
 				    <p:column headerText="CPF do Vendedor">
-			        	<h:outputText value="#{sale.cpfUsuario}" />
+				    	<div align="center">
+			        		<h:outputText value="#{sale.cpfUsuario}" />
+				    	</div>
 				    </p:column>
 				    
 				    <p:column headerText="Valor total">
-			        	<h:outputText value="#{sale.price}" />
+				       	<div align="center">
+				        	<h:outputText value="#{sale.price}" />
+				       	</div>				    
 				    </p:column>
 				</p:dataTable>
+				
 			</p:panelGrid>
 		</p:panelGrid>			
 	</ui:define>

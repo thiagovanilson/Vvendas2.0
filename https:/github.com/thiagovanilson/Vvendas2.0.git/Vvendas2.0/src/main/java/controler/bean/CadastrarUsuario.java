@@ -1,6 +1,8 @@
 package controler.bean;
 
-import javax.inject.Inject;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
@@ -12,11 +14,7 @@ import services.RegisterUserServices;
 @Named
 public class CadastrarUsuario extends AbstractBean{	
 	
-	private String name, cpf, type, pass, email, securityCod = "Vanilson";
-	@Inject
-	private Services serv;
-	@Inject
-	private Index index;
+	private String name, cpf, type, pass, email, securityCod = ""; //"Vanilson";
 	private RegisterUserServices rus = new RegisterUserServices();
 	private UserModel um;
 	
@@ -51,7 +49,10 @@ public class CadastrarUsuario extends AbstractBean{
 //			return null;
 //		}		
 	}
-	
+	public void search(String cpf) {
+		this.cpf = cpf;
+		search();
+	}
 	public void search() {
 		
 		um = rus.search(cpf);
@@ -132,6 +133,7 @@ public class CadastrarUsuario extends AbstractBean{
 	public void setSecurityCod(String securityCod) {
 		this.securityCod = securityCod;
 	}
+	
 	public boolean cpfIsValid() {
 		return cpf != null && !cpf.equals("___.___.___-__");
 	}

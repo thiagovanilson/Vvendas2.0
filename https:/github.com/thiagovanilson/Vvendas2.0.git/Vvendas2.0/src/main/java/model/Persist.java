@@ -86,6 +86,8 @@ public class Persist implements Serializable{
 	    } catch (Exception e) {
 	    	e.getMessage();	    	
 	    	return false;
+	    }finally {
+	    	
 	    }
 	}
 	

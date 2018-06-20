@@ -58,6 +58,8 @@ public class UserDAO extends Persist{
 		    
 		    u.setName(o.getName());
 		    u.setUsergroup(o.getUsergroup());
+		    u.setEmail(o.getEmail());
+		    
 		    if(o.getPass() != null && !o.getPass().equals(""))
 		    	u.setPass(o.getPass());
 		    
