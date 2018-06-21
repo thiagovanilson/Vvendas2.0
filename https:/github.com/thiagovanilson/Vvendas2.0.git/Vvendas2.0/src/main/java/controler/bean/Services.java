@@ -18,8 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import model.UserDAO;
 import model.UserModel;
+import model.dao.UserDAO;
 
 @ApplicationScoped
 @Named

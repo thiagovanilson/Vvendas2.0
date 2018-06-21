@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import model.ProductModel;
 
 
 public class Persist implements Serializable{
@@ -59,9 +61,9 @@ public class Persist implements Serializable{
 	}
 	
 	public boolean edit(ProductModel o) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+		EntityManager manager = factory.createEntityManager();
 	    try {
-		    EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-		    EntityManager manager = factory.createEntityManager();
 		    
 		    manager.getTransaction().begin();
 		    ProductModel p = getProduct(o.getId());
@@ -80,13 +82,13 @@ public class Persist implements Serializable{
 		    
 		    manager.persist(p);
 		    manager.getTransaction().commit();    
-		    manager.close();
 
 		    return true;
 	    } catch (Exception e) {
 	    	e.getMessage();	    	
 	    	return false;
 	    }finally {
+	    	manager.close();
 	    	
 	    }
 	}

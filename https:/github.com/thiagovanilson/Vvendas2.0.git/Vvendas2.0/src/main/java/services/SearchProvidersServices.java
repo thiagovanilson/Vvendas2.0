@@ -6,7 +6,7 @@ import model.ProductModel;
 import model.dao.Persist;
 import model.dao.ProductDAO;
 
-public class SearchProductsServices {
+public class SearchProvidersServices {
 	private String warning = "";
 	private boolean empty = true;
 	
@@ -42,7 +42,7 @@ public class SearchProductsServices {
 	public String getWarnings() {
 		return warning;
 	}
-
+	
 	public boolean hasItens() {
 		return !empty;
 	}

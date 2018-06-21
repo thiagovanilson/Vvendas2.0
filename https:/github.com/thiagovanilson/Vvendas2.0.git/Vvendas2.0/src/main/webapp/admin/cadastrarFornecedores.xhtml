@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Cadastrar Fornecedores</title>
+    	
+    	<p:outputLabel>
+	     	<h1 align="center">Cadastrar Fornecedores<br /></h1>	
+     	</p:outputLabel>
+     	
+        <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
+        
+	         <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+	         <p:messages id="idMessagesErrors" showDetail="false" autoUpdate="true" severity="error" closable="true" />
+	        
+	         <h:form id="searchForm">
+	 			<p:panelGrid columns="2" cellpadding="1" styleClass="ui-noborder">
+	 			                                                                      
+					<p:outputLabel value="CNPJ:" for="cnpj" />
+					<p:inputMask id="cnpj"  value="#{providers.cnpj}" autocomplete="off" mask="99.999.999/9999-99"  >
+						<p:ajax event="keyup" listener="#{providers.search()}" update= ":cadFornForm "  />							
+					</p:inputMask>
+					
+				</p:panelGrid>
+			</h:form>
+			<br />
+	      	<h:form title="Cadastrar Fornecedores" id="cadFornForm">
+				<p:panelGrid columns="2"  styleClass="ui-noborder">					
+
+					<p:outputLabel value="Nome:" for="name" />
+					<p:inputText id="name" value="#{providers.name}"   required="true" size="40"/>
+									
+	 				<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{providers.email}" required="true" style="width:250px" />
+	 
+	 				<p:outputLabel value="Tel:" for="tel" />
+					<p:inputMask id="tel"   value="#{providers.tel}"   required="true" style="width:250px" mask="(99)9999-9999"/>	 
+					
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 			
+	   			<p:commandButton value="Salvar"    icon="fa fa-save" action="#{providers.save()}"  />
+	  			<p:commandButton value="Excluir"   update=":cadFornForm  :formCod" icon="fa fa-trash" action="#{providers.delete()}" >
+		  			<p:confirm header="Confirmação!" message="Continuar com a remoção do fornecedor  ?" icon="ui-icon-alert" />
+  				</p:commandButton>
+	  			
+			</h:form> 
+			    
+			<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
+		        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
+		    </p:confirmDialog> 
+		      
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>

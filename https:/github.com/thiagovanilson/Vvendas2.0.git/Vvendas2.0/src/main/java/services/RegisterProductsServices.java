@@ -1,8 +1,8 @@
 package services;
 
 import controler.bean.AbstractBean;
-import model.ProductDAO;
 import model.ProductModel;
+import model.dao.ProductDAO;
 
 public class RegisterProductsServices extends AbstractBean{
 

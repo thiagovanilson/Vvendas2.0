@@ -7,8 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import model.ProductDAO;
-import model.UserDAO;
+import model.dao.ProductDAO;
+import model.dao.UserDAO;
 
 
 @RequestScoped

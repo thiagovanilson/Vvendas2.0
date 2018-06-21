@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import model.dao.ProductDAO;
+
 @Entity
 @Table(name="vendas")  
 

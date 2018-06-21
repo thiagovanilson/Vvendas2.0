@@ -1,8 +1,10 @@
-package model;
+package model.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import model.ProductModel;
 
 public class ProductDAO extends Persist {
 

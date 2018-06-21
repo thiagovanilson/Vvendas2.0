@@ -2,8 +2,8 @@ package services;
 
 import java.util.ArrayList;
 
-import model.UserDAO;
 import model.UserModel;
+import model.dao.UserDAO;
 
 public class SearchUserServices {
 	

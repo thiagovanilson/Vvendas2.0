@@ -15,6 +15,7 @@
    <class>model.ProductModel</class>
    <class>model.SellModel</class>
    <class>model.ItemSell</class>
+   <class>model.ProviderModel</class>
 
    <properties>
     <!-- dados da conexao -->

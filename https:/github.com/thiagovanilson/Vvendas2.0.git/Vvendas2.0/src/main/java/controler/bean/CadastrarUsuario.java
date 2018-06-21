@@ -1,11 +1,9 @@
 package controler.bean;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
+
 import model.UserModel;
 import services.RegisterUserServices;
 
@@ -30,6 +28,10 @@ public class CadastrarUsuario extends AbstractBean{
 		rus.save(u);
 	}
 	
+	public String update() {
+		save();
+		return "/user/index.xhtml?faces-redirect=true";
+	}
 	public String saveFirst() {
 		
 		UserModel u = new UserModel();

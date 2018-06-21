@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,6 +8,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import model.ItemSell;
+import model.SellModel;
+import model.UserModel;
 
 public class SalesDAO extends Persist implements Serializable{
 

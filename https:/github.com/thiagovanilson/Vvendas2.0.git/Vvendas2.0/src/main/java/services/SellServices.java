@@ -5,10 +5,10 @@ import java.util.List;
 
 import controler.bean.AbstractBean;
 import model.ItemSell;
-import model.ProductDAO;
 import model.ProductModel;
-import model.SalesDAO;
 import model.SellModel;
+import model.dao.ProductDAO;
+import model.dao.SalesDAO;
 
 public class SellServices extends AbstractBean{
 

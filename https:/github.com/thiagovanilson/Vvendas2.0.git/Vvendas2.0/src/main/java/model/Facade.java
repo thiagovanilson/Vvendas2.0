@@ -1,5 +1,6 @@
 package model;
 
+import model.dao.Persist;
 
 public class Facade {
 

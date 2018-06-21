@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import controler.bean.AbstractBean;
-import model.UserDAO;
 import model.UserModel;
+import model.dao.UserDAO;
 
 public class RegisterUserServices extends AbstractBean{
 

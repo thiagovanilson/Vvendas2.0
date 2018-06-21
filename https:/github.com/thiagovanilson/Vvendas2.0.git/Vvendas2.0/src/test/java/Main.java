@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 import model.Facade;
-import model.ProductDAO;
 import model.ProductModel;
-import model.UserDAO;
 import model.UserModel;
+import model.dao.ProductDAO;
+import model.dao.UserDAO;
 
 public class Main {
 

@@ -7,13 +7,15 @@
 	<h:form >
 		<p:panelMenu style="width:250px">
 			<p:submenu label="Cadastros" rendered="#{services.userLoggedIsAdmin()}" expanded="true">
-				<p:menuitem value="Cadastrar/Editar Usuário do Sistema"  icon="fa fa-user"    outcome="/admin/cadastrarUsuario.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Usuário"             icon="fa fa-user"    outcome="/admin/cadastrarUsuario.xhtml" />
+				<p:menuitem value="Cadastrar/Editar Forneccedores"  	 icon="fa fa-users"   outcome="/admin/cadastrarFornecedores.xhtml" />
 				<p:menuitem value="Cadastrar/Editar Produto" 			 icon="fa fa-barcode" outcome="/admin/cadastrarProduto.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Buscas">
-				<p:menuitem value="Produtos" icon="fa fa-search" outcome="/user/buscarProduto.xhtml" />
-				<p:menuitem value="Usuarios" icon="fa fa-search" outcome="/user/buscarUsuario.xhtml" />
+				<p:menuitem value="Produtos"     icon="fa fa-search" outcome="/user/buscarProduto.xhtml" />
+				<p:menuitem value="Usuarios"     icon="fa fa-search" outcome="/admin/buscarUsuario.xhtml"      rendered="#{services.userLoggedIsAdmin()}"/>
+				<p:menuitem value="Fornecedores" icon="fa fa-search" outcome="/admin/buscarFornecedores.xhtml" rendered="#{services.userLoggedIsAdmin()}" />
 			</p:submenu>
 			
 			<p:submenu label="Ações">

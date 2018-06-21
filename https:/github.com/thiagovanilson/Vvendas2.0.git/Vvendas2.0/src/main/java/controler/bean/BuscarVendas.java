@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import model.ItemSell;
-import model.SalesDAO;
 import model.SellModel;
+import model.dao.SalesDAO;
 import services.SellServices;
 
 

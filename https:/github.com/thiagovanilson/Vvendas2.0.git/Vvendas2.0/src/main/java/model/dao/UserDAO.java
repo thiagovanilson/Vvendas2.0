@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import model.UserModel;
 
 public class UserDAO extends Persist{
 	
@@ -81,7 +83,7 @@ public class UserDAO extends Persist{
     	return (ArrayList<UserModel>) manager2.createQuery(
     			"SELECT u FROM UserModel u WHERE u.name LIKE :uname")
     			.setParameter("uname", "%"+key+"%")
-    			.setMaxResults(10)
+    			.setMaxResults(100)
     			.getResultList();
 
 

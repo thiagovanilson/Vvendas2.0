@@ -8,10 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.SalesDAO;
 import model.SellModel;
-import model.UserDAO;
 import model.UserModel;
+import model.dao.SalesDAO;
+import model.dao.UserDAO;
 
 public class JPAUtil {
 

@@ -4,8 +4,8 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
-import model.ProductDAO;
 import model.ProductModel;
+import model.dao.ProductDAO;
 import services.RegisterProductsServices;
 
 @SuppressWarnings("serial")

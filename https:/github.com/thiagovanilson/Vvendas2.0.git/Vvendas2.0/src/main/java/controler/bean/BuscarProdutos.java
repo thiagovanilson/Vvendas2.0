@@ -7,9 +7,9 @@ import org.omnifaces.cdi.ViewScoped;
 
 import javax.inject.*;
 
-import model.Persist;
-import model.ProductDAO;
 import model.ProductModel;
+import model.dao.Persist;
+import model.dao.ProductDAO;
 import services.SearchProductsServices;
 
 @Named

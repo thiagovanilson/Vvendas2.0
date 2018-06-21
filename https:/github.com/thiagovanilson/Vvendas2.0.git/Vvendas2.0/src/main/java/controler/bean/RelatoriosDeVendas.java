@@ -7,9 +7,10 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
-import model.SalesDAO;
 import model.SellModel;
 import model.UserModel;
+import model.dao.SalesDAO;
+
 import java.io.Serializable;
 
 @Named

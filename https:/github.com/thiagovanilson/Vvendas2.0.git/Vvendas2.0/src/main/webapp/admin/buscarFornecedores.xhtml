@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                template="/WEB-INF/template.xhtml">
+   
+    
+    <ui:define name="corpo">              
+    	<title>Buscar Fornecedores</title>
+    	
+	    <p:outputLabel>
+	     	<h1 align="center">Buscar Fornecedores<br /><br /></h1>	
+     	</p:outputLabel>
+    	 
+        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
+        <p:messages id="idMessagesErrors" showDetail="false" closable="true"   severity="error" autoUpdate="true" />
+        <p:panelGrid columns="1" styleClass="ui-noborder" >
+        
+	      	<h:form  id="busForm">
+	 
+				<p:panelGrid columns="2" styleClass="ui-noborder" >
+	   
+				   <p:outputLabel value="CNPJ:" for="cnpj" />
+				   <p:inputMask id="cnpj"  value="#{providers.cnpj}" autocomplete="off" mask="99.999.999/9999-99">
+				   		<p:ajax event="keyup" update=":warnings :founds" listener="#{providers.search()}" partialSubmit="cnpj"  />
+				   </p:inputMask>
+				   
+				   <p:outputLabel value="Nome do fornecedor:" for="name" />
+				   <p:inputText id="name"  value="#{providers.searchName}"  >	
+				   		<p:ajax event="keyup" update=" :warnings :founds" listener="#{providers.searchByName()}" partialSubmit="name" />
+				   </p:inputText>		   
+				   
+	 			</p:panelGrid>
+	 			
+	 			<br />
+	 				  
+			</h:form>  
+			<div>
+				<h2 align="center" >
+					<p:outputLabel id="warnings" />
+				</h2>
+			</div>
+			
+			<br />
+			<br />
+			
+			<p:panelGrid id="founds" styleClass="ui-noborder" columns="1" >
+				<p:dataTable  var="p" value="#{providers.providers}" rendered="#{providers.hasItens()}"  >
+					<p:column headerText="Nome" width="150">
+				        <h:outputText value="#{p.name}" />
+				    </p:column>
+				    
+				    <p:column headerText="Email" width="150">
+				        <h:outputText value="#{p.email}" />
+				    </p:column>
+				    
+				    <p:column headerText="Telefone" width="150">
+				        <h:outputText value="#{p.tel}" />
+				    </p:column>
+				</p:dataTable>
+			</p:panelGrid>
+		</p:panelGrid>  
+    </ui:define>
+</ui:composition>
