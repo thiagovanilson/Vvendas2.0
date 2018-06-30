@@ -24,12 +24,12 @@
 	   
 				   <p:outputLabel value="CPF:" for="cpf" />
 				   <p:inputMask id="cpf"  value="#{buscarUsuarios.cpf}" autocomplete="off" mask="999.999.999-99">
-				   		<p:ajax event="keyup" update=":busUserForm :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
+				   		<p:ajax event="keyup" update=":warnings :founds" listener="#{buscarUsuarios.buscar()}" />
 				   </p:inputMask>
 				   
 				   <p:outputLabel value="Nome do funcionario:" for="name" />
 				   <p:inputText id="name"  value="#{buscarUsuarios.name}"  >	
-				   		<p:ajax event="keyup" update=":busUserForm :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
+				   		<p:ajax event="keyup" update=" :warnings :founds" listener="#{buscarUsuarios.buscar()}" />
 				   </p:inputText>		   
 				   
 	 			</p:panelGrid>

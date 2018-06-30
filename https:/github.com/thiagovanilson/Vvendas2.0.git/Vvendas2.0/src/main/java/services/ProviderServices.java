@@ -54,10 +54,12 @@ public class ProviderServices extends AbstractBean {
 	public ProviderModel search(String cnpj) {
 		providers.clear();
 		
-		if(cnpj != null ) {	
-			ProviderModel temp = getProvider(cnpj);
-			providers.add(temp);
-			return temp;
+		if(cnpjIsValid(cnpj)) {
+			if(cnpj != null ) {	
+				ProviderModel temp = getProvider(cnpj);
+				providers.add(temp);
+				return temp;
+			}
 		}
 		return null;
 	}
@@ -74,5 +76,10 @@ public class ProviderServices extends AbstractBean {
     		providers = temp;
     	}
 		
+	}
+	public boolean cnpjIsValid(String cnpj) {
+		if(cnpj == null)
+			return false;
+		return !cnpj.contains("_");
 	}
 }

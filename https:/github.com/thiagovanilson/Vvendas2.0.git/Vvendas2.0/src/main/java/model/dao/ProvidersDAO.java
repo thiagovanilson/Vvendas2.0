@@ -42,7 +42,6 @@ public class ProvidersDAO extends Persist {
 		    
 		    manager.persist(p);
 		    manager.getTransaction().commit();    
-		    manager.close();
 
 		    return true;
 	    } catch (Exception e) {

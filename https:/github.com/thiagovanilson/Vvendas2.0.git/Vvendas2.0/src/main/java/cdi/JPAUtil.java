@@ -18,12 +18,10 @@ public class JPAUtil {
 //	private EntityManager em;
 
 	@Produces
-	@ApplicationScoped
 	public EntityManagerFactory criarEMF() {
 		EntityManagerFactory emf = null;
 		try {
 			emf = Persistence.createEntityManagerFactory("comercio");
-			
 		} catch (Throwable t) {
 			t.printStackTrace();
 			throw t;
@@ -32,7 +30,6 @@ public class JPAUtil {
 	}
 
 	@Produces
-	@RequestScoped
 	public EntityManager criarEM(EntityManagerFactory factory) {
 		return factory.createEntityManager();
 	}
@@ -51,7 +48,7 @@ public class JPAUtil {
 	public void fecharUserDAO(@Disposes UserDAO ud) {
 		ud = null;
 	}
-	public void fecharEM(@Disposes SalesDAO sd) {
+	public void fecharSDAO(@Disposes SalesDAO sd) {
 		sd = null;
 	}
 	public void fecharEM(@Disposes EntityManager em) {

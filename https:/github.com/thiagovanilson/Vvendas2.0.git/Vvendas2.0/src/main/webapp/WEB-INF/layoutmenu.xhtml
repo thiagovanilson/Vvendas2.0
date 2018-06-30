@@ -16,6 +16,7 @@
 				<p:menuitem value="Produtos"     icon="fa fa-search" outcome="/user/buscarProduto.xhtml" />
 				<p:menuitem value="Usuarios"     icon="fa fa-search" outcome="/admin/buscarUsuario.xhtml"      rendered="#{services.userLoggedIsAdmin()}"/>
 				<p:menuitem value="Fornecedores" icon="fa fa-search" outcome="/admin/buscarFornecedores.xhtml" rendered="#{services.userLoggedIsAdmin()}" />
+				<p:menuitem value="Vendas"       icon="fa fa-folder" outcome="/user/buscarvendas.xhtml" />
 			</p:submenu>
 			
 			<p:submenu label="Ações">
@@ -23,7 +24,6 @@
 			</p:submenu>
 			
 			<p:submenu label="Registros">
-				<p:menuitem value="Buscar vendas"    icon="fa fa-folder"      outcome="/user/buscarvendas.xhtml" />
 				<p:menuitem value="Relatorio vendas" icon="fa fa-file-text-o" outcome="/admin/relatorios.xhtml" rendered="#{services.userLoggedIsAdmin()}" />
 				
 			</p:submenu>

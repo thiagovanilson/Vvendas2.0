@@ -60,7 +60,7 @@ public class SellServices extends AbstractBean{
 		return "";
 	}
 
-	public boolean finish(String cpf) {
+	public boolean finish(String cpf, float value) {
 		SellModel sell = new SellModel();
 		
 		sell.setItens(itens);
@@ -72,6 +72,9 @@ public class SellServices extends AbstractBean{
 		if(sd.save(itens)) {
 			reportarMensagemDeSucesso("Venda finalizada com sucesso!");
 			warningSell = "Codigo da venda: " + sell.getId();
+			if(value > 0 && value > sum) {
+				warningSell += String.format("<br />Troco: R$ %.2f",  (value - sum)); 
+			}
 			return true;
 		}
 		else

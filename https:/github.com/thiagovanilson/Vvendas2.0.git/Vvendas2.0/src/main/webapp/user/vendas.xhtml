@@ -4,8 +4,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:decorate template="/WEB-INF/template.xhtml">
         <ui:define name="corpo">
-        
-        
+                
 	        <title>Vendas</title>
 	    	
 	        <p:growl    id="idMessages"       showDetail="false" autoUpdate="true" severity="info" />
@@ -24,20 +23,20 @@
 					   </p:inputText>
 					   
 					   <p:outputLabel value="Quantidade:"  for="qtd" />
-					   <p:inputText   value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
+					   <p:inputNumber value="#{vendas.qtd}" id="qtd"  maxlength="3"/>
 					   
 		 			</p:panelGrid>
 		 			<br />
-		   			<p:commandButton  action="#{vendas.addCart()}"                 value="Adicionar"         update=":warnings :founds :busProdForm" icon="fa fa-shopping-cart"  key="return" />
-		     		<p:commandButton  action="#{vendas.finish(services.user.cpf)}" value="Finalizar compra"  update=":warnings :founds :busProdForm" icon="fa fa-check"   />
-		  			<p:commandButton  action="#{vendas.clean()}"                   value="Limpar"            update=":warnings :founds :busProdForm" icon="fa fa-reply-all"   />
+		   			<p:commandButton  action="#{vendas.addCart()}"                 value="Adicionar"         update=":warnings :founds :busProdForm"          icon="fa fa-shopping-cart"  key="return" />
+		     		<p:commandButton  action="#{vendas.setShowPayment(true)}"      value="Finalizar compra"  update=":warnings :founds :busProdForm :payment" icon="fa fa-check"  type="submit" />
+		  			<p:commandButton  action="#{vendas.clean()}"                   value="Limpar"            update=":warnings :founds :busProdForm"          icon="fa fa-reply-all"   />
 		  			
 				</h:form> 
 				 
 				<div>
  					<p:outputLabel id="productInfo" escape="false" value="#{vendas.previewInfo()}" />
 					<h2 align="center" >
-						<p:outputLabel value="#{vendas.warning}"       id="warnings" />
+						<p:outputLabel value="#{vendas.warning}"   escape="false"    id="warnings" />
 					</h2>
 				</div>
 				
@@ -71,7 +70,23 @@
 					    </p:column>
 					</p:dataTable>
 				</p:panelGrid>
-			</p:panelGrid>		
+			</p:panelGrid>	
+			<p:dialog  closable="true" visible="#{vendas.showPayment}"  resizable="false" id="payment">
+				<p:outputLabel value="Finalizar venda."/>
+       			<h:form >
+	        		<p:panelGrid columns="2" styleClass="ui-noborder"  >	        		
+ 
+						<p:outputLabel value="Valor recebido:" for="valor" />
+						<p:inputNumber value= "#{vendas.value}" id="valor"  required="true" size="5"/>
+										 				
+	 				</p:panelGrid>
+	 			
+	 				<br />
+	 			
+ 						<p:commandButton  value="Finalizar"  action="#{vendas.finish(services.user.cpf)}"  icon="fa fa-money" update=":warnings :founds :busProdForm :payment" />
+ 						
+				</h:form> 
+        	</p:dialog>	
         </ui:define>
     </ui:decorate>
 </xhtml>

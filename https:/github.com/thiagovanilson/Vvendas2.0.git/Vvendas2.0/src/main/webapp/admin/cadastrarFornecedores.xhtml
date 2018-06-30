@@ -46,7 +46,7 @@
 	 			
 	 			<br />
 	 			
-	   			<p:commandButton value="Salvar"    icon="fa fa-save" action="#{providers.save()}"  />
+	   			<p:commandButton value="Salvar"    icon="fa fa-save" action="#{providers.save()}" rendered="#{providers.cnpjIsValid()}"  />
 	  			<p:commandButton value="Excluir"   update=":cadFornForm  :formCod" icon="fa fa-trash" action="#{providers.delete()}" >
 		  			<p:confirm header="Confirmação!" message="Continuar com a remoção do fornecedor  ?" icon="ui-icon-alert" />
   				</p:commandButton>
@@ -54,8 +54,8 @@
 			</h:form> 
 			    
 			<p:confirmDialog id="confirmDialog" global="true" showEffect="fade" hideEffect="fade">
-		        <p:commandButton id="confirmYes" value="Sim" styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
-		        <p:commandButton id="confirmNo" value="Cancelar" styleClass="ui-confirmdialog-no" icon="fa fa-ban" />
+		        <p:commandButton id="confirmYes" value="Sim"      styleClass="ui-confirmdialog-yes" icon="fa fa-remove" />
+		        <p:commandButton id="confirmNo"  value="Cancelar" styleClass="ui-confirmdialog-no"  icon="fa fa-ban" />
 		    </p:confirmDialog> 
 		      
 		</p:panelGrid>

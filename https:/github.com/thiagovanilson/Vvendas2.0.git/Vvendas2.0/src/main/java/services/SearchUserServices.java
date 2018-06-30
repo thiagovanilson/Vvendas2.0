@@ -14,7 +14,7 @@ public class SearchUserServices {
 		warning = "";
 		ArrayList<UserModel> usuarios = new ArrayList<UserModel>();
 
-		if(cpf!=null && !cpf.equals("")) {
+		if(cpf!=null && !cpf.equals("") && cpf.trim().length()>=13) {
 			UserModel p = new UserDAO(null).getUser(cpf);
 			
 			if(p != null) {

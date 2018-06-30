@@ -13,9 +13,10 @@
 	    <p:outputLabel>
 	     	<h1 align="center">Buscar produtos<br /></h1>	
      	</p:outputLabel>
-     	
+     	<br />
         <p:growl id="idMessages" showDetail="true" autoUpdate="true" severity="info" />
         <p:messages id="idMessagesErrors" showDetail="true" closable="true" severity="error" autoUpdate="true" />
+        
         <p:panelGrid columns="1" styleClass="ui-noborder" >
         
 	      	<h:form title="Buscar Produtos" id="busProdForm">
@@ -23,12 +24,12 @@
 				<p:panelGrid columns="2" styleClass="ui-noborder" >
 				   <p:outputLabel value="Codigo de barras:" for="cod" />
 				   <p:inputText id="cod" value="#{buscarProdutos.cod}"     >
-				   		<p:ajax event="keyup" update=":busProdForm :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />
+				   		<p:ajax event="keyup" update=" :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />
 				   </p:inputText>
 				   
 				   <p:outputLabel value="Nome do produto:" for="name" />
 				   <p:inputText id="name" value="#{buscarProdutos.name}" key="return"  >
-				   		<p:ajax event="keyup" update=":busProdForm :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />				   
+				   		<p:ajax event="keyup" update=" :warnings :founds :founds2" listener="#{buscarProdutos.buscar()}" />				   
 				   </p:inputText>
 				   
 	 			</p:panelGrid>

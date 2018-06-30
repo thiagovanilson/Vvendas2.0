@@ -42,8 +42,7 @@ public class Providers implements Serializable {
 	public void delete() {
 		if(ps.delete(cnpj)) {
 			clean();
-		}
-			
+		}			
 	}
 	public boolean hasItens() {
 		return ps.hasItens();
@@ -67,7 +66,9 @@ public class Providers implements Serializable {
 	public List<ProviderModel> getProviders() {
 		return ps.getProviders();
 	}		
-		
+	public boolean cnpjIsValid() {
+		return ps.cnpjIsValid(cnpj);
+	}
 	private void clean() {
 		tel  = "";
 		name = "";

@@ -9,7 +9,7 @@ import model.dao.ProductDAO;
 public class SearchProvidersServices {
 	private String warning = "";
 	private boolean empty = true;
-	
+	private ProductDAO pd = new ProductDAO();
 	public ArrayList<ProductModel> buscar(String cod, String name) {
 		warning = "";
 		ArrayList<ProductModel> produtos = new ArrayList<ProductModel>();
@@ -22,7 +22,7 @@ public class SearchProvidersServices {
 			}
 		}else { 
 			if(name!=null && !name.equals("")){
-				for(ProductModel p: new Persist().getProducts(name)){
+				for(ProductModel p: pd.getProducts(name)){
 					produtos.add(p);
 				}
 			}else {

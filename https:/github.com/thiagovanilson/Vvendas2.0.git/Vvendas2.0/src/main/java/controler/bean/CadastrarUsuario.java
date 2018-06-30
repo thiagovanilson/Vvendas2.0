@@ -41,7 +41,11 @@ public class CadastrarUsuario extends AbstractBean{
 		u.setName(name);
 		u.setPass(pass);
 		u.setUsergroup("admin");			
-			
+		
+		if(rus.search(cpf) != null) {
+			reportarMensagemDeErro("Usuario Já cadastrado!");
+			return null;
+		}
 		if(rus.save(u)) {
 			clean();
 //			serv.login(u);

@@ -3,7 +3,6 @@ package controler.bean;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.ItemSell;
@@ -20,7 +19,22 @@ public class Vendas extends AbstractBean{
 //	private Services services;
 	private String cod;
 	private int qtd = 1;
+	private boolean showPayment = false;
+	private float value;
 	
+	public float getValue() {
+		return value;
+	}
+	public void setValue(float value) {
+		this.value = value;
+	}
+	public boolean isShowPayment() {
+		return showPayment;
+	}
+	public void setShowPayment(boolean showPayment) {
+		this.showPayment = showPayment;
+	}
+
 	@Inject
 	private BuscarProdutos bp;
 	private SellServices ss = new SellServices();
@@ -28,13 +42,15 @@ public class Vendas extends AbstractBean{
 	public void addCart() {
 		ss.addItem(cod, qtd);
 		cod = "";
+		qtd = 1;
 	}
 	public String getInfo() {
 		return ss.getInfo();
 	}
 	
 	public void finish(String cpf) {
-		ss.finish(cpf);
+		ss.finish(cpf, value);
+		setShowPayment(false);
 	}
 	public String previewInfo() {
 		if(cod == null || cod.equals("null")) {
