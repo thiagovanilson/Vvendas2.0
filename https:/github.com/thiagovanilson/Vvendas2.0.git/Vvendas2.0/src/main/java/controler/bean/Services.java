@@ -2,14 +2,9 @@ package controler.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
-import java.util.Base64;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -36,9 +31,7 @@ public class Services extends AbstractBean implements Serializable {
 	private UserDAO ud;
 	@Inject
 	private Index index;
-	private UserModel user;// = new UserDAO(null).getUser("1");
-	private String cpf;
-	private String pass;
+	private UserModel user;
 	
 	public Services() {
 		
@@ -46,16 +39,7 @@ public class Services extends AbstractBean implements Serializable {
 	public  UserModel getUser() {
 		return user;
 	}
-//	public String getUserName() {
-//		FacesContext facesContext = FacesContext.getCurrentInstance();
-//		ExternalContext externalContext = facesContext.getExternalContext();
-//		Principal userPrincipal = externalContext.getUserPrincipal();
-//		if (userPrincipal == null) {
-//			return "";
-//		}
-//		
-//		return userPrincipal.getName();
-//	}
+
 	public void setUser(UserModel user) {
 		this.user = user;
 	}	
@@ -78,12 +62,11 @@ public class Services extends AbstractBean implements Serializable {
 			return;
 		
 	}
-	public void login(UserModel um) {
-		user = um;
-		cpf  = um.getCpf();
-	}
+	
 	public boolean hasLogged() {
-		return (user != null);
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		return externalContext.isUserInRole("admin") || externalContext.isUserInRole("user");
 	}
 	public void logout() throws IOException, ServletException {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -114,31 +97,10 @@ public class Services extends AbstractBean implements Serializable {
 		return externalContext.isUserInRole("admin");
 	}
 	
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getPass() {
-		return pass;
-	}
+		
 	public String goToProfile() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		return (ec.getApplicationContextPath() + "/user/profile.xhtml");
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-//		MessageDigest md;
-//		try {
-//			md = MessageDigest.getInstance("SHA-256");
-//			md.update(pass.getBytes("UTF-8"));
-//			byte[] digest = md.digest();
-//			String output = Base64.getEncoder().encodeToString(digest);
-//			this.pass = output;
-//		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-//			
-//		}
 	}
 }

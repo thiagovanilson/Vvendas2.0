@@ -15,10 +15,9 @@ import services.SellServices;
 
 public class Vendas extends AbstractBean{	
 	
-//	@Inject
-//	private Services services;
+
 	private String cod;
-	private int qtd = 1;
+	private float qtd = 1;
 	private boolean showPayment = false;
 	private float value;
 	
@@ -37,7 +36,8 @@ public class Vendas extends AbstractBean{
 
 	@Inject
 	private BuscarProdutos bp;
-	private SellServices ss = new SellServices();
+	@Inject
+	private SellServices ss;
 		
 	public void addCart() {
 		ss.addItem(cod, qtd);
@@ -88,11 +88,11 @@ public class Vendas extends AbstractBean{
 		this.cod = cod;
 	}
 
-	public int getQtd() {
+	public float getQtd() {
 		return qtd;
 	}
 
-	public void setQtd(int qtd) {
+	public void setQtd(float qtd) {
 		this.qtd = qtd;
 	}
 

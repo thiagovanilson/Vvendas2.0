@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
-
 import model.UserModel;
 import services.SearchUserServices;
 

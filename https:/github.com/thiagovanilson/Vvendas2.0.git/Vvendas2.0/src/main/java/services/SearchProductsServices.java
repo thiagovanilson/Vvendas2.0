@@ -2,8 +2,8 @@ package services;
 
 import java.util.ArrayList;
 
+
 import model.ProductModel;
-import model.dao.Persist;
 import model.dao.ProductDAO;
 
 public class SearchProductsServices {

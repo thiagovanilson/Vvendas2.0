@@ -1,5 +1,6 @@
 package controler.bean;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
@@ -13,7 +14,8 @@ import services.RegisterUserServices;
 public class CadastrarUsuario extends AbstractBean{	
 	
 	private String name, cpf, type, pass, email, securityCod = ""; //"Vanilson";
-	private RegisterUserServices rus = new RegisterUserServices();
+	@Inject
+	private RegisterUserServices rus;// = new RegisterUserServices();
 	private UserModel um;
 	
 	public void save() {
@@ -48,12 +50,8 @@ public class CadastrarUsuario extends AbstractBean{
 		}
 		if(rus.save(u)) {
 			clean();
-//			serv.login(u);
 		}
-		return "/info.xhtml";
-//		else {
-//			return null;
-//		}		
+		return "/info.xhtml";	
 	}
 	public void search(String cpf) {
 		this.cpf = cpf;
@@ -141,6 +139,6 @@ public class CadastrarUsuario extends AbstractBean{
 	}
 	
 	public boolean cpfIsValid() {
-		return cpf != null && !cpf.equals("___.___.___-__");
+		return cpf != null && !cpf.contains("_");
 	}
 }

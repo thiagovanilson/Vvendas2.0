@@ -6,8 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="itens")  
-public class ItemSell implements Serializable{
-	
+public class ItemSell implements Serializable{	
 	
 	private static final long serialVersionUID = 4389677421659096955L;
 
@@ -20,7 +19,7 @@ public class ItemSell implements Serializable{
 	private float price;
 	private String name;
 	private String description;
-	private int quantity;
+	private float quantity;
 	
 	public float getUnitValue() {
 		return price ;
@@ -43,10 +42,10 @@ public class ItemSell implements Serializable{
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getQuantity() {
+	public float getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(float quantity) {
 		this.quantity = quantity;
 	}
 	public float getSubTotal() {
@@ -69,6 +68,5 @@ public class ItemSell implements Serializable{
 	}
 	public String getSubTotalFormated() {
 		return String.format("R$ %.2f", getSubTotal());
-	}
-	
+	}	
 }

@@ -32,7 +32,7 @@ public abstract class AbstractBean implements Serializable {
 		Severity severity = FacesMessage.SEVERITY_INFO;
 		
 		if (isErro) {
-			tipo = "Eror!";
+			tipo = "Error!";
 			severity = FacesMessage.SEVERITY_ERROR;
 			FacesContext.getCurrentInstance().validationFailed();
 		}

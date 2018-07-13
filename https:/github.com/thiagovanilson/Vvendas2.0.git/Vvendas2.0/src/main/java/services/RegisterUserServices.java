@@ -14,7 +14,7 @@ public class RegisterUserServices extends AbstractBean{
 	private boolean isEdition = false;
 	
 	public boolean save(UserModel userModel ) {
-		//System.out.println("******************" + userModel.getPass());
+
 		try {
 			UserDAO ud  = new UserDAO(userModel);
 			
@@ -59,8 +59,11 @@ public class RegisterUserServices extends AbstractBean{
 
 	public UserModel search(String cpf) {
 		UserDAO ud  = new UserDAO(null);
-		UserModel u = ud.getUser(cpf);
+		UserModel u = null;
 		
+		if(cpfIsValid(cpf))
+			u = ud.getUser(cpf);		
+			
 		if(u == null)
 			isEdition = false;
 		else
@@ -86,5 +89,9 @@ public class RegisterUserServices extends AbstractBean{
 		return false;
 		
 	}
-
+	protected boolean cpfIsValid(String cpf) {
+		if (cpf == null)
+			return false;
+		return !cpf.contains("_");
+	}
 }

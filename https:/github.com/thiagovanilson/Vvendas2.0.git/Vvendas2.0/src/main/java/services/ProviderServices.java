@@ -3,12 +3,7 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import controler.bean.AbstractBean;
-import model.ProductModel;
 import model.ProviderModel;
 import model.dao.ProvidersDAO;
 
@@ -21,9 +16,16 @@ public class ProviderServices extends AbstractBean {
 		return providers;
 	}
 	public ProviderModel getProvider(String cnpj) {
-		return pd.getProvider(cnpj);
+		providers.clear();
+		providers.add(pd.getProvider(cnpj));
+		return providers.get(0);
 	}
-	
+	public boolean exist(String cnpj) {
+		if(cnpjIsValid(cnpj)) {
+			return pd.getProvider(cnpj) != null;
+		}
+		return false;
+	}
 	public void save(ProviderModel pm) {
 		ProviderModel temp = getProvider(pm.getCnpj());
 		
@@ -52,23 +54,21 @@ public class ProviderServices extends AbstractBean {
 	}
 
 	public ProviderModel search(String cnpj) {
-		providers.clear();
+		providers.removeAll(providers);
 		
-		if(cnpjIsValid(cnpj)) {
-			if(cnpj != null ) {	
-				ProviderModel temp = getProvider(cnpj);
-				providers.add(temp);
-				return temp;
-			}
+		if(cnpjIsValid(cnpj)) {			
+			ProviderModel temp = getProvider(cnpj);
+			
+			return temp;			
 		}
 		return null;
 	}
 	public boolean hasItens() {
-		return (providers.size() > 0);
+		return (providers != null && providers.size() > 0 &&  providers.get(0) != null);
 	}
 	public void searchByName(String name) {
     	providers.clear();
-    	if(name != null && name.length() >0) {
+    	if(name != null && name.length() > 0) {
     		
     	List<ProviderModel> temp = pd.getByName(name);
     	

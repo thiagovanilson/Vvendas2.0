@@ -5,7 +5,6 @@ import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 
 import model.ProductModel;
-import model.dao.ProductDAO;
 import services.RegisterProductsServices;
 
 @SuppressWarnings("serial")
@@ -15,8 +14,8 @@ public class CadastrarProdutos extends AbstractBean{
 	
 	private String[] medidas = new String[] {"Kg","Gramas","Litros","ML","Unidade","Desconhecido"};
 	private String name, cod, description, tipoMedida;
-	private float price;
-	private int quantity, medida;
+	private float quantity, price;
+	private int medida;
 	
 	private ProductModel p = new ProductModel();
 	private RegisterProductsServices rps = new RegisterProductsServices();
@@ -106,11 +105,11 @@ public class CadastrarProdutos extends AbstractBean{
 		this.price = price;
 	}
 
-	public int getQuantity() {
+	public float getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(float quantity) {
 		this.quantity = quantity;
 	}
 

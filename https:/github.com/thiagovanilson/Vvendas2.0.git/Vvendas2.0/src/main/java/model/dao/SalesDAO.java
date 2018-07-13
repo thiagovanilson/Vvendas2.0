@@ -21,6 +21,8 @@ public class SalesDAO extends Persist implements Serializable{
 	private boolean hasItens = false;
 	private List<SellModel> resultList;
 	
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+	
 	public SalesDAO(SellModel s){
 		sm = s;
 	}
@@ -30,7 +32,6 @@ public class SalesDAO extends Persist implements Serializable{
 	public SellModel getSell(long cod) {
 		this.cod = cod;
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
 		EntityManager manager = factory.createEntityManager();
 		
 		sm = manager.find(SellModel.class, cod);
@@ -41,7 +42,6 @@ public class SalesDAO extends Persist implements Serializable{
 		
 	}
 	public void search() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	
     	sm = manager.find(SellModel.class, cod);
@@ -56,7 +56,6 @@ public class SalesDAO extends Persist implements Serializable{
     	manager.close();
 	}
 	public void search100() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	sm = null;
 		hasItens = false;
@@ -75,7 +74,6 @@ public class SalesDAO extends Persist implements Serializable{
 	}	
 	public boolean save(List<ItemSell> itens) {
 		sm.setItens(itens);
-
 		return save(sm);
 	}
 	
@@ -84,7 +82,6 @@ public class SalesDAO extends Persist implements Serializable{
 		return sm;
 	}
 	public ArrayList<SellModel> getSales(int days) {
-    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	
     	
@@ -100,7 +97,6 @@ public class SalesDAO extends Persist implements Serializable{
 
 	}
 	public ArrayList<SellModel> getSales(int days, String cpf) {
-    	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	
     	
@@ -119,7 +115,6 @@ public class SalesDAO extends Persist implements Serializable{
 		return hasItens;
 	}
 	public ArrayList<UserModel> getUsers() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
     	EntityManager manager = factory.createEntityManager();
     	
     	

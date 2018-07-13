@@ -3,13 +3,13 @@ package controler.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Named;
+
 import org.omnifaces.cdi.ViewScoped;
 
-import javax.inject.*;
 
 import model.ProductModel;
-import model.dao.Persist;
-import model.dao.ProductDAO;
 import services.SearchProductsServices;
 
 @Named
@@ -41,6 +41,7 @@ public class BuscarProdutos implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+		cod = "";
 	}
 
 	public String getCod() {
@@ -49,6 +50,7 @@ public class BuscarProdutos implements Serializable{
 
 	public void setCod(String cod) {
 		this.cod = cod;
+		name = "";
 	}
 
 	public List<ProductModel> getProdutos() {

@@ -61,13 +61,14 @@
 		   			
 		   			</p:panelGrid>
 		   			
-		   			<p:commandButton  value="Salvar"  action="#{cadastrarProdutos.save()}"   update="cadProdForm"          icon="fa fa-save"  rendered="#{cadastrarProdutos.hasCode()}" id="del"/>	
-		   			<p:commandButton  value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm :codForm" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition() and cadastrarProdutos.hasCode()}" >
-	   				
-	   					<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
-	   			
-	   				</p:commandButton>	
 	 			</p:panelGrid>
+	 			
+	   			<p:commandButton  value="Salvar"  action="#{cadastrarProdutos.save()}"   update="cadProdForm"          icon="fa fa-save"  rendered="#{cadastrarProdutos.hasCode()}" id="del"/>	
+	   			<p:commandButton  value="Excluir" action="#{cadastrarProdutos.delete()}" update="cadProdForm :codForm" icon="fa fa-trash" rendered="#{cadastrarProdutos.isEdition() and cadastrarProdutos.hasCode()}" >
+   				
+   					<p:confirm header="Confirmação!" message="Continuar com a remoção do produto '#{cadastrarProdutos.name}' ?" icon="ui-icon-alert" />
+   			
+   				</p:commandButton>	
 	 
 	 			<br /> 			
 	  

@@ -2,21 +2,22 @@ package model.dao;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import model.ProductModel;
-
+@RequestScoped
 public class ProductDAO extends Persist {
 
 	
-	private ProductModel pm;
-		
+	private static final long serialVersionUID = 8892975801587678289L;
+	
 //	@Inject
 //	private EntityManager manager;
-	@Inject
+	private ProductModel pm;
+//	@Inject
 	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
 	
 	public ProductDAO(ProductModel p){

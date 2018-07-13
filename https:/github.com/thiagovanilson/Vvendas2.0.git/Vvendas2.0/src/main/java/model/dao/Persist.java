@@ -1,7 +1,6 @@
 package model.dao;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,23 +8,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.ProductModel;
+import javax.enterprise.context.ApplicationScoped;
 
-
+@ApplicationScoped
 public class Persist implements Serializable{
 
-//	public static void main(String[] args) {
-//		new Percistence().save("");
-//	}
-	
+	private static final long serialVersionUID = 5364024655861926954L;
 	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");;
-//	@Inject
-//	protected EntityManager manager;
 	
-//	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
+	@Inject
+	protected EntityManager manager;
 	
+	protected EntityManager getEntityManager() {
+		return manager;
+	}
 	public boolean save(Object o) {
-		EntityManager manager = factory.createEntityManager();
+		manager = factory.createEntityManager();
 	   
 		try {	   
 		    
@@ -35,18 +33,15 @@ public class Persist implements Serializable{
 		   
 		    return true;
 	    } catch (Exception e) {
-	    	System.out.println("------"+e.getMessage());	
 	    	
 	    }finally {
 	    	 manager.close();
-//	    	 factory.close();
 	    }
 		return false;
 	}
 	
-	//Se der erro receber o tipo do objeto certo
 	public boolean delete(Object o) {
-		EntityManager manager = factory.createEntityManager();
+		manager = factory.createEntityManager();
 	    try {
 		    
 		    manager.getTransaction().begin();
@@ -60,7 +55,6 @@ public class Persist implements Serializable{
 	    	e.getMessage();	    	
 	    }finally {
 	    	manager.close();
-//	    	factory.close();
 	    }
 		return false;
 	}
@@ -69,8 +63,7 @@ public class Persist implements Serializable{
 	@SuppressWarnings("unchecked")
 	public List<String> find(String sqlCode){
 		
-//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-	    EntityManager manager = factory.createEntityManager();
+	    manager = factory.createEntityManager();
 	    
 	    List<String> result = manager.createQuery(sqlCode).getResultList();
 	    

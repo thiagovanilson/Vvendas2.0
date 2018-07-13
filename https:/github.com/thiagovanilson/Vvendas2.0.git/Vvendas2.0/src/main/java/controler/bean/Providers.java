@@ -6,7 +6,6 @@ import javax.inject.Named;
 import model.ProviderModel;
 import services.ProviderServices;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @ViewScoped
@@ -46,6 +45,9 @@ public class Providers implements Serializable {
 	}
 	public boolean hasItens() {
 		return ps.hasItens();
+	}
+	public boolean exist() {
+		return ps.exist(cnpj);
 	}
 	public void searchByName() {
 		ps.searchByName(searchName);

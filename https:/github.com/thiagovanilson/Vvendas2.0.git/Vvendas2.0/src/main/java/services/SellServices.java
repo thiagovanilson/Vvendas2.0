@@ -16,12 +16,12 @@ public class SellServices extends AbstractBean{
 	private String warningSell = "", warningSold = "";
 	private float sum = 0;
 	
-	public void addItem(String cod, int qtd) {
-		ItemSell item = new ItemSell();		
+	public void addItem(String cod, float qtd) {
 
 		if(cod!=null && !cod.equals("")) {
 			ProductDAO pd = new ProductDAO(null);
 			ProductModel p = pd.getProduct(cod);
+			ItemSell item = new ItemSell();		
 			
 			warningSell = "";
 			

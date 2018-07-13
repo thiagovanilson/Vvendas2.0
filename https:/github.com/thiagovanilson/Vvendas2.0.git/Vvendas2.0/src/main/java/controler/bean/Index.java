@@ -19,8 +19,7 @@ public class Index {
 	@Inject
 	private Services serv;
 	@Inject
-	private ProductDAO pd;
-	
+	private ProductDAO pd;	
 	@Inject 
 	private UserDAO ud;
 	

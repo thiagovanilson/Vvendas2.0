@@ -10,9 +10,9 @@ public class ProductModel {
 	@Id
 	private String id;
 	private String name;
-	private float price;
+	private float quantity, price;
 	private String descricao;
-	private int quantity, medida;
+	private int medida;
 	private String tipoMedida;
 	
 	public String getId() {
@@ -39,10 +39,10 @@ public class ProductModel {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getQuantity() {
+	public float getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(float quantity) {
 		this.quantity = quantity;
 	}
 	public String getTipoMedida() {

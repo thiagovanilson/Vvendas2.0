@@ -9,41 +9,39 @@ public class SearchUserServices {
 	
 	private String warning = "";
 	private boolean empty = true;
+	private ArrayList<UserModel> usuarios;
 	
 	public ArrayList<UserModel> search(String cpf, String name) {
 		warning = "";
-		ArrayList<UserModel> usuarios = new ArrayList<UserModel>();
+		usuarios = new ArrayList<UserModel>();
 
-		if(cpf!=null && !cpf.equals("") && cpf.trim().length()>=13) {
+		if(cpfIsValid(cpf)) {
 			UserModel p = new UserDAO(null).getUser(cpf);
 			
 			if(p != null) {
 				usuarios.add(p);
-				empty = false;
 			}
-			else {
-				empty = true;
-				warning = "Não foram encontrados resultados. :(";
-			}
+			
 		}else {
 			if(name!=null && !name.equals("")) {
-				for(UserModel u: new UserDAO(null).getUsers(name)){
-					usuarios.add(u);
-					empty = false;
-	
-				}
+				usuarios = new UserDAO(null).getUsers(name);
+					
 			}else {
 				warning = "Nenhum campo preenchido!";
 				return null;
 			}
 		}
+		if(usuarios.size() == 0)
+			warning = "Não foram encontrados resultados. :(";
 		return usuarios;
 	}
-
+	public boolean cpfIsValid(String cpf) {
+		return cpf!=null && !cpf.contains("_") && cpf.trim().length() > 0;
+	}
 	public String getWarning() {
 		return warning;
 	}
 	public boolean hasItens() {
-		return !empty;
+		return (usuarios != null && usuarios.size()>0 && usuarios.get(0) != null) ;
 	}
 }

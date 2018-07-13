@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import model.dao.ProductDAO;
 @Table(name="vendas")  
 
 public class SellModel implements Serializable{
-
 	
 	private static final long serialVersionUID = 1L;
 
@@ -61,15 +59,10 @@ public class SellModel implements Serializable{
 	public Date getDate() {
 		return date;
 	}
-	//@OneToMany(fetch=FetchType.EAGER, cascade= {CascadeType.ALL})
 	public List<ItemSell> getItens() {
 		return itens;
 	}
-
-	
-	//@JoinColumn(name="item")
-	//@OneToMany(fetch=FetchType.EAGER, mappedBy = "sm")
-	public void setItens(List<ItemSell> itens) {
+	public void setItens(List<ItemSell> itens) {		
 		this.itens = itens;
 	}
 }
