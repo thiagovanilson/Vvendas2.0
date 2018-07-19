@@ -11,7 +11,7 @@
     	<title>Cadastrar Fornecedores</title>
     	
     	<p:outputLabel>
-	     	<h1 align="center">Cadastrar Fornecedores<br /></h1>	
+	     	<h1 align="center">Cadastrar Fornecedores<br /><br /></h1>	
      	</p:outputLabel>
      	
         <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
@@ -30,8 +30,8 @@
 				</p:panelGrid>
 			</h:form>
 			<br />
-	      	<h:form title="Cadastrar Fornecedores" id="cadFornForm">
-				<p:panelGrid columns="2"  styleClass="ui-noborder">					
+	      	<h:form title="Cadastrar Fornecedores" id="cadFornForm" >
+				<p:panelGrid columns="2"  styleClass="ui-noborder"  rendered="#{providers.cnpjIsValid()}" >					
 
 					<p:outputLabel value="Nome:" for="name" />
 					<p:inputText id="name" value="#{providers.name}"   required="true" size="40"/>

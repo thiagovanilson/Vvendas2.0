@@ -8,7 +8,6 @@ import model.ProviderModel;
 
 public class ProvidersDAO extends Persist {
 
-	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
 	
 	public ProviderModel getProvider(String cnpj) {
 		if(cnpj == null || cnpj.contains("_"))

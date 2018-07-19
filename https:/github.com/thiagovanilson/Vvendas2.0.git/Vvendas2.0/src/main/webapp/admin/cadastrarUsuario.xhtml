@@ -11,7 +11,7 @@
     	<title>Cadastrar Usuário</title>
     	
     	<p:outputLabel>
-	     	<h1 align="center">Cadastrar Usuário<br /></h1>	
+	     	<h1 align="center">Cadastrar Usuário<br /><br /> </h1>	
      	</p:outputLabel>
      	
         <p:panelGrid columns="1" styleClass="ui-noborder" id="formCod">   
@@ -30,11 +30,11 @@
 				</p:panelGrid>
 			</h:form>
 			<br />
-	      	<h:form title="Cadastrar Usuário" id="cadUserForm">
-				<p:panelGrid columns="2"  styleClass="ui-noborder">					
+	      	<h:form title="Cadastrar Usuário" id="cadUserForm" >
+				<p:panelGrid columns="2"  styleClass="ui-noborder" rendered="#{cadastrarUsuario.cpfIsValid()}">					
 
 					<p:outputLabel value="Nome:" for="name" />
-					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" size="40"/>
+					<p:inputText id="name" value="#{cadastrarUsuario.name}"   required="true" size="40" />
 									
 	 				<p:outputLabel value="Email:" for="email" />
 					<p:inputText id="email" value="#{cadastrarUsuario.email}"   required="true" style="width:250px"/>

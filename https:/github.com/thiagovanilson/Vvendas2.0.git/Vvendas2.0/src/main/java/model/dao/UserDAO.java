@@ -14,11 +14,7 @@ import model.UserModel;
 public class UserDAO extends Persist{
 	
 	private UserModel um;
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-
-//	@Inject
-//	private EntityManager manager;
-//	
+	
 	public UserDAO(UserModel u){
 		um = u;
 	}	
@@ -72,20 +68,24 @@ public class UserDAO extends Persist{
 	public ArrayList<UserModel> getUsers(String key) {
 	    EntityManager manager = factory.createEntityManager();
     	
-    	return (ArrayList<UserModel>) manager.createQuery(
+	    ArrayList<UserModel> usrs = (ArrayList<UserModel>) manager.createQuery(
     			"SELECT u FROM UserModel u WHERE u.name LIKE :uname")
     			.setParameter("uname", "%"+key+"%")
     			.setMaxResults(100)
     			.getResultList();
-
-
+	    manager.close();
+	    return usrs;
+	    
 	}
 
 
 	public int qtdUsers() {
 	    EntityManager manager = factory.createEntityManager();
-		return Integer.parseInt( manager.createQuery(
+		int qtd = Integer.parseInt( manager.createQuery(
     			"select count(u.cpf) from UserModel u where 1=1")
     			.getSingleResult().toString());
+		
+		manager.close();
+		return qtd;
 	}	
 }

@@ -17,9 +17,7 @@ public class ProductDAO extends Persist {
 //	@Inject
 //	private EntityManager manager;
 	private ProductModel pm;
-//	@Inject
-	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-	
+
 	public ProductDAO(ProductModel p){
 		pm = p;
 	}

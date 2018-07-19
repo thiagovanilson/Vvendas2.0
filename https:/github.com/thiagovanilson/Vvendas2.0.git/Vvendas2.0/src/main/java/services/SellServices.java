@@ -49,8 +49,6 @@ public class SellServices extends AbstractBean{
 			else {
 				warningSell = "Codigo: " + cod + " não cadastrado!";
 			}
-			cod = "";
-			qtd = 1 ;
 		}		
 	}
 
@@ -107,10 +105,5 @@ public class SellServices extends AbstractBean{
 
 	public String getWarningSold() {
 		return warningSold;
-	}
-
-	public String getInfoSold() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

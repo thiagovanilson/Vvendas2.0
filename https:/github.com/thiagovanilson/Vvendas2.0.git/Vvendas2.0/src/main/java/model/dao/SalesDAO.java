@@ -21,8 +21,6 @@ public class SalesDAO extends Persist implements Serializable{
 	private boolean hasItens = false;
 	private List<SellModel> resultList;
 	
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("comercio");
-	
 	public SalesDAO(SellModel s){
 		sm = s;
 	}
@@ -82,8 +80,7 @@ public class SalesDAO extends Persist implements Serializable{
 		return sm;
 	}
 	public ArrayList<SellModel> getSales(int days) {
-    	EntityManager manager = factory.createEntityManager();
-    	
+    	EntityManager manager = factory.createEntityManager();    	
     	
     	ArrayList<SellModel> resultList = (ArrayList<SellModel>) manager.createQuery(
     			"SELECT s FROM SellModel s WHERE s.date >= :inicio")
@@ -97,8 +94,7 @@ public class SalesDAO extends Persist implements Serializable{
 
 	}
 	public ArrayList<SellModel> getSales(int days, String cpf) {
-    	EntityManager manager = factory.createEntityManager();
-    	
+    	EntityManager manager = factory.createEntityManager();    	
     	
     	ArrayList<SellModel> resultList = (ArrayList<SellModel>) manager.createQuery(
     			"SELECT s FROM SellModel s WHERE s.date >= :inicio AND s.cpfUsuario like :cpf ")
@@ -115,13 +111,14 @@ public class SalesDAO extends Persist implements Serializable{
 		return hasItens;
 	}
 	public ArrayList<UserModel> getUsers() {
-    	EntityManager manager = factory.createEntityManager();
+    	EntityManager manager = factory.createEntityManager();    	
     	
-    	
-    	return (ArrayList<UserModel>) manager.createQuery(
+    	ArrayList<UserModel> um = (ArrayList<UserModel>) manager.createQuery(
     			"SELECT u FROM UserModel u ")
     			.setMaxResults(100)
     			.getResultList();
+    	manager.close();
+    	return um;
 	}
 	public List<SellModel> get100() {
 		return resultList;
